@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(claude mcp add --transport stdio web-tools -- npx -y @modelcontextprotocol/server-puppeteer)",
+      "Bash(claude mcp list:*)",
+      "Bash(tree:*)"
+    ]
+  }
+}
