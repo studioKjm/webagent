@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 AI 트렌드 예측 | AI의 미래를 탐구하다</title>
+    <meta name="description" content="2026년 AI는 어떻게 변화할까? 7가지 핵심 트렌드와 전문가 인사이트를 지금 확인하세요.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-bg-primary: #0a0a0a;
+            --color-bg-secondary: #1a1a1a;
+            --color-bg-card: #151515;
+            --color-purple: #8b5cf6;
+            --color-blue: #3b82f6;
+            --color-cyan: #06b6d4;
+            --color-cyan-bright: #00e5ff;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #a3a3a3;
+            --color-text-tertiary: #737373;
+
+            --font-display: 'Orbitron', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --font-body: 'Work Sans', sans-serif;
+
+            --gradient-primary: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 50%, #06b6d4 100%);
+            --gradient-glow: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-bg-primary);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .bg-gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--color-purple) 0%, transparent 70%);
+            top: -200px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--color-cyan) 0%, transparent 70%);
+            bottom: -150px;
+            left: -100px;
+            animation-delay: -5s;
+        }
+
+        .orb-3 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--color-blue) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(50px, -50px) scale(1.1);
+            }
+            66% {
+                transform: translate(-30px, 30px) scale(0.9);
+            }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 8rem 2rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 50px;
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            color: var(--color-cyan-bright);
+            margin-bottom: 2rem;
+            animation: fadeInDown 0.8s ease-out;
+            letter-spacing: 2px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #00e5ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out 0.2s both;
+            letter-spacing: -2px;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.125rem, 2vw, 1.5rem);
+            color: var(--color-text-secondary);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            font-weight: 300;
+            animation: fadeInUp 1s ease-out 0.4s both;
+            line-height: 1.7;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-family: var(--font-body);
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-text-primary);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--color-cyan-bright);
+            background: rgba(0, 229, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: var(--color-bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .stat-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(139, 92, 246, 0.3);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: var(--color-text-secondary);
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        /* Section Title */
+        .section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            color: var(--color-text-secondary);
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* Trends Grid */
+        .trends-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .trend-card {
+            background: linear-gradient(135deg, var(--color-bg-card) 0%, rgba(26, 26, 26, 0.8) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trend-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at top right, rgba(139, 92, 246, 0.1), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .trend-card:hover::after {
+            opacity: 1;
+        }
+
+        .trend-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(139, 92, 246, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .trend-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            filter: drop-shadow(0 0 20px rgba(0, 229, 255, 0.5));
+        }
+
+        .trend-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--color-cyan-bright);
+        }
+
+        .trend-subtitle {
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .trend-description {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .trend-points {
+            list-style: none;
+            padding: 0;
+        }
+
+        .trend-points li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .trend-points li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--color-cyan-bright);
+            font-weight: bold;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 4rem 0;
+        }
+
+        .timeline-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            position: relative;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-purple), var(--color-blue), var(--color-cyan));
+            transform: translateY(-50%);
+            display: none;
+        }
+
+        @media (min-width: 1024px) {
+            .timeline-line {
+                display: block;
+            }
+        }
+
+        .timeline-item {
+            background: var(--color-bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            background: var(--gradient-primary);
+            border-radius: 20px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.4s ease;
+        }
+
+        .timeline-item:hover::before {
+            opacity: 0.3;
+        }
+
+        .timeline-item:hover {
+            transform: scale(1.05);
+        }
+
+        .timeline-year {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 900;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        .timeline-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-family: var(--font-display);
+        }
+
+        .timeline-description {
+            color: var(--color-text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .timeline-milestones {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline-milestones li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--color-text-secondary);
+            border-left: 2px solid rgba(0, 229, 255, 0.2);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-milestones li::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            background: var(--color-cyan-bright);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--color-cyan-bright);
+        }
+
+        /* Expert Insights */
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .insight-card {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(6, 182, 212, 0.05));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 2.5rem;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .insight-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 229, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 229, 255, 0.15);
+        }
+
+        .quote-icon {
+            font-size: 3rem;
+            color: var(--color-cyan-bright);
+            opacity: 0.3;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .insight-quote {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--color-text-primary);
+            margin-bottom: 2rem;
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        .insight-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: white;
+        }
+
+        .author-info h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info p {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(6, 182, 212, 0.1));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 40px;
+            padding: 5rem 3rem;
+            text-align: center;
+            margin: 6rem auto;
+            max-width: 1000px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0, 229, 255, 0.1), transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .cta-section h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section p {
+            color: var(--color-text-secondary);
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+            text-align: left;
+            position: relative;
+            z-index: 1;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: start;
+            gap: 0.75rem;
+        }
+
+        .benefit-item::before {
+            content: '✓';
+            color: var(--color-cyan-bright);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .cta-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 600px;
+            margin: 3rem auto 0;
+            flex-wrap: wrap;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 1.25rem 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.3);
+            color: var(--color-text-primary);
+            font-size: 1rem;
+            font-family: var(--font-body);
+            transition: all 0.3s ease;
+        }
+
+        .cta-input:focus {
+            outline: none;
+            border-color: var(--color-cyan-bright);
+            background: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.2);
+        }
+
+        .cta-input::placeholder {
+            color: var(--color-text-tertiary);
+        }
+
+        .privacy-note {
+            font-size: 0.875rem;
+            color: var(--color-text-tertiary);
+            margin-top: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 4rem 0 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 6rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-tagline {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-link:hover {
+            background: var(--gradient-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-cyan-bright);
+        }
+
+        .footer-copyright {
+            text-align: center;
+            color: var(--color-text-tertiary);
+            font-size: 0.875rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 6rem 1.5rem;
+            }
+
+            .section {
+                padding: 4rem 0;
+            }
+
+            .trends-grid,
+            .insights-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-section {
+                padding: 3rem 2rem;
+                margin: 4rem 1rem;
+            }
+
+            .cta-form {
+                flex-direction: column;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="bg-gradient-orb orb-1"></div>
+        <div class="bg-gradient-orb orb-2"></div>
+        <div class="bg-gradient-orb orb-3"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">[ 2026 AI REVOLUTION ]</div>
+            <h1>2026년, AI는 어떻게 변화할까?</h1>
+            <p class="hero-subtitle">
+                인공지능의 폭발적 진화, 우리 삶을 바꿀 7가지 트렌드를 지금 만나보세요
+            </p>
+            <div class="cta-group">
+                <a href="#cta" class="btn btn-primary">트렌드 리포트 다운로드</a>
+                <a href="#trends" class="btn btn-secondary">7가지 트렌드 보기</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid fade-in">
+                <div class="stat-card">
+                    <div class="stat-number">75%</div>
+                    <div class="stat-label">2026년까지 AI 도입 기업 비율</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">$15.7T</div>
+                    <div class="stat-label">2026년 글로벌 AI 시장 규모</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">97%</div>
+                    <div class="stat-label">일상에서 AI 기술 사용 경험률</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trends Section -->
+    <section id="trends" class="section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">7가지 핵심 AI 트렌드</h2>
+                <p class="section-subtitle">2026년을 주도할 인공지능 혁신의 흐름</p>
+            </div>
+
+            <div class="trends-grid">
+                <div class="trend-card fade-in">
+                    <span class="trend-icon">🤖</span>
+                    <h3 class="trend-title">AI 에이전트의 대중화</h3>
+                    <p class="trend-subtitle">누구나 쓰는 지능형 비서의 시대</p>
+                    <p class="trend-description">
+                        2026년에는 AI 에이전트가 개인 비서를 넘어 업무 자동화, 창작 지원, 의사결정 보조까지 수행합니다. 코드 없이도 자신만의 AI 에이전트를 만들고 배포할 수 있는 플랫폼이 보편화됩니다.
+                    </p>
+                    <ul class="trend-points">
+                        <li>노코드 AI 에이전트 빌더 보편화</li>
+                        <li>개인 맞춤형 업무 자동화 도구</li>
+                        <li>멀티태스킹 지능형 어시스턴트</li>
+                    </ul>
+                </div>
+
+                <div class="trend-card fade-in">
+                    <span class="trend-icon">🎨</span>
+                    <h3 class="trend-title">멀티모달 AI의 진화</h3>
+                    <p class="trend-subtitle">텍스트, 이미지, 영상, 음성을 하나로</p>
+                    <p class="trend-description">
+                        단일 모델이 텍스트, 이미지, 영상, 음성을 동시에 이해하고 생성합니다. 실시간 번역, 영상 요약, 창작 콘텐츠 제작이 더욱 자연스럽고 정교해집니다.
+                    </p>
+                    <ul class="trend-points">
+                        <li>통합 멀티모달 AI 모델 상용화</li>
+                        <li>실시간 크로스모달 변환</li>
+                        <li>창작자를 위한 AI 협업 도구</li>
+                    </ul>
+                </div>
+
+                <div class="trend-card fade-in">
+                    <span class="trend-icon">💬</span>
+                    <h3 class="trend-title">개인화 AI 비서</h3>
+                    <p class="trend-subtitle">당신을 이해하는 AI</p>
+                    <p class="trend-description">
+                        학습 패턴, 선호도, 맥락을 이해하는 초개인화 AI가 등장합니다. 스마트폰, 스마트워치, 가전제품이 하나의 생태계로 연결되어 끊김 없는 AI 경험을 제공합니다.
+                    </p>
+                    <ul class="trend-points">
+                        <li>사용자 맥락 인식 및 학습</li>
+                        <li>디바이스 간 끊김 없는 연동</li>
+                        <li>프라이버시 보호 온디바이스 AI</li>
+                    </ul>
+                </div>
+
+                <div class="trend-card fade-in">
+                    <span class="trend-icon">🦾</span>
+                    <h3 class="trend-title">AI + 로보틱스 융합</h3>
+                    <p class="trend-subtitle">물리적 세계를 바꾸는 지능형 로봇</p>
+                    <p class="trend-description">
+                        AI가 로봇 팔, 자율주행차, 드론과 결합하여 제조, 물류, 의료 현장을 혁신합니다. 사람과 협업하는 코봇(협동 로봇)이 일상화됩니다.
+                    </p>
+                    <ul class="trend-points">
+                        <li>인간-로봇 협업 시스템 확산</li>
+                        <li>자율 배송 및 제조 로봇 상용화</li>
+                        <li>의료 수술 로봇의 AI 고도화</li>
+                    </ul>
+                </div>
+
+                <div class="trend-card fade-in">
+                    <span class="trend-icon">⚖️</span>
+                    <h3 class="trend-title">규제 및 윤리 프레임워크</h3>
+                    <p class="trend-subtitle">책임 있는 AI 사용을 위한 제도화</p>
+                    <p class="trend-description">
+                        AI 규제 법안이 전 세계적으로 도입됩니다. 투명성, 공정성, 프라이버시 보호가 AI 개발의 핵심 요소가 되며, 기업의 윤리적 AI 채택이 경쟁력이 됩니다.
+                    </p>
+                    <ul class="trend-points">
+                        <li>EU AI Act 등 글로벌 규제 시행</li>
+                        <li>AI 모델 투명성 및 설명 가능성 의무화</li>
+                        <li>편향성 제거 및 공정성 검증 도구</li>
+                    </ul>
+                </div>
+
+                <div class="trend-card fade-in">
+                    <span class="trend-icon">📱</span>
+                    <h3 class="trend-title">엣지 AI와 온디바이스 처리</h3>
+                    <p class="trend-subtitle">클라우드 없이도 강력한 AI</p>
+                    <p class="trend-description">
+                        스마트폰과 IoT 기기에서 직접 AI 모델을 실행하는 엣지 컴퓨팅이 확산됩니다. 빠른 응답 속도, 프라이버시 보호, 낮은 비용이 장점입니다.
+                    </p>
+                    <ul class="trend-points">
+                        <li>온디바이스 LLM 및 이미지 생성 모델</li>
+                        <li>초저전력 AI 칩셋 보급</li>
+                        <li>오프라인 환경에서도 작동하는 AI</li>
+                    </ul>
+                </div>
+
+                <div class="trend-card fade-in">
+                    <span class="trend-icon">🌍</span>
+                    <h3 class="trend-title">AI 민주화</h3>
+                    <p class="trend-subtitle">누구나 AI를 만들고 사용하는 시대</p>
+                    <p class="trend-description">
+                        프로그래밍 지식 없이도 AI 모델을 학습시키고 배포할 수 있는 도구가 대중화됩니다. 교육, 의료, 농업 등 모든 산업에서 AI 접근성이 극대화됩니다.
+                    </p>
+                    <ul class="trend-points">
+                        <li>노코드 AI 개발 플랫폼 확산</li>
+                        <li>오픈소스 AI 모델 생태계 성장</li>
+                        <li>AI 교육 및 리터러시 프로그램 보편화</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">AI 진화의 여정</h2>
+                <p class="section-subtitle">2024년부터 2026년까지, AI는 어떻게 발전해왔을까?</p>
+            </div>
+
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-year">2024</div>
+                    <h3 class="timeline-title">기반 구축</h3>
+                    <p class="timeline-description">
+                        대형 언어 모델(LLM) 대중화, ChatGPT와 Claude 등 생성형 AI 폭발적 성장
+                    </p>
+                    <ul class="timeline-milestones">
+                        <li>GPT-4, Claude 3 등 멀티모달 모델 출시</li>
+                        <li>AI 코딩 어시스턴트 보편화</li>
+                        <li>AI 규제 논의 본격화</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-year">2025</div>
+                    <h3 class="timeline-title">가속화</h3>
+                    <p class="timeline-description">
+                        AI 에이전트 시대 개막, 업무 자동화 및 개인화 AI 확산
+                    </p>
+                    <ul class="timeline-milestones">
+                        <li>자율 AI 에이전트 상용화</li>
+                        <li>실시간 멀티모달 번역 서비스</li>
+                        <li>온디바이스 AI 칩셋 확산</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-year">2026</div>
+                    <h3 class="timeline-title">대변혁</h3>
+                    <p class="timeline-description">
+                        AI가 일상과 산업의 표준이 되는 해, 전 산업 AI 통합 완료
+                    </p>
+                    <ul class="timeline-milestones">
+                        <li>AI 민주화 완성, 누구나 AI 개발 가능</li>
+                        <li>AI 윤리 법안 전 세계 시행</li>
+                        <li>인간-AI 협업이 새로운 표준으로 자리잡음</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expert Insights -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">전문가들의 예측</h2>
+                <p class="section-subtitle">글로벌 AI 리더들이 말하는 2026년의 모습</p>
+            </div>
+
+            <div class="insights-grid">
+                <div class="insight-card fade-in">
+                    <div class="quote-icon">"</div>
+                    <p class="insight-quote">
+                        2026년에는 AI가 단순한 도구가 아닌 협업 파트너가 됩니다. 인간의 창의성과 AI의 효율성이 결합된 새로운 시대가 열립니다.
+                    </p>
+                    <div class="insight-author">
+                        <div class="author-avatar" style="background: linear-gradient(135deg, #8b5cf6, #3b82f6);">김</div>
+                        <div class="author-info">
+                            <h4>Dr. 김민수</h4>
+                            <p>AI 연구소 소장, KAIST</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insight-card fade-in">
+                    <div class="quote-icon">"</div>
+                    <p class="insight-quote">
+                        AI 에이전트가 일상화되면서 업무 생산성이 3배 이상 향상될 것입니다. 중요한 것은 AI를 어떻게 윤리적으로 사용하느냐입니다.
+                    </p>
+                    <div class="insight-author">
+                        <div class="author-avatar" style="background: linear-gradient(135deg, #3b82f6, #06b6d4);">SJ</div>
+                        <div class="author-info">
+                            <h4>Sarah Johnson</h4>
+                            <p>Chief AI Officer, TechCorp</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insight-card fade-in">
+                    <div class="quote-icon">"</div>
+                    <p class="insight-quote">
+                        온디바이스 AI의 발전으로 프라이버시를 보호하면서도 강력한 AI 경험을 누릴 수 있게 됩니다. 이것이 AI의 진정한 민주화입니다.
+                    </p>
+                    <div class="insight-author">
+                        <div class="author-avatar" style="background: linear-gradient(135deg, #06b6d4, #8b5cf6);">이</div>
+                        <div class="author-info">
+                            <h4>이준호</h4>
+                            <p>프로덕트 매니저, 네이버 AI Lab</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta" class="section">
+        <div class="container">
+            <div class="cta-section fade-in">
+                <h2>2026 AI 트렌드 완전 분석 리포트</h2>
+                <p>50페이지 분량의 심층 분석 자료를 무료로 받아보세요</p>
+
+                <div class="cta-benefits">
+                    <div class="benefit-item">
+                        <span>7가지 핵심 트렌드 상세 분석</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span>산업별 AI 도입 전략 가이드</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span>전문가 인터뷰 및 케이스 스터디</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span>2027년 이후 AI 전망 포함</span>
+                    </div>
+                </div>
+
+                <form class="cta-form" onsubmit="handleSubmit(event)">
+                    <input type="email" class="cta-input" placeholder="이메일 주소를 입력하세요" required>
+                    <button type="submit" class="btn btn-primary">무료로 리포트 받기</button>
+                </form>
+
+                <p class="privacy-note">
+                    이메일 주소는 리포트 전송 및 뉴스레터 발송 목적으로만 사용됩니다.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-tagline">AI의 미래를 함께 탐구합니다</div>
+                <div class="social-links">
+                    <a href="#" class="social-link">🐦</a>
+                    <a href="#" class="social-link">💼</a>
+                    <a href="#" class="social-link">💻</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="#">개인정보처리방침</a>
+                <a href="#">이용약관</a>
+                <a href="#">문의하기</a>
+            </div>
+            <div class="footer-copyright">
+                © 2025 AI Trends Report. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form Submit
+        function handleSubmit(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input[type="email"]').value;
+            alert(`감사합니다! ${email}로 리포트를 발송했습니다.`);
+            event.target.reset();
+        }
+    </script>
+</body>
+</html>

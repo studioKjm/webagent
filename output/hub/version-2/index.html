@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>랜딩페이지 허브 - LP Agent Hub</title>
+  <meta name="description" content="AI 에이전트가 생성한 전문 랜딩페이지 컬렉션">
+
+  <!-- Fonts: Archivo Black + Outfit Black -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================
+       DESIGN TOKENS - BRUTALIST EDITION
+       ============================================= */
+    :root {
+      /* Colors */
+      --color-background: #0f0f0f;
+      --color-background-alt: #1a1a1a;
+      --color-text-primary: #ffffff;
+      --color-text-secondary: #e0e0e0;
+      --color-border: #000000;
+
+      /* Vibrant Gradients */
+      --gradient-1: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+      --gradient-2: linear-gradient(135deg, #ec4899 0%, #00e5ff 100%);
+      --gradient-3: linear-gradient(135deg, #00e5ff 0%, #fbbf24 100%);
+      --gradient-explosive: linear-gradient(135deg, #8b5cf6 0%, #ec4899 33%, #00e5ff 66%, #fbbf24 100%);
+      --gradient-rotating: conic-gradient(from 0deg, #8b5cf6, #ec4899, #00e5ff, #fbbf24, #8b5cf6);
+
+      /* Typography */
+      --font-display: 'Archivo Black', sans-serif;
+      --font-heading: 'Outfit', sans-serif;
+
+      /* Spacing */
+      --space-4: 1rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --space-24: 6rem;
+
+      /* Brutalist Borders */
+      --border-thick: 6px solid var(--color-border);
+      --border-medium: 4px solid var(--color-border);
+
+      /* Brutalist Shadows */
+      --shadow-brutal-sm: 4px 4px 0 #000;
+      --shadow-brutal-md: 8px 8px 0 #000;
+      --shadow-brutal-lg: 12px 12px 0 #000;
+      --shadow-brutal-xl: 16px 16px 0 #000;
+    }
+
+    /* =============================================
+       RESET & BASE
+       ============================================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--color-text-primary);
+      background: var(--color-background);
+      line-height: 1.4;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* Animated Background Shapes */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: var(--gradient-rotating);
+      opacity: 0.03;
+      z-index: 0;
+      animation: rotateBackground 20s linear infinite;
+    }
+
+    @keyframes rotateBackground {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Noise Texture */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* =============================================
+       NAVIGATION - BRUTALIST STYLE
+       ============================================= */
+    .nav {
+      position: sticky;
+      top: 0;
+      background: var(--color-background);
+      border-bottom: var(--border-thick);
+      z-index: 100;
+      position: relative;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      text-decoration: none;
+      color: var(--color-text-primary);
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-logo-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--gradient-explosive);
+      border: var(--border-medium);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      box-shadow: var(--shadow-brutal-sm);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: var(--space-8);
+      list-style: none;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--color-text-primary);
+      font-weight: 900;
+      font-size: 1.125rem;
+      padding: var(--space-4);
+      border: 3px solid transparent;
+      transition: all 0.2s;
+      position: relative;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-link:hover {
+      border: 3px solid #000;
+      background: var(--gradient-explosive);
+      box-shadow: var(--shadow-brutal-sm);
+    }
+
+    /* =============================================
+       HERO SECTION - MASSIVE & EXPLOSIVE
+       ============================================= */
+    .hero {
+      padding: var(--space-24) var(--space-6);
+      text-align: center;
+      background: var(--color-background-alt);
+      border-bottom: var(--border-thick);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Morphing Gradient Shapes */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: -100px;
+      width: 400px;
+      height: 400px;
+      background: var(--gradient-1);
+      opacity: 0.15;
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      animation: morph1 8s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      right: -100px;
+      width: 500px;
+      height: 500px;
+      background: var(--gradient-3);
+      opacity: 0.15;
+      border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+      animation: morph2 10s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    @keyframes morph1 {
+      0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+      50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
+    }
+
+    @keyframes morph2 {
+      0%, 100% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
+      50% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+    }
+
+    .hero-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 6rem);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: var(--space-8);
+      background: var(--gradient-explosive);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-transform: uppercase;
+      animation: pulseGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(1.2); }
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
+      color: var(--color-text-secondary);
+      font-weight: 800;
+      line-height: 1.4;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* =============================================
+       PROJECTS SECTION - BRUTALIST GRID
+       ============================================= */
+    .projects {
+      padding: var(--space-24) var(--space-6);
+      background: var(--color-background);
+      position: relative;
+      z-index: 2;
+    }
+
+    .projects-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      margin-bottom: var(--space-16);
+      text-align: center;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-4);
+      text-transform: uppercase;
+      background: var(--gradient-2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-description {
+      font-size: 1.25rem;
+      color: var(--color-text-secondary);
+      font-weight: 700;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-12);
+    }
+
+    @media (min-width: 768px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* =============================================
+       PROJECT CARD - BRUTALIST STYLE
+       ============================================= */
+    .project-card {
+      background: var(--color-background-alt);
+      border: var(--border-thick);
+      overflow: hidden;
+      transition: all 0.3s;
+      box-shadow: var(--shadow-brutal-md);
+      position: relative;
+    }
+
+    .project-card:hover {
+      transform: translate(-4px, -4px);
+      box-shadow: var(--shadow-brutal-xl);
+    }
+
+    .project-thumbnail {
+      height: 280px;
+      background: var(--gradient-explosive);
+      position: relative;
+      overflow: hidden;
+      border-bottom: var(--border-thick);
+    }
+
+    /* Striped Pattern */
+    .project-thumbnail::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(0, 0, 0, 0.1) 10px,
+        rgba(0, 0, 0, 0.1) 20px
+      );
+      animation: moveStripes 20s linear infinite;
+    }
+
+    @keyframes moveStripes {
+      from { transform: translateX(0); }
+      to { transform: translateX(100px); }
+    }
+
+    .project-content {
+      padding: var(--space-8);
+    }
+
+    .project-meta {
+      display: flex;
+      gap: var(--space-4);
+      margin-bottom: var(--space-6);
+      flex-wrap: wrap;
+    }
+
+    .project-badge {
+      display: inline-block;
+      padding: var(--space-4);
+      background: var(--gradient-1);
+      color: #fff;
+      font-size: 0.875rem;
+      font-weight: 900;
+      border: 3px solid #000;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      box-shadow: var(--shadow-brutal-sm);
+      animation: pulseBadge 2s ease-in-out infinite;
+    }
+
+    @keyframes pulseBadge {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .project-badge:nth-child(2) {
+      background: var(--gradient-2);
+      animation-delay: 0.3s;
+    }
+
+    .project-badge.badge-status {
+      background: var(--gradient-3);
+      animation-delay: 0.6s;
+    }
+
+    .project-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      margin-bottom: var(--space-4);
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    .project-description {
+      color: var(--color-text-secondary);
+      font-size: 1.125rem;
+      line-height: 1.5;
+      margin-bottom: var(--space-8);
+      font-weight: 700;
+    }
+
+    .project-versions {
+      margin-top: var(--space-8);
+      padding-top: var(--space-8);
+      border-top: var(--border-medium);
+    }
+
+    .versions-label {
+      font-size: 1rem;
+      font-weight: 900;
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-6);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .version-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .version-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-6);
+      background: var(--color-background);
+      border: var(--border-medium);
+      text-decoration: none;
+      color: var(--color-text-primary);
+      transition: all 0.2s;
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 1.125rem;
+      box-shadow: var(--shadow-brutal-sm);
+    }
+
+    .version-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: var(--shadow-brutal-md);
+      background: var(--gradient-explosive);
+    }
+
+    .version-btn:nth-child(1) {
+      border-color: #8b5cf6;
+    }
+
+    .version-btn:nth-child(2) {
+      border-color: #ec4899;
+    }
+
+    .version-btn:nth-child(3) {
+      border-color: #00e5ff;
+    }
+
+    .version-info {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      align-items: flex-start;
+    }
+
+    .version-name {
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .version-target {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      font-weight: 700;
+    }
+
+    .version-arrow {
+      font-size: 2rem;
+      font-weight: 900;
+      transition: transform 0.2s;
+    }
+
+    .version-btn:hover .version-arrow {
+      transform: translateX(8px);
+    }
+
+    /* =============================================
+       PLACEHOLDER CARD - BRUTALIST
+       ============================================= */
+    .placeholder-card {
+      background: var(--color-background-alt);
+      border: 6px dashed #333;
+      padding: var(--space-24) var(--space-8);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      transition: all 0.3s;
+      cursor: pointer;
+      min-height: 600px;
+    }
+
+    .placeholder-card:hover {
+      border-color: #8b5cf6;
+      background: var(--color-background);
+      transform: translate(-4px, -4px);
+      box-shadow: var(--shadow-brutal-md);
+    }
+
+    .placeholder-icon {
+      font-size: 6rem;
+      font-weight: 900;
+      background: var(--gradient-explosive);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--space-6);
+    }
+
+    .placeholder-text {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      color: var(--color-text-primary);
+      text-transform: uppercase;
+    }
+
+    /* =============================================
+       STATS SECTION - MASSIVE NUMBERS
+       ============================================= */
+    .stats {
+      padding: var(--space-24) var(--space-6);
+      background: var(--color-background-alt);
+      border-top: var(--border-thick);
+      border-bottom: var(--border-thick);
+      position: relative;
+      z-index: 2;
+    }
+
+    .stats-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-8);
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: var(--space-8);
+      background: var(--color-background);
+      border: var(--border-thick);
+      box-shadow: var(--shadow-brutal-md);
+      transition: all 0.3s;
+    }
+
+    .stat-item:hover {
+      transform: translate(-4px, -4px);
+      box-shadow: var(--shadow-brutal-lg);
+    }
+
+    .stat-item:nth-child(1) {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, transparent 100%);
+    }
+
+    .stat-item:nth-child(2) {
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, transparent 100%);
+    }
+
+    .stat-item:nth-child(3) {
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.1) 0%, transparent 100%);
+    }
+
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 5rem);
+      background: var(--gradient-explosive);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--space-4);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 1.125rem;
+      color: var(--color-text-primary);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* =============================================
+       FOOTER - BRUTALIST
+       ============================================= */
+    .footer {
+      padding: var(--space-16) var(--space-6);
+      background: var(--color-background);
+      border-top: var(--border-thick);
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-8);
+    }
+
+    .footer-text {
+      color: var(--color-text-secondary);
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: var(--space-8);
+      list-style: none;
+    }
+
+    .footer-link {
+      text-decoration: none;
+      color: var(--color-text-primary);
+      font-size: 1rem;
+      font-weight: 900;
+      padding: var(--space-4);
+      border: 3px solid transparent;
+      transition: all 0.2s;
+      text-transform: uppercase;
+    }
+
+    .footer-link:hover {
+      border: 3px solid #000;
+      background: var(--gradient-explosive);
+      box-shadow: var(--shadow-brutal-sm);
+    }
+
+    /* =============================================
+       ANIMATIONS - STAGGERED ENTRANCE
+       ============================================= */
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(60px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-container {
+      animation: slideInUp 0.8s ease-out;
+    }
+
+    .project-card {
+      animation: slideInUp 0.8s ease-out;
+      animation-fill-mode: both;
+    }
+
+    .project-card:nth-child(1) { animation-delay: 0.2s; }
+    .project-card:nth-child(2) { animation-delay: 0.4s; }
+
+    /* =============================================
+       RESPONSIVE
+       ============================================= */
+    @media (max-width: 768px) {
+      .nav-menu {
+        gap: var(--space-4);
+      }
+
+      .nav-link {
+        font-size: 0.875rem;
+        padding: var(--space-3);
+      }
+
+      .hero {
+        padding: var(--space-16) var(--space-6);
+      }
+
+      .projects {
+        padding: var(--space-16) var(--space-6);
+      }
+
+      .stats {
+        padding: var(--space-16) var(--space-6);
+      }
+
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    /* =============================================
+       ACCESSIBILITY
+       ============================================= */
+    *:focus-visible {
+      outline: 4px solid #8b5cf6;
+      outline-offset: 4px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* =============================================
+       MODAL STYLES - BRUTALIST
+       ============================================= */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: var(--space-6);
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--color-background-alt);
+      border: var(--border-thick);
+      max-width: 600px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: var(--shadow-brutal-lg);
+      animation: modalSlideIn 0.3s ease-out;
+    }
+
+    @keyframes modalSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .modal-header {
+      padding: var(--space-8);
+      border-bottom: var(--border-thick);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--gradient-explosive);
+    }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .modal-close {
+      background: #000;
+      border: 3px solid #fff;
+      font-size: 1.75rem;
+      cursor: pointer;
+      color: #fff;
+      padding: var(--space-3);
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      transition: all 0.2s;
+    }
+
+    .modal-close:hover {
+      background: #fff;
+      color: #000;
+      transform: rotate(90deg);
+    }
+
+    .modal-body {
+      padding: var(--space-8);
+    }
+
+    .form-group {
+      margin-bottom: var(--space-8);
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: var(--space-4);
+      font-weight: 900;
+      color: var(--color-text-primary);
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      padding: var(--space-4);
+      border: var(--border-medium);
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      transition: all 0.2s;
+      background: var(--color-background);
+      color: var(--color-text-primary);
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: #8b5cf6;
+      box-shadow: var(--shadow-brutal-sm);
+      transform: translate(-2px, -2px);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .image-upload-container {
+      display: flex;
+      gap: var(--space-4);
+      flex-direction: column;
+    }
+
+    .image-preview {
+      width: 100%;
+      height: 200px;
+      border: 4px dashed #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--color-background);
+    }
+
+    .image-preview img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+    }
+
+    .image-preview-placeholder {
+      color: var(--color-text-secondary);
+      font-size: 0.875rem;
+      font-weight: 700;
+    }
+
+    .btn-primary {
+      background: var(--gradient-explosive);
+      color: white;
+      border: var(--border-medium);
+      padding: var(--space-6) var(--space-8);
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 1.125rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      width: 100%;
+      text-transform: uppercase;
+      box-shadow: var(--shadow-brutal-sm);
+    }
+
+    .btn-primary:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: var(--shadow-brutal-md);
+    }
+
+    .btn-secondary {
+      background: var(--color-background);
+      color: var(--color-text-primary);
+      border: var(--border-medium);
+      padding: var(--space-4) var(--space-6);
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-transform: uppercase;
+    }
+
+    .btn-secondary:hover {
+      background: var(--gradient-1);
+      color: #fff;
+      transform: translate(-2px, -2px);
+      box-shadow: var(--shadow-brutal-sm);
+    }
+
+    .version-fields {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      margin-top: var(--space-4);
+    }
+
+    .version-field-group {
+      display: grid;
+      grid-template-columns: 1fr 2fr auto;
+      gap: var(--space-3);
+      align-items: end;
+    }
+
+    .btn-remove {
+      background: #ff0055;
+      color: #fff;
+      border: 3px solid #000;
+      padding: var(--space-4);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-weight: 900;
+      box-shadow: var(--shadow-brutal-sm);
+    }
+
+    .btn-remove:hover {
+      background: #000;
+      transform: translate(-2px, -2px);
+      box-shadow: var(--shadow-brutal-md);
+    }
+
+    .btn-add-version {
+      margin-top: var(--space-4);
+    }
+
+    .project-thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .delete-project-btn {
+      position: absolute;
+      top: var(--space-4);
+      right: var(--space-4);
+      background: #ff0055;
+      border: 3px solid #000;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      color: #fff;
+      transition: all 0.2s;
+      z-index: 10;
+      box-shadow: var(--shadow-brutal-sm);
+    }
+
+    .delete-project-btn:hover {
+      background: #000;
+      transform: translate(-2px, -2px) scale(1.1);
+      box-shadow: var(--shadow-brutal-md);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =============================================
+       NAVIGATION
+       ============================================= -->
+  <nav class="nav" role="navigation" aria-label="메인 네비게이션">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-icon">⚡</div>
+        <span>LP AGENT HUB</span>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="#projects" class="nav-link">프로젝트</a></li>
+        <li><a href="#stats" class="nav-link">정보</a></li>
+        <li><a href="#footer" class="nav-link">문서</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- =============================================
+       HERO SECTION
+       ============================================= -->
+  <section class="hero">
+    <div class="hero-container">
+      <h1 class="hero-title">랜딩페이지 허브</h1>
+      <p class="hero-subtitle">AI 에이전트가 생성한 전문 랜딩페이지 컬렉션</p>
+    </div>
+  </section>
+
+  <!-- =============================================
+       PROJECTS SECTION
+       ============================================= -->
+  <section id="projects" class="projects">
+    <div class="projects-container">
+      <div class="section-header">
+        <h2 class="section-title">프로젝트</h2>
+        <p class="section-description">생성된 랜딩페이지 프로젝트를 탐색하세요</p>
+      </div>
+
+      <div class="projects-grid" id="projectsGrid">
+
+        <!-- AI Trends 2026 Project -->
+        <article class="project-card">
+          <div class="project-thumbnail">
+            <img src="../../ai-trends-2026/version-2/스크린샷 2025-12-30 오전 1.13.18.png" alt="2026 AI 트렌드 예측">
+          </div>
+
+          <div class="project-content">
+            <div class="project-meta">
+              <span class="project-badge">TECH/AI</span>
+              <span class="project-badge">2025-12-29</span>
+              <span class="project-badge badge-status">LIVE</span>
+            </div>
+
+            <h3 class="project-title">2026 AI 트렌드 예측</h3>
+            <p class="project-description">
+              2026년 인공지능 기술 발전 방향과 주요 트렌드를 소개하는 랜딩페이지
+            </p>
+
+            <div class="project-versions">
+              <div class="versions-label">디자인 버전 (3)</div>
+
+              <div class="version-buttons">
+                <a href="../../ai-trends-2026/version-1/index.html" class="version-btn" target="_blank">
+                  <div class="version-info">
+                    <span class="version-name">Dark & Modern</span>
+                    <span class="version-target">타겟: 개발자, 기술 전문가</span>
+                  </div>
+                  <span class="version-arrow">→</span>
+                </a>
+
+                <a href="../../ai-trends-2026/version-2/index.html" class="version-btn" target="_blank">
+                  <div class="version-info">
+                    <span class="version-name">Bold & Vibrant</span>
+                    <span class="version-target">타겟: 일반 대중, 소비자</span>
+                  </div>
+                  <span class="version-arrow">→</span>
+                </a>
+
+                <a href="../../ai-trends-2026/version-3/index.html" class="version-btn" target="_blank">
+                  <div class="version-info">
+                    <span class="version-name">Minimal & Clean</span>
+                    <span class="version-target">타겟: 기업 임원, 의사결정권자</span>
+                  </div>
+                  <span class="version-arrow">→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Placeholder Card -->
+        <div class="placeholder-card" onclick="openModal()">
+          <div class="placeholder-icon">+</div>
+          <p class="placeholder-text">새 프로젝트 추가</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       STATS SECTION
+       ============================================= -->
+  <section id="stats" class="stats">
+    <div class="stats-container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-value" id="totalProjects">1</div>
+          <div class="stat-label">총 프로젝트</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-value" id="totalVersions">3</div>
+          <div class="stat-label">총 디자인 버전</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-value" id="lastUpdated">12.29</div>
+          <div class="stat-label">최근 업데이트</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       FOOTER
+       ============================================= -->
+  <footer id="footer" class="footer">
+    <div class="footer-container">
+      <p class="footer-text">© 2025 LP Agent Hub. AI로 생성된 랜딩페이지.</p>
+
+      <ul class="footer-links">
+        <li><a href="https://github.com/anthropics/claude-code" class="footer-link" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="https://code.claude.com/docs" class="footer-link" target="_blank" rel="noopener noreferrer">Docs</a></li>
+      </ul>
+    </div>
+  </footer>
+
+
+  <!-- =============================================
+       MODAL - ADD PROJECT
+       ============================================= -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">새 프로젝트 추가</h3>
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <form id="projectForm" onsubmit="addProject(event)">
+          <div class="form-group">
+            <label class="form-label" for="projectTitle">프로젝트 제목 *</label>
+            <input type="text" id="projectTitle" class="form-input" required placeholder="예: AI 챗봇 서비스">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="projectDescription">설명 *</label>
+            <textarea id="projectDescription" class="form-textarea" required placeholder="프로젝트에 대한 간단한 설명을 입력하세요"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="projectCategory">카테고리 *</label>
+            <input type="text" id="projectCategory" class="form-input" required placeholder="예: Tech/AI">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">프로젝트 이미지</label>
+            <div class="image-upload-container">
+              <div class="image-preview" id="imagePreview">
+                <span class="image-preview-placeholder">이미지 URL을 입력하거나 파일을 선택하세요</span>
+              </div>
+              <input type="url" id="imageUrl" class="form-input" placeholder="이미지 URL (https://...)" onchange="previewImageUrl()">
+              <input type="file" id="imageFile" class="form-input" accept="image/*" onchange="previewImageFile()">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">디자인 버전 (최소 1개)</label>
+            <div class="version-fields" id="versionFields">
+              <div class="version-field-group">
+                <input type="text" class="form-input version-name-input" placeholder="버전 이름" required>
+                <input type="url" class="form-input version-url-input" placeholder="URL" required>
+                <button type="button" class="btn-remove" onclick="removeVersion(this)">×</button>
+              </div>
+            </div>
+            <button type="button" class="btn-secondary btn-add-version" onclick="addVersionField()">+ 버전 추가</button>
+          </div>
+
+          <button type="submit" class="btn-primary">프로젝트 추가</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // LocalStorage 키
+    const PROJECTS_KEY = 'lp_hub_projects';
+
+    // 페이지 로드 시 프로젝트 로드
+    document.addEventListener('DOMContentLoaded', () => {
+      loadProjects();
+      updateStats();
+    });
+
+    // 모달 열기
+    function openModal() {
+      document.getElementById('modalOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // 모달 닫기
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+      resetForm();
+    }
+
+    // 모달 오버레이 클릭 시 닫기
+    function closeModalOnOverlay(event) {
+      if (event.target === event.currentTarget) {
+        closeModal();
+      }
+    }
+
+    // 폼 리셋
+    function resetForm() {
+      document.getElementById('projectForm').reset();
+      document.getElementById('imagePreview').innerHTML = '<span class="image-preview-placeholder">이미지 URL을 입력하거나 파일을 선택하세요</span>';
+      // 버전 필드를 1개로 초기화
+      const versionFields = document.getElementById('versionFields');
+      versionFields.innerHTML = `
+        <div class="version-field-group">
+          <input type="text" class="form-input version-name-input" placeholder="버전 이름" required>
+          <input type="url" class="form-input version-url-input" placeholder="URL" required>
+          <button type="button" class="btn-remove" onclick="removeVersion(this)">×</button>
+        </div>
+      `;
+    }
+
+    // 이미지 URL 미리보기
+    function previewImageUrl() {
+      const url = document.getElementById('imageUrl').value;
+      if (url) {
+        document.getElementById('imageFile').value = ''; // 파일 입력 초기화
+        document.getElementById('imagePreview').innerHTML = `<img src="${url}" alt="Preview">`;
+      }
+    }
+
+    // 이미지 파일 미리보기
+    function previewImageFile() {
+      const file = document.getElementById('imageFile').files[0];
+      if (file) {
+        document.getElementById('imageUrl').value = ''; // URL 입력 초기화
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('imagePreview').innerHTML = `<img src="${e.target.result}" alt="Preview">`;
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    // 버전 필드 추가
+    function addVersionField() {
+      const versionFields = document.getElementById('versionFields');
+      const newField = document.createElement('div');
+      newField.className = 'version-field-group';
+      newField.innerHTML = `
+        <input type="text" class="form-input version-name-input" placeholder="버전 이름" required>
+        <input type="url" class="form-input version-url-input" placeholder="URL" required>
+        <button type="button" class="btn-remove" onclick="removeVersion(this)">×</button>
+      `;
+      versionFields.appendChild(newField);
+    }
+
+    // 버전 필드 제거
+    function removeVersion(button) {
+      const versionFields = document.getElementById('versionFields');
+      if (versionFields.children.length > 1) {
+        button.parentElement.remove();
+      } else {
+        alert('최소 1개의 버전이 필요합니다.');
+      }
+    }
+
+    // 프로젝트 추가
+    function addProject(event) {
+      event.preventDefault();
+
+      const title = document.getElementById('projectTitle').value;
+      const description = document.getElementById('projectDescription').value;
+      const category = document.getElementById('projectCategory').value;
+
+      // 이미지 가져오기 (URL 우선, 없으면 파일)
+      let imageData = document.getElementById('imageUrl').value;
+      if (!imageData) {
+        const imgElement = document.querySelector('#imagePreview img');
+        if (imgElement) {
+          imageData = imgElement.src;
+        }
+      }
+
+      // 버전 정보 수집
+      const versionNameInputs = document.querySelectorAll('.version-name-input');
+      const versionUrlInputs = document.querySelectorAll('.version-url-input');
+      const versions = [];
+
+      for (let i = 0; i < versionNameInputs.length; i++) {
+        versions.push({
+          name: versionNameInputs[i].value,
+          url: versionUrlInputs[i].value,
+          target: '사용자 지정' // 기본값
+        });
+      }
+
+      // 프로젝트 객체 생성
+      const project = {
+        id: Date.now(),
+        title,
+        description,
+        category,
+        image: imageData,
+        date: new Date().toISOString().split('T')[0],
+        status: 'Live',
+        versions
+      };
+
+      // LocalStorage에 저장
+      const projects = getProjects();
+      projects.push(project);
+      localStorage.setItem(PROJECTS_KEY, JSON.stringify(projects));
+
+      // UI 업데이트
+      loadProjects();
+      updateStats();
+      closeModal();
+    }
+
+    // LocalStorage에서 프로젝트 가져오기
+    function getProjects() {
+      const stored = localStorage.getItem(PROJECTS_KEY);
+      return stored ? JSON.parse(stored) : [];
+    }
+
+    // 프로젝트 로드 및 렌더링
+    function loadProjects() {
+      const projects = getProjects();
+      const grid = document.getElementById('projectsGrid');
+
+      // 기존 동적 카드 제거 (초기 AI Trends 카드와 placeholder는 유지)
+      const dynamicCards = grid.querySelectorAll('[data-project-id]');
+      dynamicCards.forEach(card => card.remove());
+
+      // 새 프로젝트 카드 추가 (placeholder 앞에)
+      const placeholder = grid.querySelector('.placeholder-card');
+
+      projects.forEach(project => {
+        const card = createProjectCard(project);
+        grid.insertBefore(card, placeholder);
+      });
+    }
+
+    // 프로젝트 카드 생성
+    function createProjectCard(project) {
+      const article = document.createElement('article');
+      article.className = 'project-card';
+      article.setAttribute('data-project-id', project.id);
+
+      // 이미지 HTML
+      const thumbnailContent = project.image
+        ? `<img src="${project.image}" alt="${project.title}">`
+        : '';
+
+      // 버전 버튼 HTML 생성
+      const versionButtonsHTML = project.versions.map(version => `
+        <a href="${version.url}" class="version-btn" target="_blank">
+          <div class="version-info">
+            <span class="version-name">${version.name}</span>
+            <span class="version-target">타겟: ${version.target}</span>
+          </div>
+          <span class="version-arrow">→</span>
+        </a>
+      `).join('');
+
+      article.innerHTML = `
+        <div class="project-thumbnail" style="position: relative;">
+          ${thumbnailContent}
+          <button class="delete-project-btn" onclick="deleteProject(${project.id})" title="삭제">×</button>
+        </div>
+
+        <div class="project-content">
+          <div class="project-meta">
+            <span class="project-badge">${project.category}</span>
+            <span class="project-badge">${project.date}</span>
+            <span class="project-badge badge-status">${project.status}</span>
+          </div>
+
+          <h3 class="project-title">${project.title}</h3>
+          <p class="project-description">${project.description}</p>
+
+          <div class="project-versions">
+            <div class="versions-label">디자인 버전 (${project.versions.length})</div>
+            <div class="version-buttons">
+              ${versionButtonsHTML}
+            </div>
+          </div>
+        </div>
+      `;
+
+      return article;
+    }
+
+    // 프로젝트 삭제
+    function deleteProject(projectId) {
+      if (confirm('이 프로젝트를 삭제하시겠습니까?')) {
+        let projects = getProjects();
+        projects = projects.filter(p => p.id !== projectId);
+        localStorage.setItem(PROJECTS_KEY, JSON.stringify(projects));
+        loadProjects();
+        updateStats();
+      }
+    }
+
+    // 통계 업데이트
+    function updateStats() {
+      const projects = getProjects();
+      const totalProjects = projects.length + 1; // +1 for AI Trends
+      const totalVersions = projects.reduce((sum, p) => sum + p.versions.length, 3); // +3 for AI Trends
+      const today = new Date().toISOString().split('T')[0];
+
+      document.getElementById('totalProjects').textContent = totalProjects;
+      document.getElementById('totalVersions').textContent = totalVersions;
+      document.getElementById('lastUpdated').textContent = today;
+    }
+
+    // ESC 키로 모달 닫기
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+  </script>
+
+</body>
+</html>

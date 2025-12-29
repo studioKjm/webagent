@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 AI 혁명 | 미래를 지배할 7가지 트렌드</title>
+    <meta name="description" content="폭발적 진화! 2026년 AI 트렌드를 지금 당장 확인하세요.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Outfit:wght@900&family=Archivo+Black&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-purple: #8b5cf6;
+            --color-pink: #ec4899;
+            --color-cyan: #00e5ff;
+            --color-blue: #3b82f6;
+            --color-yellow: #fbbf24;
+            --color-black: #0a0a0a;
+            --color-white: #ffffff;
+
+            --gradient-main: linear-gradient(135deg, #8b5cf6 0%, #ec4899 50%, #00e5ff 100%);
+            --gradient-reverse: linear-gradient(135deg, #00e5ff 0%, #ec4899 50%, #8b5cf6 100%);
+            --gradient-mesh: radial-gradient(at 0% 0%, #8b5cf6 0%, transparent 50%),
+                             radial-gradient(at 100% 100%, #ec4899 0%, transparent 50%),
+                             radial-gradient(at 50% 50%, #00e5ff 0%, transparent 50%);
+
+            --font-display: 'Archivo Black', sans-serif;
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Sora', sans-serif;
+
+            --shadow-brutal: 8px 8px 0px rgba(0, 0, 0, 0.8);
+            --shadow-glow: 0 0 40px rgba(236, 72, 153, 0.6);
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 50%, #0a0a0a 100%);
+            color: var(--color-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Noise Texture Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: overlay;
+        }
+
+        /* Geometric Background Shapes */
+        .bg-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.15;
+            animation: float-rotate 30s ease-in-out infinite;
+        }
+
+        .shape-1 {
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(135deg, var(--color-purple), var(--color-pink));
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            top: -200px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, var(--color-cyan), var(--color-blue));
+            border-radius: 30% 70% 70% 30% / 60% 40% 60% 40%;
+            bottom: -150px;
+            left: -100px;
+            animation-delay: -10s;
+        }
+
+        .shape-3 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--color-pink), var(--color-yellow));
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            top: 40%;
+            left: 50%;
+            animation-delay: -5s;
+        }
+
+        @keyframes float-rotate {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+            }
+            25% {
+                transform: translate(50px, -50px) rotate(90deg) scale(1.1);
+            }
+            50% {
+                transform: translate(-30px, 30px) rotate(180deg) scale(0.9);
+            }
+            75% {
+                transform: translate(70px, 20px) rotate(270deg) scale(1.05);
+            }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section - EXPLOSIVE */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 6rem 2rem;
+            background:
+                radial-gradient(ellipse at top, rgba(139, 92, 246, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom, rgba(236, 72, 153, 0.3) 0%, transparent 50%);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--gradient-main);
+            border: 5px solid var(--color-black);
+            border-radius: 50px;
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            font-weight: 900;
+            color: var(--color-white);
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-brutal);
+            transform: rotate(-2deg);
+            animation: pulse-glow 2s ease-in-out infinite;
+            letter-spacing: 3px;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: var(--shadow-brutal), 0 0 20px rgba(236, 72, 153, 0.5);
+            }
+            50% {
+                box-shadow: var(--shadow-brutal), 0 0 40px rgba(236, 72, 153, 0.8);
+            }
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 900;
+            line-height: 0.95;
+            margin-bottom: 2rem;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+            letter-spacing: -4px;
+            animation: slide-up 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+            text-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.25rem, 3vw, 2rem);
+            color: var(--color-white);
+            max-width: 900px;
+            margin: 0 auto 4rem;
+            font-weight: 600;
+            animation: slide-up 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+            line-height: 1.4;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: slide-up 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+        }
+
+        .btn {
+            padding: 1.5rem 3rem;
+            border-radius: 16px;
+            font-weight: 800;
+            font-size: 1.125rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-decoration: none;
+            display: inline-block;
+            font-family: var(--font-heading);
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .btn-primary {
+            background: var(--gradient-main);
+            color: var(--color-black);
+            border: 5px solid var(--color-black);
+            box-shadow: var(--shadow-brutal);
+        }
+
+        .btn-primary:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 12px 12px 0px rgba(0, 0, 0, 0.8);
+        }
+
+        .btn-primary:active {
+            transform: translate(4px, 4px);
+            box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-cyan);
+            border: 5px solid var(--color-cyan);
+            box-shadow: 0 0 30px rgba(0, 229, 255, 0.4);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-cyan);
+            color: var(--color-black);
+            box-shadow: 0 0 50px rgba(0, 229, 255, 0.8);
+            transform: scale(1.05);
+        }
+
+        /* Stats Section - BOLD NUMBERS */
+        .stats {
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
+            border: 6px solid var(--color-white);
+            border-radius: 30px;
+            padding: 4rem 2rem;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(0, 229, 255, 0.3), transparent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .stat-card:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .stat-card:hover {
+            transform: scale(1.08) rotate(2deg);
+            border-color: var(--color-cyan);
+            box-shadow: 0 20px 60px rgba(0, 229, 255, 0.4);
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: clamp(4rem, 8vw, 6rem);
+            font-weight: 900;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-label {
+            color: var(--color-white);
+            font-size: 1.25rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Section Headers - IMPACT */
+        .section {
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background: var(--gradient-reverse);
+            border: 4px solid var(--color-black);
+            border-radius: 50px;
+            font-family: var(--font-heading);
+            font-size: 0.875rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            transform: rotate(1deg);
+            letter-spacing: 2px;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 7vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: -3px;
+            line-height: 0.95;
+        }
+
+        .section-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+            font-weight: 600;
+        }
+
+        /* Trends Grid - MAXIMALIST CARDS */
+        .trends-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 3rem;
+        }
+
+        .trend-card {
+            background: linear-gradient(135deg, rgba(26, 10, 46, 0.9), rgba(10, 10, 10, 0.9));
+            border: 6px solid;
+            border-image: var(--gradient-main) 1;
+            border-radius: 0;
+            padding: 3rem;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trend-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.3), transparent 60%);
+            transform: scale(0);
+            transition: transform 0.5s ease;
+        }
+
+        .trend-card:hover::after {
+            transform: scale(2);
+        }
+
+        .trend-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 30px 80px rgba(139, 92, 246, 0.5);
+        }
+
+        .trend-icon {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            display: block;
+            filter: drop-shadow(0 0 30px rgba(0, 229, 255, 0.8));
+            position: relative;
+            z-index: 1;
+        }
+
+        .trend-title {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 0.75rem;
+            color: var(--color-cyan);
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .trend-subtitle {
+            font-size: 1.125rem;
+            color: var(--color-pink);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        .trend-description {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .trend-points {
+            list-style: none;
+            padding: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .trend-points li {
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            background: rgba(0, 229, 255, 0.1);
+            border-left: 5px solid var(--color-cyan);
+            color: var(--color-white);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* Timeline - GRAPHIC BOLD */
+        .timeline-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 4rem;
+        }
+
+        .timeline-item {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(0, 229, 255, 0.2));
+            border: 6px solid var(--color-white);
+            border-radius: 40px;
+            padding: 3.5rem;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .timeline-item:hover {
+            transform: scale(1.08) rotate(-2deg);
+            border-color: var(--color-pink);
+            box-shadow: 0 30px 80px rgba(236, 72, 153, 0.5);
+        }
+
+        .timeline-year {
+            font-family: var(--font-display);
+            font-size: clamp(4rem, 10vw, 6rem);
+            font-weight: 900;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            line-height: 1;
+        }
+
+        .timeline-title {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            font-family: var(--font-heading);
+            text-transform: uppercase;
+            color: var(--color-cyan);
+        }
+
+        .timeline-description {
+            color: var(--color-white);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .timeline-milestones {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline-milestones li {
+            padding: 1rem 1.5rem;
+            margin-bottom: 1rem;
+            background: rgba(0, 0, 0, 0.4);
+            border: 3px solid var(--color-cyan);
+            color: var(--color-white);
+            font-weight: 600;
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline-milestones li::before {
+            content: '▸';
+            position: absolute;
+            left: 1rem;
+            color: var(--color-cyan);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Expert Insights - LARGE QUOTES */
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .insight-card {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(0, 229, 255, 0.2));
+            border: 6px solid;
+            border-image: var(--gradient-reverse) 1;
+            padding: 3.5rem;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .insight-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 30px 80px rgba(0, 229, 255, 0.4);
+        }
+
+        .quote-icon {
+            font-size: 5rem;
+            color: var(--color-pink);
+            opacity: 0.5;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            font-family: var(--font-display);
+        }
+
+        .insight-quote {
+            font-size: 1.375rem;
+            line-height: 1.6;
+            color: var(--color-white);
+            margin-bottom: 2.5rem;
+            font-weight: 600;
+        }
+
+        .insight-author {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .author-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-heading);
+            font-weight: 900;
+            font-size: 1.75rem;
+            color: var(--color-black);
+            border: 4px solid var(--color-white);
+        }
+
+        .author-info h4 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+            font-family: var(--font-heading);
+        }
+
+        .author-info p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 600;
+        }
+
+        /* CTA Section - HIGH CONTRAST */
+        .cta-section {
+            background: var(--gradient-main);
+            border: 8px solid var(--color-black);
+            border-radius: 50px;
+            padding: 6rem 4rem;
+            text-align: center;
+            margin: 8rem auto;
+            max-width: 1200px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 40px 100px rgba(139, 92, 246, 0.6);
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background:
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 20px,
+                    rgba(255, 255, 255, 0.05) 20px,
+                    rgba(255, 255, 255, 0.05) 40px
+                );
+            animation: move-stripes 20s linear infinite;
+        }
+
+        @keyframes move-stripes {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(50px, 50px);
+            }
+        }
+
+        .cta-section h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+            color: var(--color-black);
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .cta-section > p {
+            color: var(--color-black);
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+            font-weight: 700;
+        }
+
+        .cta-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+            text-align: left;
+            position: relative;
+            z-index: 1;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+            border-radius: 20px;
+            border: 3px solid var(--color-black);
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+
+        .benefit-item::before {
+            content: '✦';
+            color: var(--color-black);
+            font-size: 2rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .cta-form {
+            display: flex;
+            gap: 1.5rem;
+            max-width: 700px;
+            margin: 4rem auto 0;
+            flex-wrap: wrap;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-input {
+            flex: 1;
+            min-width: 280px;
+            padding: 1.75rem 2rem;
+            border-radius: 20px;
+            border: 5px solid var(--color-black);
+            background: var(--color-white);
+            color: var(--color-black);
+            font-size: 1.125rem;
+            font-family: var(--font-body);
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .cta-input:focus {
+            outline: none;
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .cta-input::placeholder {
+            color: rgba(0, 0, 0, 0.5);
+            font-weight: 600;
+        }
+
+        .privacy-note {
+            font-size: 1rem;
+            color: var(--color-black);
+            margin-top: 2rem;
+            position: relative;
+            z-index: 1;
+            font-weight: 600;
+        }
+
+        /* Footer - BOLD */
+        .footer {
+            padding: 5rem 0 3rem;
+            border-top: 6px solid var(--color-white);
+            margin-top: 8rem;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-tagline {
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.75rem;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 4px solid var(--color-black);
+        }
+
+        .social-link:hover {
+            transform: scale(1.2) rotate(15deg);
+            box-shadow: 0 15px 40px rgba(236, 72, 153, 0.6);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--color-white);
+            text-decoration: none;
+            font-size: 1.125rem;
+            font-weight: 700;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-cyan);
+        }
+
+        .footer-copyright {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            padding-top: 3rem;
+            border-top: 3px solid rgba(255, 255, 255, 0.2);
+            font-weight: 600;
+        }
+
+        /* Animations */
+        @keyframes slide-up {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 5rem 1.5rem;
+            }
+
+            .section {
+                padding: 5rem 0;
+            }
+
+            .trends-grid,
+            .insights-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-section {
+                padding: 4rem 2.5rem;
+                margin: 5rem 1.5rem;
+            }
+
+            .cta-form {
+                flex-direction: column;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .btn {
+                padding: 1.25rem 2rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Geometric Shapes Background -->
+    <div class="bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">★ 2026 AI 대폭발 ★</div>
+            <h1>2026년,<br>AI는 어떻게<br>변화할까?</h1>
+            <p class="hero-subtitle">
+                인공지능의 폭발적 진화! 우리 삶을 완전히 바꿀 7가지 초강력 트렌드
+            </p>
+            <div class="cta-group">
+                <a href="#cta" class="btn btn-primary">리포트 다운로드</a>
+                <a href="#trends" class="btn btn-secondary">트렌드 확인</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid fade-in">
+                <div class="stat-card">
+                    <div class="stat-number">75%</div>
+                    <div class="stat-label">AI 도입 기업 비율</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">$15.7T</div>
+                    <div class="stat-label">글로벌 AI 시장 규모</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">97%</div>
+                    <div class="stat-label">AI 기술 사용 경험률</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trends Section -->
+    <section id="trends" class="section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-badge">핵심 트렌드</div>
+                <h2 class="section-title">7가지<br>AI 혁명</h2>
+                <p class="section-subtitle">2026년을 지배할 인공지능의 미래</p>
+            </div>
+
+            <div class="trends-grid">
+                <div class="trend-card fade-in">
+                    <span class="trend-icon">🤖</span>
+                    <h3 class="trend-title">AI 에이전트 대중화</h3>
+                    <p class="trend-subtitle">누구나 쓰는 지능형 비서</p>
+                    <p class="trend-description">
+                        2026년에는 AI 에이전트가 개인 비서를 넘어 업무 자동화, 창작 지원, 의사결정 보조까지 수행합니다.
+                    </p>
+                    <ul class="trend-points">
+                        <li>노코드 AI 빌더 보편화</li>
+                        <li>맞춤형 업무 자동화</li>
+                        <li>멀티태스킹 어시스턴트</li>
+                    </ul>
+                </div>
+
+                <div class="trend-card fade-in">
+                    <span class="trend-icon">🎨</span>
+                    <h3 class="trend-title">멀티모달 AI 진화</h3>
+                    <p class="trend-subtitle">모든 미디어를 하나로</p>
+                    <p class="trend-description">
+                        텍스트, 이미지, 영상, 음성을 동시에 이해하고 생성하는 단일 모델이 등장합니다.
+                    </p>
+                    <ul class="trend-points">
+                        <li>통합 멀티모달 모델</li>
+                        <li>실시간 크로스모달 변환</li>
+                        <li>AI 창작 협업 도구</li>
+                    </ul>
+                </div>
+
+                <div class="trend-card fade-in">
+                    <span class="trend-icon">💬</span>
+                    <h3 class="trend-title">개인화 AI 비서</h3>
+                    <p class="trend-subtitle">당신을 이해하는 AI</p>
+                    <p class="trend-description">
+                        학습 패턴, 선호도, 맥락을 이해하는 초개인화 AI가 모든 디바이스를 연결합니다.
+                    </p>
+                    <ul class="trend-points">
+                        <li>맥락 인식 및 학습</li>
+                        <li>끊김 없는 연동</li>
+                        <li>프라이버시 보호 AI</li>
+                    </ul>
+                </div>
+
+                <div class="trend-card fade-in">
+                    <span class="trend-icon">🦾</span>
+                    <h3 class="trend-title">AI + 로보틱스</h3>
+                    <p class="trend-subtitle">물리 세계를 바꾸는 로봇</p>
+                    <p class="trend-description">
+                        AI가 로봇과 결합하여 제조, 물류, 의료를 혁신합니다. 협동 로봇 시대 개막.
+                    </p>
+                    <ul class="trend-points">
+                        <li>인간-로봇 협업 시스템</li>
+                        <li>자율 배송 로봇 상용화</li>
+                        <li>의료 수술 로봇 고도화</li>
+                    </ul>
+                </div>
+
+                <div class="trend-card fade-in">
+                    <span class="trend-icon">⚖️</span>
+                    <h3 class="trend-title">규제 & 윤리</h3>
+                    <p class="trend-subtitle">책임 있는 AI 사용</p>
+                    <p class="trend-description">
+                        AI 규제 법안이 전 세계적으로 도입됩니다. 투명성과 공정성이 핵심이 됩니다.
+                    </p>
+                    <ul class="trend-points">
+                        <li>EU AI Act 글로벌 시행</li>
+                        <li>모델 투명성 의무화</li>
+                        <li>편향성 제거 도구</li>
+                    </ul>
+                </div>
+
+                <div class="trend-card fade-in">
+                    <span class="trend-icon">📱</span>
+                    <h3 class="trend-title">엣지 AI</h3>
+                    <p class="trend-subtitle">클라우드 없는 강력한 AI</p>
+                    <p class="trend-description">
+                        스마트폰에서 직접 AI 모델을 실행하는 엣지 컴퓨팅이 확산됩니다.
+                    </p>
+                    <ul class="trend-points">
+                        <li>온디바이스 LLM</li>
+                        <li>초저전력 AI 칩셋</li>
+                        <li>오프라인 AI 작동</li>
+                    </ul>
+                </div>
+
+                <div class="trend-card fade-in">
+                    <span class="trend-icon">🌍</span>
+                    <h3 class="trend-title">AI 민주화</h3>
+                    <p class="trend-subtitle">누구나 AI 개발 가능</p>
+                    <p class="trend-description">
+                        프로그래밍 없이 AI 모델을 만드는 도구가 대중화됩니다. 진정한 AI의 시대.
+                    </p>
+                    <ul class="trend-points">
+                        <li>노코드 플랫폼 확산</li>
+                        <li>오픈소스 생태계 성장</li>
+                        <li>AI 교육 보편화</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-badge">진화의 여정</div>
+                <h2 class="section-title">AI<br>타임라인</h2>
+                <p class="section-subtitle">2024→2025→2026 대변혁의 기록</p>
+            </div>
+
+            <div class="timeline-container">
+                <div class="timeline-item fade-in">
+                    <div class="timeline-year">2024</div>
+                    <h3 class="timeline-title">기반 구축</h3>
+                    <p class="timeline-description">
+                        LLM 대중화, ChatGPT와 Claude 등 생성형 AI 폭발적 성장
+                    </p>
+                    <ul class="timeline-milestones">
+                        <li>GPT-4, Claude 3 멀티모달 출시</li>
+                        <li>AI 코딩 어시스턴트 보편화</li>
+                        <li>AI 규제 논의 본격화</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-year">2025</div>
+                    <h3 class="timeline-title">가속화</h3>
+                    <p class="timeline-description">
+                        AI 에이전트 시대 개막, 자동화 및 개인화 AI 확산
+                    </p>
+                    <ul class="timeline-milestones">
+                        <li>자율 AI 에이전트 상용화</li>
+                        <li>실시간 멀티모달 번역</li>
+                        <li>온디바이스 AI 칩셋 확산</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-year">2026</div>
+                    <h3 class="timeline-title">대변혁</h3>
+                    <p class="timeline-description">
+                        AI가 일상과 산업의 표준, 전 산업 통합 완료
+                    </p>
+                    <ul class="timeline-milestones">
+                        <li>AI 민주화 완성</li>
+                        <li>AI 윤리 법안 전 세계 시행</li>
+                        <li>인간-AI 협업 표준화</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expert Insights -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-badge">전문가 의견</div>
+                <h2 class="section-title">리더들의<br>예측</h2>
+                <p class="section-subtitle">글로벌 AI 전문가들이 말하는 미래</p>
+            </div>
+
+            <div class="insights-grid">
+                <div class="insight-card fade-in">
+                    <div class="quote-icon">"</div>
+                    <p class="insight-quote">
+                        2026년에는 AI가 단순한 도구가 아닌 협업 파트너가 됩니다. 인간의 창의성과 AI 효율성의 결합.
+                    </p>
+                    <div class="insight-author">
+                        <div class="author-avatar" style="background: linear-gradient(135deg, #8b5cf6, #ec4899);">김</div>
+                        <div class="author-info">
+                            <h4>Dr. 김민수</h4>
+                            <p>KAIST AI 연구소장</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insight-card fade-in">
+                    <div class="quote-icon">"</div>
+                    <p class="insight-quote">
+                        AI 에이전트가 일상화되면서 생산성이 3배 향상됩니다. 핵심은 윤리적 사용입니다.
+                    </p>
+                    <div class="insight-author">
+                        <div class="author-avatar" style="background: linear-gradient(135deg, #00e5ff, #3b82f6);">SJ</div>
+                        <div class="author-info">
+                            <h4>Sarah Johnson</h4>
+                            <p>TechCorp Chief AI Officer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insight-card fade-in">
+                    <div class="quote-icon">"</div>
+                    <p class="insight-quote">
+                        온디바이스 AI로 프라이버시를 지키면서도 강력한 경험 제공. 진정한 AI 민주화의 시작.
+                    </p>
+                    <div class="insight-author">
+                        <div class="author-avatar" style="background: linear-gradient(135deg, #fbbf24, #ec4899);">이</div>
+                        <div class="author-info">
+                            <h4>이준호</h4>
+                            <p>네이버 AI Lab PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta" class="section">
+        <div class="container">
+            <div class="cta-section fade-in">
+                <h2>완전 분석<br>리포트</h2>
+                <p>50페이지 심층 분석 자료 무료 다운로드</p>
+
+                <div class="cta-benefits">
+                    <div class="benefit-item">
+                        <span>7가지 트렌드 완전 분석</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span>산업별 AI 전략 가이드</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span>전문가 인터뷰 수록</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span>2027년 전망 포함</span>
+                    </div>
+                </div>
+
+                <form class="cta-form" onsubmit="handleSubmit(event)">
+                    <input type="email" class="cta-input" placeholder="이메일 주소 입력" required>
+                    <button type="submit" class="btn btn-primary">지금 받기</button>
+                </form>
+
+                <p class="privacy-note">
+                    리포트 전송 및 뉴스레터 발송 목적으로만 사용됩니다
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-tagline">AI 미래 탐구</div>
+                <div class="social-links">
+                    <a href="#" class="social-link">🐦</a>
+                    <a href="#" class="social-link">💼</a>
+                    <a href="#" class="social-link">💻</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="#">개인정보처리방침</a>
+                <a href="#">이용약관</a>
+                <a href="#">문의</a>
+            </div>
+            <div class="footer-copyright">
+                © 2025 AI Trends Report. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Animation Observer
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -80px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form Submit
+        function handleSubmit(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input[type="email"]').value;
+            alert(`🎉 ${email}로 리포트를 발송했습니다!`);
+            event.target.reset();
+        }
+    </script>
+</body>
+</html>
