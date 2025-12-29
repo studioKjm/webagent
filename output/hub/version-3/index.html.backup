@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>랜딩페이지 허브 - LP Agent Hub</title>
+  <meta name="description" content="AI 에이전트가 생성한 전문 랜딩페이지 컬렉션">
+
+  <!-- Fonts: Manrope -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================
+       DESIGN TOKENS - GLASSMORPHISM
+       ============================================= */
+    :root {
+      /* Colors */
+      --color-text-primary: #ffffff;
+      --color-text-secondary: rgba(255, 255, 255, 0.8);
+      --color-text-tertiary: rgba(255, 255, 255, 0.6);
+
+      /* Glass */
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-bg-hover: rgba(255, 255, 255, 0.15);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --glass-border-hover: rgba(255, 255, 255, 0.3);
+
+      /* Gradients */
+      --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+      --gradient-mesh:
+        radial-gradient(at 0% 0%, rgba(102, 126, 234, 0.3) 0, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(240, 147, 251, 0.3) 0, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(79, 172, 254, 0.3) 0, transparent 50%),
+        radial-gradient(at 0% 100%, rgba(118, 75, 162, 0.3) 0, transparent 50%);
+
+      /* Typography */
+      --font-primary: 'Manrope', sans-serif;
+
+      /* Spacing */
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --space-24: 6rem;
+
+      /* Shadows */
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
+      --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2);
+      --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.25);
+
+      /* Border Radius */
+      --radius-md: 1rem;
+      --radius-lg: 1.5rem;
+      --radius-xl: 2rem;
+
+      /* Transitions */
+      --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* =============================================
+       RESET & BASE
+       ============================================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-primary);
+      font-weight: 400;
+      color: var(--color-text-primary);
+      background: #1a1a2e;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Gradient Mesh Background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: var(--gradient-mesh);
+      z-index: 0;
+      animation: meshFlow 20s ease-in-out infinite;
+    }
+
+    @keyframes meshFlow {
+      0%, 100% { opacity: 0.8; }
+      50% { opacity: 1; }
+    }
+
+    /* Floating Gradient Orbs */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .orb-1 {
+      width: 500px;
+      height: 500px;
+      background: var(--gradient-1);
+      top: -250px;
+      left: -250px;
+      animation: float1 15s ease-in-out infinite;
+    }
+
+    .orb-2 {
+      width: 400px;
+      height: 400px;
+      background: var(--gradient-2);
+      top: 50%;
+      right: -200px;
+      animation: float2 18s ease-in-out infinite;
+    }
+
+    .orb-3 {
+      width: 600px;
+      height: 600px;
+      background: var(--gradient-3);
+      bottom: -300px;
+      left: 30%;
+      animation: float3 20s ease-in-out infinite;
+    }
+
+    @keyframes float1 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(100px, 100px) scale(1.1); }
+    }
+
+    @keyframes float2 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-80px, -80px) scale(1.2); }
+    }
+
+    @keyframes float3 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(120px, -100px) scale(1.15); }
+    }
+
+    /* =============================================
+       GLASSMORPHIC UTILITIES
+       ============================================= */
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+    }
+
+    .glass-strong {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border: 1px solid var(--glass-border);
+    }
+
+    /* =============================================
+       NAVIGATION - GLASSMORPHIC
+       ============================================= */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      position: relative;
+    }
+
+    .nav-glass {
+      background: rgba(26, 26, 46, 0.7);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      text-decoration: none;
+      color: var(--color-text-primary);
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: -0.01em;
+      transition: all var(--transition-base);
+    }
+
+    .nav-logo:hover {
+      transform: translateY(-2px);
+    }
+
+    .nav-logo-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--gradient-1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: var(--space-6);
+      list-style: none;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--color-text-secondary);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--radius-md);
+      transition: all var(--transition-base);
+      position: relative;
+    }
+
+    .nav-link:hover {
+      color: var(--color-text-primary);
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+    }
+
+    /* =============================================
+       HERO SECTION - GRADIENT MESH
+       ============================================= */
+    .hero {
+      padding: var(--space-24) var(--space-6);
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-container {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* Floating Glass Elements */
+    .hero-glass-accent {
+      position: absolute;
+      border-radius: var(--radius-xl);
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      animation: floatAccent 6s ease-in-out infinite;
+    }
+
+    .hero-glass-accent-1 {
+      width: 100px;
+      height: 100px;
+      top: 20%;
+      left: -50px;
+      animation-delay: 0s;
+    }
+
+    .hero-glass-accent-2 {
+      width: 80px;
+      height: 80px;
+      top: 60%;
+      right: -40px;
+      animation-delay: 2s;
+    }
+
+    @keyframes floatAccent {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 6vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: var(--space-6);
+      background: linear-gradient(135deg, #ffffff 0%, #a8edea 50%, #fed6e3 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--color-text-secondary);
+      font-weight: 500;
+      line-height: 1.6;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* =============================================
+       PROJECTS SECTION - GLASS CARDS
+       ============================================= */
+    .projects {
+      padding: var(--space-24) var(--space-6);
+      position: relative;
+      z-index: 2;
+    }
+
+    .projects-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      margin-bottom: var(--space-12);
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-3);
+      background: linear-gradient(135deg, #ffffff 0%, #d4fc79 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-description {
+      font-size: 1.125rem;
+      color: var(--color-text-secondary);
+      font-weight: 500;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    @media (min-width: 768px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* =============================================
+       PROJECT CARD - GLASSMORPHIC
+       ============================================= */
+    .project-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: all var(--transition-slow);
+      box-shadow: var(--shadow-md);
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: var(--shadow-xl);
+      background: var(--glass-bg-hover);
+      backdrop-filter: blur(30px);
+      border-color: var(--glass-border-hover);
+    }
+
+    .project-thumbnail {
+      height: 240px;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.4) 0%, rgba(118, 75, 162, 0.4) 50%, rgba(79, 172, 254, 0.4) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Gradient Mesh in Thumbnail */
+    .project-thumbnail::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(240, 147, 251, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(67, 233, 123, 0.3) 0%, transparent 50%);
+      animation: meshPulse 8s ease-in-out infinite;
+    }
+
+    @keyframes meshPulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    .project-content {
+      padding: var(--space-8);
+    }
+
+    .project-meta {
+      display: flex;
+      gap: var(--space-3);
+      margin-bottom: var(--space-4);
+      flex-wrap: wrap;
+    }
+
+    .project-badge {
+      display: inline-block;
+      padding: var(--space-2) var(--space-4);
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      letter-spacing: 0.02em;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .project-badge:nth-child(1) {
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%);
+    }
+
+    .project-badge:nth-child(2) {
+      background: linear-gradient(135deg, rgba(240, 147, 251, 0.3) 0%, rgba(245, 87, 108, 0.3) 100%);
+    }
+
+    .project-badge.badge-status {
+      background: linear-gradient(135deg, rgba(67, 233, 123, 0.3) 0%, rgba(56, 249, 215, 0.3) 100%);
+    }
+
+    .project-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: var(--space-3);
+      letter-spacing: -0.01em;
+    }
+
+    .project-description {
+      color: var(--color-text-secondary);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: var(--space-6);
+    }
+
+    .project-versions {
+      margin-top: var(--space-6);
+      padding-top: var(--space-6);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .versions-label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-4);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .version-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .version-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-4) var(--space-6);
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      color: var(--color-text-primary);
+      transition: all var(--transition-base);
+      font-weight: 600;
+      font-size: 0.9375rem;
+    }
+
+    .version-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateX(4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .version-btn:nth-child(1):hover {
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+    }
+
+    .version-btn:nth-child(2):hover {
+      background: linear-gradient(135deg, rgba(240, 147, 251, 0.2) 0%, rgba(245, 87, 108, 0.2) 100%);
+    }
+
+    .version-btn:nth-child(3):hover {
+      background: linear-gradient(135deg, rgba(79, 172, 254, 0.2) 0%, rgba(0, 242, 254, 0.2) 100%);
+    }
+
+    .version-info {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      align-items: flex-start;
+    }
+
+    .version-name {
+      font-weight: 700;
+    }
+
+    .version-target {
+      font-size: 0.8125rem;
+      color: var(--color-text-tertiary);
+      font-weight: 500;
+    }
+
+    .version-arrow {
+      font-size: 1.5rem;
+      opacity: 0.5;
+      transition: all var(--transition-base);
+    }
+
+    .version-btn:hover .version-arrow {
+      opacity: 1;
+      transform: translateX(4px);
+    }
+
+    /* =============================================
+       PLACEHOLDER CARD - GLASS
+       ============================================= */
+    .placeholder-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 2px dashed rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius-xl);
+      padding: var(--space-24) var(--space-8);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      transition: all var(--transition-base);
+      cursor: pointer;
+      min-height: 500px;
+    }
+
+    .placeholder-card:hover {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .placeholder-icon {
+      font-size: 4rem;
+      margin-bottom: var(--space-4);
+      opacity: 0.4;
+    }
+
+    .placeholder-text {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--color-text-secondary);
+    }
+
+    /* =============================================
+       STATS SECTION - GLASS BOXES
+       ============================================= */
+    .stats {
+      padding: var(--space-24) var(--space-6);
+      position: relative;
+      z-index: 2;
+    }
+
+    .stats-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-6);
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: var(--space-8);
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      transition: all var(--transition-base);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stat-item:hover {
+      background: var(--glass-bg-hover);
+      backdrop-filter: blur(30px);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .stat-value {
+      font-size: 3.5rem;
+      font-weight: 800;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--space-3);
+      line-height: 1;
+    }
+
+    .stat-item:nth-child(2) .stat-value {
+      background: var(--gradient-2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-item:nth-child(3) .stat-value {
+      background: var(--gradient-3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-label {
+      font-size: 1rem;
+      color: var(--color-text-secondary);
+      font-weight: 600;
+    }
+
+    /* =============================================
+       FOOTER - MINIMAL GLASS
+       ============================================= */
+    .footer {
+      padding: var(--space-12) var(--space-6);
+      background: rgba(26, 26, 46, 0.5);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-6);
+    }
+
+    .footer-text {
+      color: var(--color-text-tertiary);
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: var(--space-6);
+      list-style: none;
+    }
+
+    .footer-link {
+      text-decoration: none;
+      color: var(--color-text-secondary);
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: all var(--transition-base);
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-md);
+    }
+
+    .footer-link:hover {
+      color: var(--color-text-primary);
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    /* =============================================
+       ANIMATIONS - STAGGERED FADE
+       ============================================= */
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .hero-container {
+      animation: fadeInScale 0.8s ease-out;
+    }
+
+    .project-card {
+      animation: fadeInScale 0.8s ease-out;
+      animation-fill-mode: both;
+    }
+
+    .project-card:nth-child(1) { animation-delay: 0.2s; }
+    .project-card:nth-child(2) { animation-delay: 0.4s; }
+
+    .stat-item {
+      animation: fadeInScale 0.8s ease-out;
+      animation-fill-mode: both;
+    }
+
+    .stat-item:nth-child(1) { animation-delay: 0.1s; }
+    .stat-item:nth-child(2) { animation-delay: 0.2s; }
+    .stat-item:nth-child(3) { animation-delay: 0.3s; }
+
+    /* =============================================
+       RESPONSIVE
+       ============================================= */
+    @media (max-width: 768px) {
+      .nav-menu {
+        gap: var(--space-4);
+      }
+
+      .nav-link {
+        font-size: 0.875rem;
+        padding: var(--space-2) var(--space-3);
+      }
+
+      .hero {
+        padding: var(--space-16) var(--space-6);
+      }
+
+      .projects {
+        padding: var(--space-16) var(--space-6);
+      }
+
+      .stats {
+        padding: var(--space-16) var(--space-6);
+      }
+
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .orb {
+        display: none;
+      }
+    }
+
+    /* =============================================
+       ACCESSIBILITY
+       ============================================= */
+    *:focus-visible {
+      outline: 2px solid rgba(255, 255, 255, 0.5);
+      outline-offset: 3px;
+      border-radius: var(--radius-md);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Gradient Orbs -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <!-- =============================================
+       NAVIGATION
+       ============================================= -->
+  <nav class="nav" role="navigation" aria-label="메인 네비게이션">
+    <div class="nav-glass">
+      <div class="nav-container">
+        <a href="#" class="nav-logo">
+          <div class="nav-logo-icon">✨</div>
+          <span>LP Agent Hub</span>
+        </a>
+
+        <ul class="nav-menu">
+          <li><a href="#projects" class="nav-link">프로젝트</a></li>
+          <li><a href="#stats" class="nav-link">정보</a></li>
+          <li><a href="#footer" class="nav-link">문서</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =============================================
+       HERO SECTION
+       ============================================= -->
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-glass-accent hero-glass-accent-1"></div>
+      <div class="hero-glass-accent hero-glass-accent-2"></div>
+
+      <h1 class="hero-title">랜딩페이지 허브</h1>
+      <p class="hero-subtitle">AI 에이전트가 생성한 전문 랜딩페이지 컬렉션</p>
+    </div>
+  </section>
+
+  <!-- =============================================
+       PROJECTS SECTION
+       ============================================= -->
+  <section id="projects" class="projects">
+    <div class="projects-container">
+      <div class="section-header">
+        <h2 class="section-title">프로젝트</h2>
+        <p class="section-description">생성된 랜딩페이지 프로젝트를 탐색하세요</p>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- AI Trends 2026 Project -->
+        <article class="project-card">
+          <div class="project-thumbnail"></div>
+
+          <div class="project-content">
+            <div class="project-meta">
+              <span class="project-badge">Tech/AI</span>
+              <span class="project-badge">2025-12-29</span>
+              <span class="project-badge badge-status">Live</span>
+            </div>
+
+            <h3 class="project-title">2026 AI 트렌드 예측</h3>
+            <p class="project-description">
+              2026년 인공지능 기술 발전 방향과 주요 트렌드를 소개하는 랜딩페이지
+            </p>
+
+            <div class="project-versions">
+              <div class="versions-label">디자인 버전 (3)</div>
+
+              <div class="version-buttons">
+                <a href="../ai-trends-2026/version-1/index.html" class="version-btn" target="_blank">
+                  <div class="version-info">
+                    <span class="version-name">Dark & Modern</span>
+                    <span class="version-target">타겟: 개발자, 기술 전문가</span>
+                  </div>
+                  <span class="version-arrow">→</span>
+                </a>
+
+                <a href="../ai-trends-2026/version-2/index.html" class="version-btn" target="_blank">
+                  <div class="version-info">
+                    <span class="version-name">Bold & Vibrant</span>
+                    <span class="version-target">타겟: 일반 대중, 소비자</span>
+                  </div>
+                  <span class="version-arrow">→</span>
+                </a>
+
+                <a href="../ai-trends-2026/version-3/index.html" class="version-btn" target="_blank">
+                  <div class="version-info">
+                    <span class="version-name">Minimal & Clean</span>
+                    <span class="version-target">타겟: 기업 임원, 의사결정권자</span>
+                  </div>
+                  <span class="version-arrow">→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Placeholder Card -->
+        <div class="placeholder-card">
+          <div class="placeholder-icon">+</div>
+          <p class="placeholder-text">새 프로젝트 추가</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       STATS SECTION
+       ============================================= -->
+  <section id="stats" class="stats">
+    <div class="stats-container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-value">1</div>
+          <div class="stat-label">총 프로젝트</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-value">3</div>
+          <div class="stat-label">총 디자인 버전</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-value">12.29</div>
+          <div class="stat-label">최근 업데이트</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       FOOTER
+       ============================================= -->
+  <footer id="footer" class="footer">
+    <div class="footer-container">
+      <p class="footer-text">© 2025 LP Agent Hub. AI로 생성된 랜딩페이지.</p>
+
+      <ul class="footer-links">
+        <li><a href="https://github.com/anthropics/claude-code" class="footer-link" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="https://code.claude.com/docs" class="footer-link" target="_blank" rel="noopener noreferrer">Documentation</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>

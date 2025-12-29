@@ -36,7 +36,7 @@
 ### 5. frontend-coder
 - **역할**: 최종 HTML/CSS/JS 코드 생성
 - **품질 기준**: 시맨틱 HTML, WCAG AA 접근성, 반응형, 성능 최적화
-- **출력**: `output/version-{n}/index.html`, `styles.css`, `script.js`
+- **출력**: `output/{project-name}/version-{n}/index.html`, `styles.css`, `script.js`
 - **위치**: `.claude/agents/frontend-coder.md`
 
 ## 주요 스킬
@@ -92,23 +92,39 @@ Main Orchestrator
 │    스타일: Dark & Modern          │
 └───────────────────────────────────┘
     ↓
-output/version-{1,2,3}/
+output/{project-name}/version-{1,2,3}/
 ```
 
 ## 출력 디렉토리 구조
 
+**⚠️ 중요: 랜딩페이지 생성 시 반드시 주제/프로젝트명에 맞는 상위 폴더를 먼저 생성해야 합니다.**
+
 ```
 output/
-├── version-1/           # 미니멀 & 클린
-│   ├── index.html
-│   ├── styles.css
-│   ├── script.js
-│   └── README.md       # 디자인 컨셉 설명
-├── version-2/           # 대담한 & 생동감
-│   └── ...
-└── version-3/           # 다크 & 현대적
-    └── ...
+├── ai-trends-2026/           # 프로젝트명 폴더 (예시)
+│   ├── version-1/            # 미니멀 & 클린
+│   │   ├── index.html
+│   │   ├── styles.css
+│   │   ├── script.js
+│   │   └── README.md         # 디자인 컨셉 설명
+│   ├── version-2/            # 대담한 & 생동감
+│   │   └── ...
+│   └── version-3/            # 다크 & 현대적
+│       └── ...
+├── hub/                      # Hub 페이지 (예시)
+│   ├── version-1/
+│   ├── version-2/
+│   └── version-3/
+└── {new-project}/            # 새 프로젝트
+    ├── version-1/
+    ├── version-2/
+    └── version-3/
 ```
+
+### 폴더명 규칙
+- 프로젝트 폴더명: 소문자, 하이픈으로 구분 (예: `ai-trends-2026`, `task-manager-app`)
+- 버전 폴더명: 고정 형식 `version-1`, `version-2`, `version-3`
+- 절대 `output/` 바로 아래에 `version-{n}/` 폴더를 생성하지 말 것
 
 ## MCP 서버
 

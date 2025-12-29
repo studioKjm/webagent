@@ -1,0 +1,100 @@
+{
+  "layout_type": "modern-tech-vertical",
+  "sections": [
+    {
+      "name": "hero",
+      "position": 1,
+      "layout": "centered-fullscreen",
+      "height": "100vh",
+      "elements": [
+        "headline",
+        "subheadline",
+        "cta-button",
+        "animated-background"
+      ],
+      "description": "Full-screen hero with powerful headline about 2026 AI transformation"
+    },
+    {
+      "name": "intro-stats",
+      "position": 2,
+      "layout": "three-column-stats",
+      "elements": [
+        "stat-1-ai-growth",
+        "stat-2-market-size",
+        "stat-3-adoption-rate"
+      ],
+      "description": "Quick stats to establish credibility"
+    },
+    {
+      "name": "ai-trends-main",
+      "position": 3,
+      "layout": "alternating-card-grid",
+      "elements": [
+        "trend-1-ai-agents",
+        "trend-2-multimodal",
+        "trend-3-personal-assistants",
+        "trend-4-robotics",
+        "trend-5-regulation",
+        "trend-6-edge-ai",
+        "trend-7-democratization"
+      ],
+      "description": "7 major AI trends, displayed as cards with icons and descriptions"
+    },
+    {
+      "name": "timeline-roadmap",
+      "position": 4,
+      "layout": "horizontal-timeline",
+      "elements": [
+        "year-2024-foundation",
+        "year-2025-acceleration",
+        "year-2026-transformation"
+      ],
+      "description": "Visual timeline showing AI evolution from 2024 to 2026"
+    },
+    {
+      "name": "expert-insights",
+      "position": 5,
+      "layout": "testimonial-grid",
+      "elements": [
+        "expert-quote-1",
+        "expert-quote-2",
+        "expert-quote-3"
+      ],
+      "description": "Expert predictions and insights"
+    },
+    {
+      "name": "final-cta",
+      "position": 6,
+      "layout": "centered-conversion",
+      "elements": [
+        "cta-headline",
+        "newsletter-form",
+        "download-button",
+        "privacy-note"
+      ],
+      "description": "Strong conversion section for newsletter or report download"
+    },
+    {
+      "name": "footer",
+      "position": 7,
+      "layout": "minimal-footer",
+      "elements": [
+        "social-links",
+        "copyright",
+        "privacy-links"
+      ]
+    }
+  ],
+  "responsive_strategy": "mobile-first",
+  "max_width": "1400px",
+  "breakpoints": {
+    "mobile": "< 640px",
+    "tablet": "640px - 1024px",
+    "desktop": "> 1024px"
+  },
+  "grid_system": {
+    "mobile": "1 column",
+    "tablet": "2 columns",
+    "desktop": "3 columns for trends, 2 for others"
+  }
+}

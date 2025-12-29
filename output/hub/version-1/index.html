@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>랜딩페이지 허브 - LP Agent Hub</title>
+  <meta name="description" content="AI 에이전트가 생성한 전문 랜딩페이지 컬렉션">
+
+  <!-- Fonts: Bricolage Grotesque + Sora -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================
+       DESIGN TOKENS
+       ============================================= */
+    :root {
+      /* Colors */
+      --color-background: #ffffff;
+      --color-background-alt: #f9fafb;
+      --color-background-subtle: #f3f4f6;
+      --color-text-primary: #0a0a0a;
+      --color-text-secondary: #6b7280;
+      --color-text-tertiary: #9ca3af;
+      --color-border: #e5e7eb;
+      --color-border-light: #f3f4f6;
+
+      /* Accents */
+      --color-accent-purple: #8b5cf6;
+      --color-accent-blue: #3b82f6;
+      --color-accent-cyan: #06b6d4;
+
+      /* Gradients */
+      --gradient-subtle: linear-gradient(135deg, #f0f9ff 0%, #faf5ff 100%);
+      --gradient-accent: linear-gradient(135deg, var(--color-accent-purple) 0%, var(--color-accent-blue) 100%);
+
+      /* Typography */
+      --font-display: 'Bricolage Grotesque', sans-serif;
+      --font-body: 'Sora', sans-serif;
+
+      /* Spacing */
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --space-24: 6rem;
+
+      /* Shadows */
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.08);
+      --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+
+      /* Border Radius */
+      --radius-sm: 0.375rem;
+      --radius-md: 0.5rem;
+      --radius-lg: 0.75rem;
+      --radius-xl: 1rem;
+
+      /* Transitions */
+      --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* =============================================
+       RESET & BASE
+       ============================================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 400;
+      color: var(--color-text-primary);
+      background: var(--color-background);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* =============================================
+       NAVIGATION
+       ============================================= */
+    .nav {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-border);
+      z-index: 100;
+      transition: all var(--transition-base);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      text-decoration: none;
+      color: var(--color-text-primary);
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.125rem;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-logo-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--gradient-accent);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: var(--space-8);
+      list-style: none;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--color-text-secondary);
+      font-weight: 500;
+      font-size: 0.9375rem;
+      transition: color var(--transition-base);
+      position: relative;
+    }
+
+    .nav-link:hover {
+      color: var(--color-text-primary);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient-accent);
+      transition: width var(--transition-base);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* =============================================
+       HERO SECTION
+       ============================================= */
+    .hero {
+      padding: var(--space-24) var(--space-6);
+      text-align: center;
+      background: var(--gradient-subtle);
+    }
+
+    .hero-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: var(--space-6);
+      background: var(--gradient-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 1.125rem;
+      color: var(--color-text-secondary);
+      font-weight: 400;
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* =============================================
+       PROJECTS SECTION
+       ============================================= */
+    .projects {
+      padding: var(--space-24) var(--space-6);
+      background: var(--color-background);
+    }
+
+    .projects-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      margin-bottom: var(--space-12);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: var(--space-3);
+    }
+
+    .section-description {
+      font-size: 1rem;
+      color: var(--color-text-secondary);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    @media (min-width: 768px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* =============================================
+       PROJECT CARD
+       ============================================= */
+    .project-card {
+      background: var(--color-background);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: all var(--transition-slow);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--color-border-light);
+    }
+
+    .project-thumbnail {
+      height: 240px;
+      background: var(--gradient-subtle);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-thumbnail::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
+    }
+
+    .project-content {
+      padding: var(--space-8);
+    }
+
+    .project-meta {
+      display: flex;
+      gap: var(--space-3);
+      margin-bottom: var(--space-4);
+      flex-wrap: wrap;
+    }
+
+    .project-badge {
+      display: inline-block;
+      padding: var(--space-2) var(--space-3);
+      background: var(--color-background-subtle);
+      color: var(--color-text-secondary);
+      font-size: 0.75rem;
+      font-weight: 500;
+      border-radius: var(--radius-sm);
+      letter-spacing: 0.01em;
+    }
+
+    .project-badge.badge-status {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    .project-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: var(--space-3);
+      letter-spacing: -0.01em;
+    }
+
+    .project-description {
+      color: var(--color-text-secondary);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      margin-bottom: var(--space-6);
+    }
+
+    .project-versions {
+      margin-top: var(--space-6);
+      padding-top: var(--space-6);
+      border-top: 1px solid var(--color-border);
+    }
+
+    .versions-label {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-4);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .version-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .version-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-4) var(--space-6);
+      background: var(--color-background-alt);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      color: var(--color-text-primary);
+      transition: all var(--transition-base);
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.9375rem;
+    }
+
+    .version-btn:hover {
+      background: var(--color-background);
+      border-color: var(--color-accent-purple);
+      transform: translateX(4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .version-info {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      align-items: flex-start;
+    }
+
+    .version-name {
+      font-weight: 600;
+    }
+
+    .version-target {
+      font-size: 0.8125rem;
+      color: var(--color-text-tertiary);
+    }
+
+    .version-arrow {
+      font-size: 1.25rem;
+      opacity: 0.4;
+      transition: opacity var(--transition-base);
+    }
+
+    .version-btn:hover .version-arrow {
+      opacity: 1;
+    }
+
+    /* =============================================
+       PLACEHOLDER CARD
+       ============================================= */
+    .placeholder-card {
+      background: var(--color-background);
+      border: 2px dashed var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-16) var(--space-8);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      transition: all var(--transition-base);
+      cursor: pointer;
+      min-height: 400px;
+    }
+
+    .placeholder-card:hover {
+      border-color: var(--color-accent-purple);
+      background: var(--color-background-alt);
+    }
+
+    .placeholder-icon {
+      font-size: 3rem;
+      margin-bottom: var(--space-4);
+      opacity: 0.3;
+    }
+
+    .placeholder-text {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+    }
+
+    /* =============================================
+       STATS SECTION
+       ============================================= */
+    .stats {
+      padding: var(--space-16) var(--space-6);
+      background: var(--color-background-alt);
+    }
+
+    .stats-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-8);
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: var(--space-6);
+    }
+
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 700;
+      background: var(--gradient-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--space-2);
+    }
+
+    .stat-label {
+      font-size: 0.9375rem;
+      color: var(--color-text-secondary);
+      font-weight: 500;
+    }
+
+    /* =============================================
+       FOOTER
+       ============================================= */
+    .footer {
+      padding: var(--space-12) var(--space-6);
+      background: var(--color-background);
+      border-top: 1px solid var(--color-border);
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-6);
+    }
+
+    .footer-text {
+      color: var(--color-text-secondary);
+      font-size: 0.875rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: var(--space-6);
+      list-style: none;
+    }
+
+    .footer-link {
+      text-decoration: none;
+      color: var(--color-text-secondary);
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color var(--transition-base);
+    }
+
+    .footer-link:hover {
+      color: var(--color-text-primary);
+    }
+
+    /* =============================================
+       ANIMATIONS
+       ============================================= */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-container {
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .project-card {
+      animation: fadeInUp 0.6s ease-out;
+      animation-fill-mode: both;
+    }
+
+    .project-card:nth-child(1) { animation-delay: 0.1s; }
+    .project-card:nth-child(2) { animation-delay: 0.2s; }
+    .project-card:nth-child(3) { animation-delay: 0.3s; }
+
+    /* =============================================
+       RESPONSIVE
+       ============================================= */
+    @media (max-width: 768px) {
+      .nav-menu {
+        gap: var(--space-4);
+      }
+
+      .nav-link {
+        font-size: 0.875rem;
+      }
+
+      .hero {
+        padding: var(--space-16) var(--space-6);
+      }
+
+      .projects {
+        padding: var(--space-16) var(--space-6);
+      }
+
+      .stats {
+        padding: var(--space-12) var(--space-6);
+      }
+
+      .stat-value {
+        font-size: 2.5rem;
+      }
+
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    /* =============================================
+       ACCESSIBILITY
+       ============================================= */
+    *:focus-visible {
+      outline: 2px solid var(--color-accent-purple);
+      outline-offset: 2px;
+      border-radius: var(--radius-sm);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* =============================================
+       MODAL STYLES
+       ============================================= */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: var(--space-6);
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--color-background);
+      border-radius: var(--radius-xl);
+      max-width: 600px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: var(--shadow-xl);
+      border: 1px solid var(--color-border);
+      animation: modalSlideIn 0.3s ease-out;
+    }
+
+    @keyframes modalSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .modal-header {
+      padding: var(--space-8);
+      border-bottom: 1px solid var(--color-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--color-text-secondary);
+      padding: var(--space-2);
+      border-radius: var(--radius-md);
+      transition: all var(--transition-base);
+    }
+
+    .modal-close:hover {
+      background: var(--color-background-alt);
+      color: var(--color-text-primary);
+    }
+
+    .modal-body {
+      padding: var(--space-8);
+    }
+
+    .form-group {
+      margin-bottom: var(--space-6);
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: var(--space-3);
+      font-weight: 500;
+      color: var(--color-text-primary);
+      font-size: 0.9375rem;
+    }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      padding: var(--space-4);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      transition: all var(--transition-base);
+      background: var(--color-background);
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--color-accent-purple);
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .image-upload-container {
+      display: flex;
+      gap: var(--space-4);
+      flex-direction: column;
+    }
+
+    .image-preview {
+      width: 100%;
+      height: 200px;
+      border: 2px dashed var(--color-border);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--color-background-alt);
+    }
+
+    .image-preview img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+    }
+
+    .image-preview-placeholder {
+      color: var(--color-text-tertiary);
+      font-size: 0.875rem;
+    }
+
+    .btn-primary {
+      background: var(--gradient-accent);
+      color: white;
+      border: none;
+      padding: var(--space-4) var(--space-8);
+      border-radius: var(--radius-md);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all var(--transition-base);
+      width: 100%;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-secondary {
+      background: var(--color-background-alt);
+      color: var(--color-text-primary);
+      border: 1px solid var(--color-border);
+      padding: var(--space-3) var(--space-6);
+      border-radius: var(--radius-md);
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: all var(--transition-base);
+    }
+
+    .btn-secondary:hover {
+      background: var(--color-background);
+      border-color: var(--color-accent-purple);
+    }
+
+    .version-fields {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      margin-top: var(--space-4);
+    }
+
+    .version-field-group {
+      display: grid;
+      grid-template-columns: 1fr 2fr auto;
+      gap: var(--space-3);
+      align-items: end;
+    }
+
+    .btn-remove {
+      background: #fee;
+      color: #c00;
+      border: 1px solid #fcc;
+      padding: var(--space-4);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--transition-base);
+      font-weight: 600;
+    }
+
+    .btn-remove:hover {
+      background: #fcc;
+    }
+
+    .btn-add-version {
+      margin-top: var(--space-4);
+    }
+
+    .project-thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .delete-project-btn {
+      position: absolute;
+      top: var(--space-4);
+      right: var(--space-4);
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition-base);
+      z-index: 10;
+    }
+
+    .delete-project-btn:hover {
+      background: #fee;
+      color: #c00;
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =============================================
+       NAVIGATION
+       ============================================= -->
+  <nav class="nav" role="navigation" aria-label="메인 네비게이션">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-icon">🎨</div>
+        <span>LP Agent Hub</span>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="#projects" class="nav-link">프로젝트</a></li>
+        <li><a href="#stats" class="nav-link">정보</a></li>
+        <li><a href="#footer" class="nav-link">문서</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- =============================================
+       HERO SECTION
+       ============================================= -->
+  <section class="hero">
+    <div class="hero-container">
+      <h1 class="hero-title">랜딩페이지 허브</h1>
+      <p class="hero-subtitle">AI 에이전트가 생성한 전문 랜딩페이지 컬렉션</p>
+    </div>
+  </section>
+
+  <!-- =============================================
+       PROJECTS SECTION
+       ============================================= -->
+  <section id="projects" class="projects">
+    <div class="projects-container">
+      <div class="section-header">
+        <h2 class="section-title">프로젝트</h2>
+        <p class="section-description">생성된 랜딩페이지 프로젝트를 탐색하세요</p>
+      </div>
+
+      <div class="projects-grid" id="projectsGrid">
+
+        <!-- AI Trends 2026 Project -->
+        <article class="project-card">
+          <div class="project-thumbnail">
+            <img src="../../ai-trends-2026/version-2/스크린샷 2025-12-30 오전 1.13.18.png" alt="2026 AI 트렌드 예측">
+          </div>
+
+          <div class="project-content">
+            <div class="project-meta">
+              <span class="project-badge">Tech/AI</span>
+              <span class="project-badge">2025-12-29</span>
+              <span class="project-badge badge-status">Live</span>
+            </div>
+
+            <h3 class="project-title">2026 AI 트렌드 예측</h3>
+            <p class="project-description">
+              2026년 인공지능 기술 발전 방향과 주요 트렌드를 소개하는 랜딩페이지
+            </p>
+
+            <div class="project-versions">
+              <div class="versions-label">디자인 버전 (3)</div>
+
+              <div class="version-buttons">
+                <a href="../../ai-trends-2026/version-1/index.html" class="version-btn" target="_blank">
+                  <div class="version-info">
+                    <span class="version-name">Dark & Modern</span>
+                    <span class="version-target">타겟: 개발자, 기술 전문가</span>
+                  </div>
+                  <span class="version-arrow">→</span>
+                </a>
+
+                <a href="../../ai-trends-2026/version-2/index.html" class="version-btn" target="_blank">
+                  <div class="version-info">
+                    <span class="version-name">Bold & Vibrant</span>
+                    <span class="version-target">타겟: 일반 대중, 소비자</span>
+                  </div>
+                  <span class="version-arrow">→</span>
+                </a>
+
+                <a href="../../ai-trends-2026/version-3/index.html" class="version-btn" target="_blank">
+                  <div class="version-info">
+                    <span class="version-name">Minimal & Clean</span>
+                    <span class="version-target">타겟: 기업 임원, 의사결정권자</span>
+                  </div>
+                  <span class="version-arrow">→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Placeholder Card -->
+        <div class="placeholder-card" onclick="openModal()">
+          <div class="placeholder-icon">+</div>
+          <p class="placeholder-text">새 프로젝트 추가</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       STATS SECTION
+       ============================================= -->
+  <section id="stats" class="stats">
+    <div class="stats-container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-value" id="totalProjects">1</div>
+          <div class="stat-label">총 프로젝트</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-value" id="totalVersions">3</div>
+          <div class="stat-label">총 디자인 버전</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-value" id="lastUpdated">2025-12-29</div>
+          <div class="stat-label">최근 업데이트</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       FOOTER
+       ============================================= -->
+  <footer id="footer" class="footer">
+    <div class="footer-container">
+      <p class="footer-text">© 2025 LP Agent Hub. AI로 생성된 랜딩페이지.</p>
+
+      <ul class="footer-links">
+        <li><a href="https://github.com/anthropics/claude-code" class="footer-link" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="https://code.claude.com/docs" class="footer-link" target="_blank" rel="noopener noreferrer">Documentation</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- =============================================
+       MODAL - ADD PROJECT
+       ============================================= -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">새 프로젝트 추가</h3>
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <form id="projectForm" onsubmit="addProject(event)">
+          <div class="form-group">
+            <label class="form-label" for="projectTitle">프로젝트 제목 *</label>
+            <input type="text" id="projectTitle" class="form-input" required placeholder="예: AI 챗봇 서비스">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="projectDescription">설명 *</label>
+            <textarea id="projectDescription" class="form-textarea" required placeholder="프로젝트에 대한 간단한 설명을 입력하세요"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="projectCategory">카테고리 *</label>
+            <input type="text" id="projectCategory" class="form-input" required placeholder="예: Tech/AI">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">프로젝트 이미지</label>
+            <div class="image-upload-container">
+              <div class="image-preview" id="imagePreview">
+                <span class="image-preview-placeholder">이미지 URL을 입력하거나 파일을 선택하세요</span>
+              </div>
+              <input type="url" id="imageUrl" class="form-input" placeholder="이미지 URL (https://...)" onchange="previewImageUrl()">
+              <input type="file" id="imageFile" class="form-input" accept="image/*" onchange="previewImageFile()">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">디자인 버전 (최소 1개)</label>
+            <div class="version-fields" id="versionFields">
+              <div class="version-field-group">
+                <input type="text" class="form-input version-name-input" placeholder="버전 이름" required>
+                <input type="url" class="form-input version-url-input" placeholder="URL" required>
+                <button type="button" class="btn-remove" onclick="removeVersion(this)">×</button>
+              </div>
+            </div>
+            <button type="button" class="btn-secondary btn-add-version" onclick="addVersionField()">+ 버전 추가</button>
+          </div>
+
+          <button type="submit" class="btn-primary">프로젝트 추가</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // LocalStorage 키
+    const PROJECTS_KEY = 'lp_hub_projects';
+
+    // 페이지 로드 시 프로젝트 로드
+    document.addEventListener('DOMContentLoaded', () => {
+      loadProjects();
+      updateStats();
+    });
+
+    // 모달 열기
+    function openModal() {
+      document.getElementById('modalOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // 모달 닫기
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+      resetForm();
+    }
+
+    // 모달 오버레이 클릭 시 닫기
+    function closeModalOnOverlay(event) {
+      if (event.target === event.currentTarget) {
+        closeModal();
+      }
+    }
+
+    // 폼 리셋
+    function resetForm() {
+      document.getElementById('projectForm').reset();
+      document.getElementById('imagePreview').innerHTML = '<span class="image-preview-placeholder">이미지 URL을 입력하거나 파일을 선택하세요</span>';
+      // 버전 필드를 1개로 초기화
+      const versionFields = document.getElementById('versionFields');
+      versionFields.innerHTML = `
+        <div class="version-field-group">
+          <input type="text" class="form-input version-name-input" placeholder="버전 이름" required>
+          <input type="url" class="form-input version-url-input" placeholder="URL" required>
+          <button type="button" class="btn-remove" onclick="removeVersion(this)">×</button>
+        </div>
+      `;
+    }
+
+    // 이미지 URL 미리보기
+    function previewImageUrl() {
+      const url = document.getElementById('imageUrl').value;
+      if (url) {
+        document.getElementById('imageFile').value = ''; // 파일 입력 초기화
+        document.getElementById('imagePreview').innerHTML = `<img src="${url}" alt="Preview">`;
+      }
+    }
+
+    // 이미지 파일 미리보기
+    function previewImageFile() {
+      const file = document.getElementById('imageFile').files[0];
+      if (file) {
+        document.getElementById('imageUrl').value = ''; // URL 입력 초기화
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('imagePreview').innerHTML = `<img src="${e.target.result}" alt="Preview">`;
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    // 버전 필드 추가
+    function addVersionField() {
+      const versionFields = document.getElementById('versionFields');
+      const newField = document.createElement('div');
+      newField.className = 'version-field-group';
+      newField.innerHTML = `
+        <input type="text" class="form-input version-name-input" placeholder="버전 이름" required>
+        <input type="url" class="form-input version-url-input" placeholder="URL" required>
+        <button type="button" class="btn-remove" onclick="removeVersion(this)">×</button>
+      `;
+      versionFields.appendChild(newField);
+    }
+
+    // 버전 필드 제거
+    function removeVersion(button) {
+      const versionFields = document.getElementById('versionFields');
+      if (versionFields.children.length > 1) {
+        button.parentElement.remove();
+      } else {
+        alert('최소 1개의 버전이 필요합니다.');
+      }
+    }
+
+    // 프로젝트 추가
+    function addProject(event) {
+      event.preventDefault();
+
+      const title = document.getElementById('projectTitle').value;
+      const description = document.getElementById('projectDescription').value;
+      const category = document.getElementById('projectCategory').value;
+
+      // 이미지 가져오기 (URL 우선, 없으면 파일)
+      let imageData = document.getElementById('imageUrl').value;
+      if (!imageData) {
+        const imgElement = document.querySelector('#imagePreview img');
+        if (imgElement) {
+          imageData = imgElement.src;
+        }
+      }
+
+      // 버전 정보 수집
+      const versionNameInputs = document.querySelectorAll('.version-name-input');
+      const versionUrlInputs = document.querySelectorAll('.version-url-input');
+      const versions = [];
+
+      for (let i = 0; i < versionNameInputs.length; i++) {
+        versions.push({
+          name: versionNameInputs[i].value,
+          url: versionUrlInputs[i].value,
+          target: '사용자 지정' // 기본값
+        });
+      }
+
+      // 프로젝트 객체 생성
+      const project = {
+        id: Date.now(),
+        title,
+        description,
+        category,
+        image: imageData,
+        date: new Date().toISOString().split('T')[0],
+        status: 'Live',
+        versions
+      };
+
+      // LocalStorage에 저장
+      const projects = getProjects();
+      projects.push(project);
+      localStorage.setItem(PROJECTS_KEY, JSON.stringify(projects));
+
+      // UI 업데이트
+      loadProjects();
+      updateStats();
+      closeModal();
+    }
+
+    // LocalStorage에서 프로젝트 가져오기
+    function getProjects() {
+      const stored = localStorage.getItem(PROJECTS_KEY);
+      return stored ? JSON.parse(stored) : [];
+    }
+
+    // 프로젝트 로드 및 렌더링
+    function loadProjects() {
+      const projects = getProjects();
+      const grid = document.getElementById('projectsGrid');
+
+      // 기존 동적 카드 제거 (초기 AI Trends 카드와 placeholder는 유지)
+      const dynamicCards = grid.querySelectorAll('[data-project-id]');
+      dynamicCards.forEach(card => card.remove());
+
+      // 새 프로젝트 카드 추가 (placeholder 앞에)
+      const placeholder = grid.querySelector('.placeholder-card');
+
+      projects.forEach(project => {
+        const card = createProjectCard(project);
+        grid.insertBefore(card, placeholder);
+      });
+    }
+
+    // 프로젝트 카드 생성
+    function createProjectCard(project) {
+      const article = document.createElement('article');
+      article.className = 'project-card';
+      article.setAttribute('data-project-id', project.id);
+
+      // 이미지 HTML
+      const thumbnailContent = project.image
+        ? `<img src="${project.image}" alt="${project.title}">`
+        : '';
+
+      // 버전 버튼 HTML 생성
+      const versionButtonsHTML = project.versions.map(version => `
+        <a href="${version.url}" class="version-btn" target="_blank">
+          <div class="version-info">
+            <span class="version-name">${version.name}</span>
+            <span class="version-target">타겟: ${version.target}</span>
+          </div>
+          <span class="version-arrow">→</span>
+        </a>
+      `).join('');
+
+      article.innerHTML = `
+        <div class="project-thumbnail" style="position: relative;">
+          ${thumbnailContent}
+          <button class="delete-project-btn" onclick="deleteProject(${project.id})" title="삭제">×</button>
+        </div>
+
+        <div class="project-content">
+          <div class="project-meta">
+            <span class="project-badge">${project.category}</span>
+            <span class="project-badge">${project.date}</span>
+            <span class="project-badge badge-status">${project.status}</span>
+          </div>
+
+          <h3 class="project-title">${project.title}</h3>
+          <p class="project-description">${project.description}</p>
+
+          <div class="project-versions">
+            <div class="versions-label">디자인 버전 (${project.versions.length})</div>
+            <div class="version-buttons">
+              ${versionButtonsHTML}
+            </div>
+          </div>
+        </div>
+      `;
+
+      return article;
+    }
+
+    // 프로젝트 삭제
+    function deleteProject(projectId) {
+      if (confirm('이 프로젝트를 삭제하시겠습니까?')) {
+        let projects = getProjects();
+        projects = projects.filter(p => p.id !== projectId);
+        localStorage.setItem(PROJECTS_KEY, JSON.stringify(projects));
+        loadProjects();
+        updateStats();
+      }
+    }
+
+    // 통계 업데이트
+    function updateStats() {
+      const projects = getProjects();
+      const totalProjects = projects.length + 1; // +1 for AI Trends
+      const totalVersions = projects.reduce((sum, p) => sum + p.versions.length, 3); // +3 for AI Trends
+      const today = new Date().toISOString().split('T')[0];
+
+      document.getElementById('totalProjects').textContent = totalProjects;
+      document.getElementById('totalVersions').textContent = totalVersions;
+      document.getElementById('lastUpdated').textContent = today;
+    }
+
+    // ESC 키로 모달 닫기
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+  </script>
+
+</body>
+</html>
