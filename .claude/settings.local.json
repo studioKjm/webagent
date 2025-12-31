@@ -5,7 +5,8 @@
       "Bash(claude mcp list:*)",
       "Bash(tree:*)",
       "Skill(frontend-design)",
-      "Bash(open:*)"
+      "Bash(open:*)",
+      "WebSearch"
     ]
   }
 }

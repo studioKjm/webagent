@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VOGUE VIBES - 트렌디한 패션 쇼핑몰</title>
+  <meta name="description" content="생동감 넘치는 스타일과 대담한 디자인의 패션 브랜드">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================
+       DESIGN TOKENS - BOLD & VIBRANT
+       ============================================= */
+    :root {
+      /* Colors */
+      --color-primary: #FF1B6D;
+      --color-secondary: #00D9FF;
+      --color-accent: #FFD700;
+      --color-dark: #0F0F0F;
+      --color-light: #FFFFFF;
+      --color-text-primary: #1a1a1a;
+      --color-text-light: #666666;
+
+      /* Gradients */
+      --gradient-primary: linear-gradient(135deg, #FF1B6D 0%, #FF6B35 100%);
+      --gradient-secondary: linear-gradient(135deg, #00D9FF 0%, #7B2FFF 100%);
+      --gradient-accent: linear-gradient(135deg, #FFD700 0%, #FF1B6D 100%);
+      --gradient-rainbow: linear-gradient(90deg, #FF1B6D, #FF6B35, #FFD700, #00D9FF, #7B2FFF);
+
+      /* Typography */
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'Poppins', sans-serif;
+
+      /* Spacing */
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2rem;
+      --space-xl: 3rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Shadows */
+      --shadow-vibrant: 0 8px 32px rgba(255, 27, 109, 0.3);
+      --shadow-neon: 0 0 20px rgba(0, 217, 255, 0.5);
+      --shadow-glow: 0 0 30px rgba(255, 215, 0, 0.4);
+
+      /* Border Radius */
+      --radius-sm: 0.5rem;
+      --radius-md: 1rem;
+      --radius-lg: 1.5rem;
+      --radius-xl: 2rem;
+
+      /* Transitions */
+      --transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* =============================================
+       RESET & BASE
+       ============================================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 400;
+      color: var(--color-text-primary);
+      background: var(--color-light);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    /* =============================================
+       NAVIGATION
+       ============================================= */
+    .nav {
+      position: sticky;
+      top: 0;
+      background: var(--color-dark);
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(255, 27, 109, 0.2);
+    }
+
+    .nav-promo {
+      background: var(--gradient-rainbow);
+      color: var(--color-light);
+      padding: var(--space-xs) 0;
+      text-align: center;
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      animation: shimmer 3s infinite;
+    }
+
+    @keyframes shimmer {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+    }
+
+    .nav-main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: var(--space-xl);
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-light);
+      transition: var(--transition);
+      position: relative;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 3px;
+      background: var(--gradient-primary);
+      transition: var(--transition);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-link:hover {
+      transform: translateY(-2px);
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: var(--space-md);
+    }
+
+    .nav-icon {
+      font-size: 1.5rem;
+      color: var(--color-light);
+      transition: var(--transition);
+    }
+
+    .nav-icon:hover {
+      transform: scale(1.2) rotate(10deg);
+      filter: drop-shadow(0 0 10px var(--color-secondary));
+    }
+
+    /* =============================================
+       HERO SECTION
+       ============================================= */
+    .hero {
+      position: relative;
+      height: 90vh;
+      background: var(--gradient-primary);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-bg-shapes {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.4;
+      animation: float 20s infinite ease-in-out;
+    }
+
+    .shape-1 {
+      width: 600px;
+      height: 600px;
+      background: var(--color-secondary);
+      top: -200px;
+      right: -200px;
+      animation-delay: 0s;
+    }
+
+    .shape-2 {
+      width: 400px;
+      height: 400px;
+      background: var(--color-accent);
+      bottom: -100px;
+      left: -100px;
+      animation-delay: 5s;
+    }
+
+    .shape-3 {
+      width: 500px;
+      height: 500px;
+      background: #7B2FFF;
+      top: 50%;
+      left: 50%;
+      animation-delay: 10s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(50px, 50px) scale(1.1); }
+      66% { transform: translate(-30px, 40px) scale(0.9); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: var(--color-light);
+      max-width: 900px;
+      padding: 0 var(--space-lg);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: var(--space-xs) var(--space-md);
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border-radius: 50px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-md);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 700;
+      line-height: 0.95;
+      margin-bottom: var(--space-md);
+      letter-spacing: 0.02em;
+      animation: slideInDown 1s ease-out;
+    }
+
+    .hero-highlight {
+      background: var(--color-accent);
+      color: var(--color-dark);
+      padding: 0 var(--space-sm);
+      display: inline-block;
+      transform: rotate(-2deg);
+    }
+
+    .hero-description {
+      font-size: 1.25rem;
+      margin-bottom: var(--space-xl);
+      font-weight: 600;
+      animation: slideInUp 1s ease-out 0.2s both;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: var(--space-md);
+      justify-content: center;
+      animation: slideInUp 1s ease-out 0.4s both;
+    }
+
+    .btn-vibrant {
+      display: inline-block;
+      padding: var(--space-md) var(--space-2xl);
+      background: var(--color-light);
+      color: var(--color-dark);
+      font-weight: 800;
+      font-size: 1.125rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: var(--transition);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-vibrant);
+    }
+
+    .btn-vibrant:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 12px 40px rgba(255, 27, 109, 0.4);
+    }
+
+    .btn-outline-vibrant {
+      display: inline-block;
+      padding: var(--space-md) var(--space-2xl);
+      background: transparent;
+      color: var(--color-light);
+      font-weight: 800;
+      font-size: 1.125rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: var(--transition);
+      border-radius: var(--radius-md);
+      border: 3px solid var(--color-light);
+    }
+
+    .btn-outline-vibrant:hover {
+      background: var(--color-light);
+      color: var(--color-dark);
+      transform: translateY(-5px) scale(1.05);
+    }
+
+    /* =============================================
+       CATEGORIES
+       ============================================= */
+    .categories {
+      padding: var(--space-3xl) var(--space-lg);
+      max-width: 1400px;
+      margin: 0 auto;
+      background: var(--color-light);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: var(--space-2xl);
+    }
+
+    .section-badge {
+      display: inline-block;
+      padding: var(--space-xs) var(--space-md);
+      background: var(--gradient-secondary);
+      color: var(--color-light);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-md);
+      border-radius: 50px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      font-weight: 700;
+      margin-bottom: var(--space-sm);
+      letter-spacing: 0.02em;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-subtitle {
+      color: var(--color-text-light);
+      font-size: 1.125rem;
+      font-weight: 600;
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .category-card {
+      position: relative;
+      height: 450px;
+      overflow: hidden;
+      cursor: pointer;
+      border-radius: var(--radius-lg);
+      background: var(--gradient-primary);
+    }
+
+    .category-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+      z-index: 1;
+      transition: var(--transition);
+    }
+
+    .category-card:hover::before {
+      background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.6) 100%);
+    }
+
+    .category-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .category-card:hover .category-image {
+      transform: scale(1.1) rotate(2deg);
+    }
+
+    .category-content {
+      position: absolute;
+      bottom: var(--space-xl);
+      left: var(--space-lg);
+      right: var(--space-lg);
+      z-index: 2;
+      color: var(--color-light);
+    }
+
+    .category-title {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: var(--space-sm);
+      letter-spacing: 0.05em;
+    }
+
+    .category-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--color-light);
+      color: var(--color-dark);
+      border-radius: 50px;
+      transition: var(--transition);
+    }
+
+    .category-card:hover .category-link {
+      transform: translateX(10px);
+      box-shadow: var(--shadow-vibrant);
+    }
+
+    /* =============================================
+       FEATURED PRODUCTS
+       ============================================= */
+    .products {
+      padding: var(--space-3xl) var(--space-lg);
+      background: linear-gradient(180deg, #FFF5F8 0%, #F0F9FF 100%);
+    }
+
+    .products-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--space-xl);
+    }
+
+    .product-card {
+      background: var(--color-light);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: var(--transition);
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: var(--shadow-vibrant);
+    }
+
+    .product-image-wrapper {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #FFE5F0 0%, #E0F2FE 100%);
+      padding-bottom: 125%;
+    }
+
+    .product-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .product-card:hover .product-image {
+      transform: scale(1.15);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: var(--space-md);
+      right: var(--space-md);
+      background: var(--gradient-accent);
+      color: var(--color-dark);
+      padding: var(--space-xs) var(--space-md);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 50px;
+      box-shadow: var(--shadow-glow);
+    }
+
+    .product-wishlist {
+      position: absolute;
+      top: var(--space-md);
+      left: var(--space-md);
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      transition: var(--transition);
+    }
+
+    .product-wishlist:hover {
+      background: var(--color-primary);
+      transform: scale(1.2);
+    }
+
+    .product-info {
+      padding: var(--space-md);
+    }
+
+    .product-category {
+      font-size: 0.8125rem;
+      color: var(--color-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      margin-bottom: var(--space-xs);
+    }
+
+    .product-name {
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin-bottom: var(--space-xs);
+      color: var(--color-text-primary);
+    }
+
+    .product-rating {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      margin-bottom: var(--space-sm);
+    }
+
+    .stars {
+      color: var(--color-accent);
+    }
+
+    .rating-count {
+      font-size: 0.8125rem;
+      color: var(--color-text-light);
+    }
+
+    .product-price {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .price-current {
+      font-size: 1.5rem;
+      font-weight: 800;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .price-original {
+      font-size: 1.125rem;
+      color: var(--color-text-light);
+      text-decoration: line-through;
+    }
+
+    /* =============================================
+       SEASONAL BANNER
+       ============================================= */
+    .seasonal-banner {
+      position: relative;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gradient-secondary);
+      overflow: hidden;
+    }
+
+    .seasonal-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: var(--color-light);
+      max-width: 800px;
+      padding: var(--space-3xl) var(--space-lg);
+    }
+
+    .seasonal-emoji {
+      font-size: 5rem;
+      margin-bottom: var(--space-md);
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .seasonal-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: var(--space-md);
+      letter-spacing: 0.05em;
+    }
+
+    .seasonal-description {
+      font-size: 1.5rem;
+      margin-bottom: var(--space-xl);
+      font-weight: 600;
+    }
+
+    .seasonal-timer {
+      display: flex;
+      gap: var(--space-lg);
+      justify-content: center;
+      margin-bottom: var(--space-xl);
+    }
+
+    .timer-item {
+      text-align: center;
+    }
+
+    .timer-value {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 700;
+      display: block;
+    }
+
+    .timer-label {
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      opacity: 0.9;
+    }
+
+    /* =============================================
+       BENEFITS
+       ============================================= */
+    .benefits {
+      padding: var(--space-3xl) var(--space-lg);
+      background: var(--color-dark);
+      color: var(--color-light);
+    }
+
+    .benefits-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-2xl);
+    }
+
+    .benefit-item {
+      text-align: center;
+      padding: var(--space-xl);
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-lg);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      transition: var(--transition);
+    }
+
+    .benefit-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-10px);
+      border-color: var(--color-primary);
+      box-shadow: var(--shadow-neon);
+    }
+
+    .benefit-icon {
+      font-size: 3.5rem;
+      margin-bottom: var(--space-md);
+      filter: drop-shadow(0 0 20px var(--color-secondary));
+    }
+
+    .benefit-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: var(--space-sm);
+      font-family: var(--font-display);
+      letter-spacing: 0.05em;
+    }
+
+    .benefit-description {
+      font-size: 1rem;
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    /* =============================================
+       NEWSLETTER
+       ============================================= */
+    .newsletter {
+      padding: var(--space-3xl) var(--space-lg);
+      background: var(--gradient-primary);
+      color: var(--color-light);
+    }
+
+    .newsletter-container {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .newsletter-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 700;
+      margin-bottom: var(--space-sm);
+      letter-spacing: 0.05em;
+    }
+
+    .newsletter-description {
+      font-size: 1.25rem;
+      margin-bottom: var(--space-xl);
+      font-weight: 600;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: var(--space-md);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      padding: var(--space-md) var(--space-lg);
+      border: 3px solid var(--color-light);
+      font-size: 1rem;
+      font-family: var(--font-body);
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      color: var(--color-light);
+      border-radius: var(--radius-md);
+      transition: var(--transition);
+    }
+
+    .newsletter-input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .newsletter-input:focus {
+      outline: none;
+      background: var(--color-light);
+      color: var(--color-dark);
+      transform: scale(1.02);
+    }
+
+    .newsletter-button {
+      padding: var(--space-md) var(--space-2xl);
+      background: var(--color-light);
+      color: var(--color-dark);
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: var(--transition);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-vibrant);
+    }
+
+    .newsletter-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 40px rgba(255, 255, 255, 0.3);
+    }
+
+    /* =============================================
+       FOOTER
+       ============================================= */
+    .footer {
+      background: var(--color-dark);
+      color: var(--color-light);
+      padding: var(--space-3xl) var(--space-lg) var(--space-xl);
+      border-top: 3px solid var(--color-primary);
+    }
+
+    .footer-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .footer-main {
+      display: grid;
+      grid-template-columns: 2fr repeat(3, 1fr);
+      gap: var(--space-2xl);
+      margin-bottom: var(--space-2xl);
+      padding-bottom: var(--space-2xl);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-brand {
+      max-width: 400px;
+    }
+
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-md);
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .footer-description {
+      font-size: 1rem;
+      line-height: 1.7;
+      opacity: 0.8;
+      margin-bottom: var(--space-lg);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: var(--space-md);
+    }
+
+    .social-icon {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gradient-primary);
+      border-radius: 50%;
+      font-size: 1.5rem;
+      transition: var(--transition);
+    }
+
+    .social-icon:hover {
+      transform: scale(1.2) rotate(10deg);
+      box-shadow: var(--shadow-vibrant);
+    }
+
+    .footer-section-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: var(--space-md);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-family: var(--font-display);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-link {
+      display: block;
+      font-size: 1rem;
+      opacity: 0.8;
+      margin-bottom: var(--space-sm);
+      transition: var(--transition);
+      font-weight: 500;
+    }
+
+    .footer-link:hover {
+      opacity: 1;
+      padding-left: var(--space-sm);
+      color: var(--color-primary);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.875rem;
+      opacity: 0.7;
+      font-weight: 600;
+    }
+
+    .footer-payment {
+      display: flex;
+      gap: var(--space-md);
+      align-items: center;
+      font-size: 1.5rem;
+    }
+
+    /* =============================================
+       ANIMATIONS
+       ============================================= */
+    @keyframes slideInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =============================================
+       RESPONSIVE
+       ============================================= */
+    @media (max-width: 1024px) {
+      .nav-menu {
+        display: none;
+      }
+
+      .footer-main {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        height: 80vh;
+      }
+
+      .categories-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-md);
+      }
+
+      .seasonal-timer {
+        flex-wrap: wrap;
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+      }
+
+      .footer-main {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: var(--space-md);
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* =============================================
+       ACCESSIBILITY
+       ============================================= */
+    *:focus-visible {
+      outline: 3px solid var(--color-accent);
+      outline-offset: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =============================================
+       NAVIGATION
+       ============================================= -->
+  <nav class="nav">
+    <div class="nav-promo">
+      🔥 MEGA SALE: 전 상품 50% 할인! 🔥
+    </div>
+    <div class="nav-main">
+      <a href="#" class="nav-logo">VOGUE VIBES</a>
+
+      <ul class="nav-menu">
+        <li><a href="#new" class="nav-link">New</a></li>
+        <li><a href="#categories" class="nav-link">Shop</a></li>
+        <li><a href="#products" class="nav-link">Trending</a></li>
+        <li><a href="#sale" class="nav-link">Sale</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="nav-icon" aria-label="검색">🔍</button>
+        <button class="nav-icon" aria-label="장바구니">🛒</button>
+        <button class="nav-icon" aria-label="로그인">👤</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =============================================
+       HERO SECTION
+       ============================================= -->
+  <section class="hero">
+    <div class="hero-bg-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge">✨ 2025 Spring Drops</div>
+      <h1 class="hero-title">
+        BE <span class="hero-highlight">BOLD</span><br>
+        BE YOU
+      </h1>
+      <p class="hero-description">
+        대담하고 생동감 넘치는 스타일로 당신만의 개성을 표현하세요
+      </p>
+      <div class="hero-buttons">
+        <button class="btn-vibrant">지금 쇼핑하기</button>
+        <button class="btn-outline-vibrant">컬렉션 보기</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       CATEGORIES
+       ============================================= -->
+  <section id="categories" class="categories">
+    <div class="section-header">
+      <div class="section-badge">Categories</div>
+      <h2 class="section-title">SHOP BY STYLE</h2>
+      <p class="section-subtitle">당신의 바이브를 찾아보세요</p>
+    </div>
+
+    <div class="categories-grid">
+      <div class="category-card">
+        <img src="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=400&h=500&fit=crop&q=80" alt="Women" class="category-image">
+        <div class="category-content">
+          <h3 class="category-title">WOMEN</h3>
+          <a href="#" class="category-link">Shop Now →</a>
+        </div>
+      </div>
+
+      <div class="category-card">
+        <img src="https://images.unsplash.com/photo-1516826957135-700dedea698c?w=400&h=500&fit=crop&q=80" alt="Men" class="category-image">
+        <div class="category-content">
+          <h3 class="category-title">MEN</h3>
+          <a href="#" class="category-link">Shop Now →</a>
+        </div>
+      </div>
+
+      <div class="category-card">
+        <img src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=400&h=500&fit=crop&q=80" alt="Kids" class="category-image">
+        <div class="category-content">
+          <h3 class="category-title">KIDS</h3>
+          <a href="#" class="category-link">Shop Now →</a>
+        </div>
+      </div>
+
+      <div class="category-card">
+        <img src="https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=400&h=500&fit=crop&q=80" alt="Accessories" class="category-image">
+        <div class="category-content">
+          <h3 class="category-title">ACCESS</h3>
+          <a href="#" class="category-link">Shop Now →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       FEATURED PRODUCTS
+       ============================================= -->
+  <section id="products" class="products">
+    <div class="products-container">
+      <div class="section-header">
+        <div class="section-badge">🔥 Hot Items</div>
+        <h2 class="section-title">TRENDING NOW</h2>
+        <p class="section-subtitle">지금 가장 핫한 아이템</p>
+      </div>
+
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=300&h=375&fit=crop&q=80" alt="Product" class="product-image">
+            <span class="product-badge">🔥 HOT</span>
+            <button class="product-wishlist">❤️</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Women's</p>
+            <h3 class="product-name">Graphic Oversized Tee</h3>
+            <div class="product-rating">
+              <span class="stars">⭐⭐⭐⭐⭐</span>
+              <span class="rating-count">(124)</span>
+            </div>
+            <div class="product-price">
+              <span class="price-current">₩45,000</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=300&h=375&fit=crop&q=80" alt="Product" class="product-image">
+            <span class="product-badge">-50%</span>
+            <button class="product-wishlist">❤️</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Men's</p>
+            <h3 class="product-name">Neon Windbreaker</h3>
+            <div class="product-rating">
+              <span class="stars">⭐⭐⭐⭐⭐</span>
+              <span class="rating-count">(89)</span>
+            </div>
+            <div class="product-price">
+              <span class="price-current">₩89,000</span>
+              <span class="price-original">₩178,000</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1603252109360-909baaf261c7?w=300&h=375&fit=crop&q=80" alt="Product" class="product-image">
+            <span class="product-badge">NEW</span>
+            <button class="product-wishlist">❤️</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Women's</p>
+            <h3 class="product-name">Chunky Platform Sneakers</h3>
+            <div class="product-rating">
+              <span class="stars">⭐⭐⭐⭐⭐</span>
+              <span class="rating-count">(256)</span>
+            </div>
+            <div class="product-price">
+              <span class="price-current">₩129,000</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?w=300&h=375&fit=crop&q=80" alt="Product" class="product-image">
+            <button class="product-wishlist">❤️</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Accessories</p>
+            <h3 class="product-name">Holographic Backpack</h3>
+            <div class="product-rating">
+              <span class="stars">⭐⭐⭐⭐⭐</span>
+              <span class="rating-count">(67)</span>
+            </div>
+            <div class="product-price">
+              <span class="price-current">₩79,000</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=300&h=375&fit=crop&q=80" alt="Product" class="product-image">
+            <span class="product-badge">🔥 HOT</span>
+            <button class="product-wishlist">❤️</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Men's</p>
+            <h3 class="product-name">Distressed Denim Jacket</h3>
+            <div class="product-rating">
+              <span class="stars">⭐⭐⭐⭐⭐</span>
+              <span class="rating-count">(143)</span>
+            </div>
+            <div class="product-price">
+              <span class="price-current">₩149,000</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=300&h=375&fit=crop&q=80" alt="Product" class="product-image">
+            <button class="product-wishlist">❤️</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Women's</p>
+            <h3 class="product-name">Cargo Mini Skirt</h3>
+            <div class="product-rating">
+              <span class="stars">⭐⭐⭐⭐⭐</span>
+              <span class="rating-count">(201)</span>
+            </div>
+            <div class="product-price">
+              <span class="price-current">₩65,000</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=300&h=375&fit=crop&q=80" alt="Product" class="product-image">
+            <span class="product-badge">-30%</span>
+            <button class="product-wishlist">❤️</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Men's</p>
+            <h3 class="product-name">Colorblock Hoodie</h3>
+            <div class="product-rating">
+              <span class="stars">⭐⭐⭐⭐⭐</span>
+              <span class="rating-count">(178)</span>
+            </div>
+            <div class="product-price">
+              <span class="price-current">₩69,000</span>
+              <span class="price-original">₩99,000</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1591561954557-26941169b49e?w=300&h=375&fit=crop&q=80" alt="Product" class="product-image">
+            <span class="product-badge">NEW</span>
+            <button class="product-wishlist">❤️</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Accessories</p>
+            <h3 class="product-name">Chain Crossbody Bag</h3>
+            <div class="product-rating">
+              <span class="stars">⭐⭐⭐⭐⭐</span>
+              <span class="rating-count">(92)</span>
+            </div>
+            <div class="product-price">
+              <span class="price-current">₩89,000</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SEASONAL BANNER
+       ============================================= -->
+  <section class="seasonal-banner">
+    <div class="seasonal-content">
+      <div class="seasonal-emoji">⚡</div>
+      <h2 class="seasonal-title">FLASH SALE</h2>
+      <p class="seasonal-description">한정 시간 특가! 놓치지 마세요!</p>
+
+      <div class="seasonal-timer">
+        <div class="timer-item">
+          <span class="timer-value">12</span>
+          <span class="timer-label">Hours</span>
+        </div>
+        <div class="timer-item">
+          <span class="timer-value">35</span>
+          <span class="timer-label">Minutes</span>
+        </div>
+        <div class="timer-item">
+          <span class="timer-value">42</span>
+          <span class="timer-label">Seconds</span>
+        </div>
+      </div>
+
+      <button class="btn-vibrant">지금 쇼핑하기</button>
+    </div>
+  </section>
+
+  <!-- =============================================
+       BENEFITS
+       ============================================= -->
+  <section class="benefits">
+    <div class="benefits-container">
+      <div class="benefit-item">
+        <div class="benefit-icon">🚀</div>
+        <h3 class="benefit-title">FREE SHIPPING</h3>
+        <p class="benefit-description">5만원 이상 주문 시 전국 무료배송</p>
+      </div>
+
+      <div class="benefit-item">
+        <div class="benefit-icon">💯</div>
+        <h3 class="benefit-title">EASY RETURNS</h3>
+        <p class="benefit-description">30일 이내 무료 반품 보장</p>
+      </div>
+
+      <div class="benefit-item">
+        <div class="benefit-icon">🎁</div>
+        <h3 class="benefit-title">MEMBER REWARDS</h3>
+        <p class="benefit-description">구매 시마다 포인트 적립</p>
+      </div>
+
+      <div class="benefit-item">
+        <div class="benefit-icon">⚡</div>
+        <h3 class="benefit-title">24/7 SUPPORT</h3>
+        <p class="benefit-description">언제든지 도와드립니다</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       NEWSLETTER
+       ============================================= -->
+  <section class="newsletter">
+    <div class="newsletter-container">
+      <h2 class="newsletter-title">JOIN THE VIBE</h2>
+      <p class="newsletter-description">뉴스레터 구독하고 특별 혜택 받기!</p>
+      <form class="newsletter-form">
+        <input type="email" class="newsletter-input" placeholder="이메일을 입력하세요" required>
+        <button type="submit" class="newsletter-button">구독하기</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- =============================================
+       FOOTER
+       ============================================= -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <h3 class="footer-logo">VOGUE VIBES</h3>
+          <p class="footer-description">
+            대담하고 생동감 넘치는 패션으로 당신만의 개성을 표현하세요.
+            트렌디한 스타일과 합리적인 가격의 완벽한 조화.
+          </p>
+          <div class="footer-social">
+            <a href="#" class="social-icon" aria-label="Instagram">📷</a>
+            <a href="#" class="social-icon" aria-label="TikTok">🎵</a>
+            <a href="#" class="social-icon" aria-label="YouTube">📹</a>
+            <a href="#" class="social-icon" aria-label="Twitter">🐦</a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h4 class="footer-section-title">SHOP</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">Women</a></li>
+            <li><a href="#" class="footer-link">Men</a></li>
+            <li><a href="#" class="footer-link">Kids</a></li>
+            <li><a href="#" class="footer-link">Accessories</a></li>
+            <li><a href="#" class="footer-link">Sale</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4 class="footer-section-title">SUPPORT</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">고객센터</a></li>
+            <li><a href="#" class="footer-link">배송 안내</a></li>
+            <li><a href="#" class="footer-link">반품/교환</a></li>
+            <li><a href="#" class="footer-link">FAQ</a></li>
+            <li><a href="#" class="footer-link">사이즈 가이드</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4 class="footer-section-title">COMPANY</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">About Us</a></li>
+            <li><a href="#" class="footer-link">Careers</a></li>
+            <li><a href="#" class="footer-link">매장 안내</a></li>
+            <li><a href="#" class="footer-link">이용약관</a></li>
+            <li><a href="#" class="footer-link">개인정보처리방침</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 VOGUE VIBES. All Rights Reserved.</p>
+        <div class="footer-payment">
+          💳 💰 🏦
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
