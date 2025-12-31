@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUXE Fashion - 프리미엄 패션 쇼핑몰</title>
+  <meta name="description" content="세련된 감성과 최고의 품질을 자랑하는 프리미엄 패션 브랜드">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================
+       DESIGN TOKENS - MINIMAL & CLEAN
+       ============================================= */
+    :root {
+      /* Colors */
+      --color-primary: #000000;
+      --color-secondary: #FFFFFF;
+      --color-accent: #8B7355;
+      --color-text-primary: #1a1a1a;
+      --color-text-secondary: #666666;
+      --color-text-light: #999999;
+      --color-border: #e5e5e5;
+      --color-bg-light: #f8f8f8;
+
+      /* Typography */
+      --font-display: 'Playfair Display', serif;
+      --font-body: 'Inter', sans-serif;
+
+      /* Spacing */
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2rem;
+      --space-xl: 3rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Shadows */
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+      /* Border Radius */
+      --radius-sm: 0.25rem;
+      --radius-md: 0.5rem;
+
+      /* Transitions */
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* =============================================
+       RESET & BASE
+       ============================================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 400;
+      color: var(--color-text-primary);
+      background: var(--color-secondary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    /* =============================================
+       NAVIGATION
+       ============================================= */
+    .nav {
+      position: sticky;
+      top: 0;
+      background: var(--color-secondary);
+      border-bottom: 1px solid var(--color-border);
+      z-index: 100;
+    }
+
+    .nav-top {
+      background: var(--color-primary);
+      color: var(--color-secondary);
+      padding: var(--space-xs) 0;
+      text-align: center;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .nav-main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: var(--space-xl);
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--color-text-primary);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--color-accent);
+      transition: var(--transition);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: var(--space-md);
+    }
+
+    .nav-icon {
+      font-size: 1.25rem;
+      transition: var(--transition);
+    }
+
+    .nav-icon:hover {
+      color: var(--color-accent);
+    }
+
+    /* =============================================
+       HERO SECTION
+       ============================================= */
+    .hero {
+      position: relative;
+      height: 85vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+                  url('https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1400&h=900&fit=crop&q=80');
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      text-align: center;
+      color: var(--color-secondary);
+      max-width: 800px;
+      padding: 0 var(--space-lg);
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-subtitle {
+      font-size: 0.875rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-md);
+      font-weight: 500;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: var(--space-md);
+      letter-spacing: -0.02em;
+    }
+
+    .hero-description {
+      font-size: 1.125rem;
+      margin-bottom: var(--space-xl);
+      opacity: 0.95;
+      font-weight: 300;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: var(--space-md) var(--space-2xl);
+      background: var(--color-secondary);
+      color: var(--color-primary);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: var(--transition);
+      border: 2px solid var(--color-secondary);
+    }
+
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--color-secondary);
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      padding: var(--space-md) var(--space-2xl);
+      background: transparent;
+      color: var(--color-primary);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: var(--transition);
+      border: 2px solid var(--color-primary);
+    }
+
+    .btn-secondary:hover {
+      background: var(--color-primary);
+      color: var(--color-secondary);
+    }
+
+    /* =============================================
+       CATEGORIES
+       ============================================= */
+    .categories {
+      padding: var(--space-3xl) var(--space-lg);
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: var(--space-2xl);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600;
+      margin-bottom: var(--space-sm);
+      letter-spacing: -0.01em;
+    }
+
+    .section-subtitle {
+      color: var(--color-text-secondary);
+      font-size: 1rem;
+      font-weight: 400;
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .category-card {
+      position: relative;
+      height: 400px;
+      overflow: hidden;
+      cursor: pointer;
+      background: var(--color-bg-light);
+    }
+
+    .category-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+      z-index: 1;
+      transition: var(--transition);
+    }
+
+    .category-card:hover::before {
+      background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
+    }
+
+    .category-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .category-card:hover .category-image {
+      transform: scale(1.05);
+    }
+
+    .category-content {
+      position: absolute;
+      bottom: var(--space-xl);
+      left: var(--space-lg);
+      right: var(--space-lg);
+      z-index: 2;
+      color: var(--color-secondary);
+    }
+
+    .category-title {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: var(--space-xs);
+    }
+
+    .category-link {
+      font-size: 0.875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    /* =============================================
+       FEATURED PRODUCTS
+       ============================================= */
+    .products {
+      padding: var(--space-3xl) var(--space-lg);
+      background: var(--color-bg-light);
+    }
+
+    .products-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--space-xl);
+    }
+
+    .product-card {
+      background: var(--color-secondary);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .product-card:hover {
+      box-shadow: var(--shadow-lg);
+    }
+
+    .product-image-wrapper {
+      position: relative;
+      overflow: hidden;
+      background: #f0f0f0;
+      padding-bottom: 125%;
+    }
+
+    .product-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .product-card:hover .product-image {
+      transform: scale(1.08);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: var(--space-md);
+      right: var(--space-md);
+      background: var(--color-accent);
+      color: var(--color-secondary);
+      padding: var(--space-xs) var(--space-sm);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .product-info {
+      padding: var(--space-md);
+    }
+
+    .product-category {
+      font-size: 0.8125rem;
+      color: var(--color-text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xs);
+    }
+
+    .product-name {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: var(--space-xs);
+      color: var(--color-text-primary);
+    }
+
+    .product-price {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .price-current {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+
+    .price-original {
+      font-size: 0.9375rem;
+      color: var(--color-text-light);
+      text-decoration: line-through;
+    }
+
+    /* =============================================
+       SEASONAL BANNER
+       ============================================= */
+    .seasonal-banner {
+      position: relative;
+      height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                  url('https://images.unsplash.com/photo-1509631179647-0177331693ae?w=1400&h=500&fit=crop&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .seasonal-content {
+      text-align: center;
+      color: var(--color-secondary);
+      max-width: 700px;
+      padding: 0 var(--space-lg);
+    }
+
+    .seasonal-tag {
+      font-size: 0.875rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-md);
+      font-weight: 500;
+    }
+
+    .seasonal-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: var(--space-md);
+    }
+
+    .seasonal-description {
+      font-size: 1.125rem;
+      margin-bottom: var(--space-xl);
+      opacity: 0.95;
+    }
+
+    /* =============================================
+       BENEFITS
+       ============================================= */
+    .benefits {
+      padding: var(--space-3xl) var(--space-lg);
+      background: var(--color-secondary);
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .benefits-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-2xl);
+    }
+
+    .benefit-item {
+      text-align: center;
+    }
+
+    .benefit-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto var(--space-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: var(--color-accent);
+    }
+
+    .benefit-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: var(--space-xs);
+    }
+
+    .benefit-description {
+      font-size: 0.9375rem;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+
+    /* =============================================
+       NEWSLETTER
+       ============================================= */
+    .newsletter {
+      padding: var(--space-3xl) var(--space-lg);
+      background: var(--color-bg-light);
+    }
+
+    .newsletter-container {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .newsletter-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 600;
+      margin-bottom: var(--space-sm);
+    }
+
+    .newsletter-description {
+      color: var(--color-text-secondary);
+      font-size: 1rem;
+      margin-bottom: var(--space-xl);
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: var(--space-sm);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      padding: var(--space-md);
+      border: 2px solid var(--color-border);
+      font-size: 0.9375rem;
+      font-family: var(--font-body);
+      transition: var(--transition);
+    }
+
+    .newsletter-input:focus {
+      outline: none;
+      border-color: var(--color-accent);
+    }
+
+    .newsletter-button {
+      padding: var(--space-md) var(--space-xl);
+      background: var(--color-primary);
+      color: var(--color-secondary);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: var(--transition);
+      border: 2px solid var(--color-primary);
+    }
+
+    .newsletter-button:hover {
+      background: transparent;
+      color: var(--color-primary);
+    }
+
+    /* =============================================
+       FOOTER
+       ============================================= */
+    .footer {
+      background: var(--color-primary);
+      color: var(--color-secondary);
+      padding: var(--space-3xl) var(--space-lg) var(--space-xl);
+    }
+
+    .footer-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .footer-main {
+      display: grid;
+      grid-template-columns: 2fr repeat(3, 1fr);
+      gap: var(--space-2xl);
+      margin-bottom: var(--space-2xl);
+      padding-bottom: var(--space-2xl);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-brand {
+      max-width: 350px;
+    }
+
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-md);
+    }
+
+    .footer-description {
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      opacity: 0.8;
+      margin-bottom: var(--space-lg);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: var(--space-md);
+    }
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      font-size: 1.125rem;
+      transition: var(--transition);
+    }
+
+    .social-icon:hover {
+      background: var(--color-secondary);
+      color: var(--color-primary);
+      border-color: var(--color-secondary);
+    }
+
+    .footer-section-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: var(--space-md);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-link {
+      display: block;
+      font-size: 0.9375rem;
+      opacity: 0.8;
+      margin-bottom: var(--space-sm);
+      transition: var(--transition);
+    }
+
+    .footer-link:hover {
+      opacity: 1;
+      padding-left: var(--space-xs);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.875rem;
+      opacity: 0.7;
+    }
+
+    .footer-payment {
+      display: flex;
+      gap: var(--space-md);
+      align-items: center;
+    }
+
+    /* =============================================
+       ANIMATIONS
+       ============================================= */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =============================================
+       RESPONSIVE
+       ============================================= */
+    @media (max-width: 1024px) {
+      .nav-menu {
+        display: none;
+      }
+
+      .footer-main {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        height: 70vh;
+      }
+
+      .categories-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-md);
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+      }
+
+      .footer-main {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: var(--space-md);
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* =============================================
+       ACCESSIBILITY
+       ============================================= */
+    *:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =============================================
+       NAVIGATION
+       ============================================= -->
+  <nav class="nav">
+    <div class="nav-top">
+      신규 가입 시 전 상품 15% 할인 | 무료 배송
+    </div>
+    <div class="nav-main">
+      <a href="#" class="nav-logo">LUXE</a>
+
+      <ul class="nav-menu">
+        <li><a href="#new" class="nav-link">NEW ARRIVAL</a></li>
+        <li><a href="#categories" class="nav-link">CATEGORIES</a></li>
+        <li><a href="#products" class="nav-link">PRODUCTS</a></li>
+        <li><a href="#sale" class="nav-link">SALE</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="nav-icon" aria-label="검색">🔍</button>
+        <button class="nav-icon" aria-label="장바구니">🛒</button>
+        <button class="nav-icon" aria-label="로그인">👤</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =============================================
+       HERO SECTION
+       ============================================= -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-subtitle">2025 Spring Collection</p>
+      <h1 class="hero-title">Timeless Elegance</h1>
+      <p class="hero-description">세련된 감성과 최고의 품질로 완성한 프리미엄 컬렉션</p>
+      <button class="btn-primary">컬렉션 보기</button>
+    </div>
+  </section>
+
+  <!-- =============================================
+       CATEGORIES
+       ============================================= -->
+  <section id="categories" class="categories">
+    <div class="section-header">
+      <h2 class="section-title">Shop by Category</h2>
+      <p class="section-subtitle">당신의 스타일을 찾아보세요</p>
+    </div>
+
+    <div class="categories-grid">
+      <div class="category-card">
+        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400&h=500&fit=crop&q=80" alt="Women" class="category-image">
+        <div class="category-content">
+          <h3 class="category-title">Women</h3>
+          <a href="#" class="category-link">Shop Now →</a>
+        </div>
+      </div>
+
+      <div class="category-card">
+        <img src="https://images.unsplash.com/photo-1488161628813-04466f872be2?w=400&h=500&fit=crop&q=80" alt="Men" class="category-image">
+        <div class="category-content">
+          <h3 class="category-title">Men</h3>
+          <a href="#" class="category-link">Shop Now →</a>
+        </div>
+      </div>
+
+      <div class="category-card">
+        <img src="https://images.unsplash.com/photo-1503944583220-79d8926ad5e2?w=400&h=500&fit=crop&q=80" alt="Kids" class="category-image">
+        <div class="category-content">
+          <h3 class="category-title">Kids</h3>
+          <a href="#" class="category-link">Shop Now →</a>
+        </div>
+      </div>
+
+      <div class="category-card">
+        <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=400&h=500&fit=crop&q=80" alt="Accessories" class="category-image">
+        <div class="category-content">
+          <h3 class="category-title">Accessories</h3>
+          <a href="#" class="category-link">Shop Now →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       FEATURED PRODUCTS
+       ============================================= -->
+  <section id="products" class="products">
+    <div class="products-container">
+      <div class="section-header">
+        <h2 class="section-title">Featured Products</h2>
+        <p class="section-subtitle">이번 시즌 가장 인기 있는 아이템</p>
+      </div>
+
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=300&h=375&fit=crop&q=80" alt="Product" class="product-image">
+            <span class="product-badge">NEW</span>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Women's</p>
+            <h3 class="product-name">Cashmere Sweater</h3>
+            <div class="product-price">
+              <span class="price-current">₩189,000</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=300&h=375&fit=crop&q=80" alt="Product" class="product-image">
+            <span class="product-badge">SALE</span>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Men's</p>
+            <h3 class="product-name">Wool Coat</h3>
+            <div class="product-price">
+              <span class="price-current">₩359,000</span>
+              <span class="price-original">₩459,000</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?w=300&h=375&fit=crop&q=80" alt="Product" class="product-image">
+          </div>
+          <div class="product-info">
+            <p class="product-category">Women's</p>
+            <h3 class="product-name">Silk Blouse</h3>
+            <div class="product-price">
+              <span class="price-current">₩129,000</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=300&h=375&fit=crop&q=80" alt="Product" class="product-image">
+          </div>
+          <div class="product-info">
+            <p class="product-category">Accessories</p>
+            <h3 class="product-name">Leather Bag</h3>
+            <div class="product-price">
+              <span class="price-current">₩279,000</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=300&h=375&fit=crop&q=80" alt="Product" class="product-image">
+            <span class="product-badge">NEW</span>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Men's</p>
+            <h3 class="product-name">Oxford Shoes</h3>
+            <div class="product-price">
+              <span class="price-current">₩249,000</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=300&h=375&fit=crop&q=80" alt="Product" class="product-image">
+          </div>
+          <div class="product-info">
+            <p class="product-category">Women's</p>
+            <h3 class="product-name">Pleated Skirt</h3>
+            <div class="product-price">
+              <span class="price-current">₩159,000</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=300&h=375&fit=crop&q=80" alt="Product" class="product-image">
+            <span class="product-badge">SALE</span>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Men's</p>
+            <h3 class="product-name">Cotton Shirt</h3>
+            <div class="product-price">
+              <span class="price-current">₩79,000</span>
+              <span class="price-original">₩119,000</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=300&h=375&fit=crop&q=80" alt="Product" class="product-image">
+          </div>
+          <div class="product-info">
+            <p class="product-category">Accessories</p>
+            <h3 class="product-name">Sunglasses</h3>
+            <div class="product-price">
+              <span class="price-current">₩189,000</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SEASONAL BANNER
+       ============================================= -->
+  <section class="seasonal-banner">
+    <div class="seasonal-content">
+      <p class="seasonal-tag">Limited Edition</p>
+      <h2 class="seasonal-title">Spring Collection 2025</h2>
+      <p class="seasonal-description">자연에서 영감을 받은 컬러와 실루엣</p>
+      <button class="btn-primary">지금 쇼핑하기</button>
+    </div>
+  </section>
+
+  <!-- =============================================
+       BENEFITS
+       ============================================= -->
+  <section class="benefits">
+    <div class="benefits-container">
+      <div class="benefit-item">
+        <div class="benefit-icon">🚚</div>
+        <h3 class="benefit-title">무료 배송</h3>
+        <p class="benefit-description">5만원 이상 구매 시 전국 무료 배송</p>
+      </div>
+
+      <div class="benefit-item">
+        <div class="benefit-icon">🔄</div>
+        <h3 class="benefit-title">간편 반품</h3>
+        <p class="benefit-description">30일 이내 무료 반품 및 교환</p>
+      </div>
+
+      <div class="benefit-item">
+        <div class="benefit-icon">💳</div>
+        <h3 class="benefit-title">안전한 결제</h3>
+        <p class="benefit-description">SSL 보안 인증으로 안전하게</p>
+      </div>
+
+      <div class="benefit-item">
+        <div class="benefit-icon">💬</div>
+        <h3 class="benefit-title">24/7 고객지원</h3>
+        <p class="benefit-description">언제든지 도움을 드립니다</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       NEWSLETTER
+       ============================================= -->
+  <section class="newsletter">
+    <div class="newsletter-container">
+      <h2 class="newsletter-title">뉴스레터 구독</h2>
+      <p class="newsletter-description">신상품 소식과 특별 할인 혜택을 가장 먼저 받아보세요</p>
+      <form class="newsletter-form">
+        <input type="email" class="newsletter-input" placeholder="이메일 주소를 입력하세요" required>
+        <button type="submit" class="newsletter-button">구독하기</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- =============================================
+       FOOTER
+       ============================================= -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <h3 class="footer-logo">LUXE</h3>
+          <p class="footer-description">
+            세련된 감성과 최고의 품질을 자랑하는 프리미엄 패션 브랜드입니다.
+            타임리스한 디자인과 완벽한 핏으로 당신의 스타일을 완성합니다.
+          </p>
+          <div class="footer-social">
+            <a href="#" class="social-icon" aria-label="Instagram">📷</a>
+            <a href="#" class="social-icon" aria-label="Facebook">📘</a>
+            <a href="#" class="social-icon" aria-label="Twitter">🐦</a>
+            <a href="#" class="social-icon" aria-label="YouTube">📹</a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h4 class="footer-section-title">Shop</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">Women</a></li>
+            <li><a href="#" class="footer-link">Men</a></li>
+            <li><a href="#" class="footer-link">Kids</a></li>
+            <li><a href="#" class="footer-link">Accessories</a></li>
+            <li><a href="#" class="footer-link">Sale</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4 class="footer-section-title">Support</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">고객센터</a></li>
+            <li><a href="#" class="footer-link">배송 안내</a></li>
+            <li><a href="#" class="footer-link">반품/교환</a></li>
+            <li><a href="#" class="footer-link">사이즈 가이드</a></li>
+            <li><a href="#" class="footer-link">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4 class="footer-section-title">Company</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">회사 소개</a></li>
+            <li><a href="#" class="footer-link">채용</a></li>
+            <li><a href="#" class="footer-link">매장 안내</a></li>
+            <li><a href="#" class="footer-link">이용약관</a></li>
+            <li><a href="#" class="footer-link">개인정보처리방침</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 LUXE. All rights reserved.</p>
+        <div class="footer-payment">
+          <span>Payment Methods:</span>
+          💳 VISA 💳 MasterCard 💳 PayPal
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOIR Collection - 다크 모던 패션</title>
+  <meta name="description" content="프리미엄 다크 테마 패션 브랜드">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================
+       DESIGN TOKENS - DARK & MODERN
+       ============================================= */
+    :root {
+      /* Colors */
+      --color-bg-primary: #0a0a0a;
+      --color-bg-secondary: #1a1a1a;
+      --color-bg-tertiary: #2a2a2a;
+      --color-text-primary: #ffffff;
+      --color-text-secondary: #b0b0b0;
+      --color-text-tertiary: #707070;
+      --color-accent-gold: #D4AF37;
+      --color-accent-blue: #4A90E2;
+      --color-accent-purple: #8B5FBF;
+
+      /* Gradients */
+      --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #F4D03F 100%);
+      --gradient-blue: linear-gradient(135deg, #4A90E2 0%, #7B68EE 100%);
+      --gradient-dark: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+      --gradient-mesh: radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                        radial-gradient(at 100% 100%, rgba(74, 144, 226, 0.15) 0%, transparent 50%);
+
+      /* Glass */
+      --glass-bg: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
+
+      /* Typography */
+      --font-display: 'Cormorant Garamond', serif;
+      --font-body: 'Montserrat', sans-serif;
+
+      /* Spacing */
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2rem;
+      --space-xl: 3rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Shadows */
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.5);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.6);
+      --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.7);
+      --shadow-gold: 0 0 30px rgba(212, 175, 55, 0.3);
+
+      /* Border Radius */
+      --radius-sm: 0.5rem;
+      --radius-md: 1rem;
+      --radius-lg: 1.5rem;
+
+      /* Transitions */
+      --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* =============================================
+       RESET & BASE
+       ============================================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 400;
+      color: var(--color-text-primary);
+      background: var(--color-bg-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: var(--gradient-mesh);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    /* =============================================
+       NAVIGATION
+       ============================================= */
+    .nav {
+      position: sticky;
+      top: 0;
+      background: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border);
+      z-index: 100;
+    }
+
+    .nav-promo {
+      background: var(--gradient-gold);
+      color: var(--color-bg-primary);
+      padding: var(--space-xs) 0;
+      text-align: center;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+    }
+
+    .nav-main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 1;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      background: var(--gradient-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: var(--space-xl);
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      transition: var(--transition);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .nav-link:hover {
+      color: var(--color-accent-gold);
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: var(--space-md);
+    }
+
+    .nav-icon {
+      font-size: 1.25rem;
+      color: var(--color-text-secondary);
+      transition: var(--transition);
+    }
+
+    .nav-icon:hover {
+      color: var(--color-accent-gold);
+      transform: scale(1.1);
+    }
+
+    /* =============================================
+       HERO SECTION
+       ============================================= */
+    .hero {
+      position: relative;
+      height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                  url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1400&h=900&fit=crop&q=80');
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+      animation: pulse 8s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 900px;
+      padding: 0 var(--space-lg);
+    }
+
+    .hero-tag {
+      display: inline-block;
+      padding: var(--space-xs) var(--space-md);
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-md);
+      color: var(--color-accent-gold);
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: var(--space-md);
+      letter-spacing: 0.05em;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-xl);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-md) var(--space-2xl);
+      background: var(--gradient-gold);
+      color: var(--color-bg-primary);
+      font-weight: 700;
+      font-size: 0.9375rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: var(--transition);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-gold);
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 40px rgba(212, 175, 55, 0.4);
+    }
+
+    /* =============================================
+       CATEGORIES
+       ============================================= */
+    .categories {
+      padding: var(--space-3xl) var(--space-lg);
+      position: relative;
+      z-index: 1;
+    }
+
+    .categories-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: var(--space-2xl);
+    }
+
+    .section-label {
+      font-size: 0.875rem;
+      color: var(--color-accent-gold);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-sm);
+      font-weight: 600;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      margin-bottom: var(--space-sm);
+      letter-spacing: 0.05em;
+    }
+
+    .section-subtitle {
+      color: var(--color-text-secondary);
+      font-size: 1rem;
+      font-weight: 300;
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .category-card {
+      position: relative;
+      height: 500px;
+      overflow: hidden;
+      cursor: pointer;
+      border-radius: var(--radius-lg);
+      background: var(--color-bg-secondary);
+      border: 1px solid var(--glass-border);
+    }
+
+    .category-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.9) 100%);
+      z-index: 1;
+      transition: var(--transition);
+    }
+
+    .category-card:hover::before {
+      background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+    }
+
+    .category-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+      filter: grayscale(30%);
+    }
+
+    .category-card:hover .category-image {
+      transform: scale(1.08);
+      filter: grayscale(0%);
+    }
+
+    .category-content {
+      position: absolute;
+      bottom: var(--space-2xl);
+      left: var(--space-lg);
+      right: var(--space-lg);
+      z-index: 2;
+    }
+
+    .category-title {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: var(--space-sm);
+      letter-spacing: 0.05em;
+    }
+
+    .category-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-accent-gold);
+      transition: var(--transition);
+    }
+
+    .category-card:hover .category-link {
+      gap: var(--space-sm);
+    }
+
+    /* =============================================
+       FEATURED PRODUCTS
+       ============================================= */
+    .products {
+      padding: var(--space-3xl) var(--space-lg);
+      background: var(--color-bg-secondary);
+      position: relative;
+      z-index: 1;
+    }
+
+    .products-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: var(--space-xl);
+    }
+
+    .product-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--color-accent-gold);
+    }
+
+    .product-image-wrapper {
+      position: relative;
+      overflow: hidden;
+      background: var(--color-bg-tertiary);
+      padding-bottom: 125%;
+    }
+
+    .product-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+      filter: brightness(0.9);
+    }
+
+    .product-card:hover .product-image {
+      transform: scale(1.1);
+      filter: brightness(1);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: var(--space-md);
+      right: var(--space-md);
+      padding: var(--space-xs) var(--space-sm);
+      background: var(--gradient-gold);
+      color: var(--color-bg-primary);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: var(--radius-sm);
+    }
+
+    .product-info {
+      padding: var(--space-md);
+    }
+
+    .product-category {
+      font-size: 0.75rem;
+      color: var(--color-accent-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: var(--space-xs);
+      font-weight: 600;
+    }
+
+    .product-name {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: var(--space-sm);
+      color: var(--color-text-primary);
+    }
+
+    .product-price {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .price-current {
+      font-size: 1.375rem;
+      font-weight: 700;
+      color: var(--color-accent-gold);
+    }
+
+    .price-original {
+      font-size: 1rem;
+      color: var(--color-text-tertiary);
+      text-decoration: line-through;
+    }
+
+    /* =============================================
+       SEASONAL BANNER
+       ============================================= */
+    .seasonal-banner {
+      position: relative;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gradient-blue);
+      overflow: hidden;
+    }
+
+    .seasonal-bg-pattern {
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 50px,
+        rgba(255, 255, 255, 0.03) 50px,
+        rgba(255, 255, 255, 0.03) 100px
+      );
+    }
+
+    .seasonal-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 800px;
+      padding: 0 var(--space-lg);
+    }
+
+    .seasonal-tag {
+      font-size: 0.875rem;
+      color: var(--color-text-primary);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-md);
+      font-weight: 600;
+    }
+
+    .seasonal-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: var(--space-md);
+    }
+
+    .seasonal-description {
+      font-size: 1.25rem;
+      margin-bottom: var(--space-xl);
+      opacity: 0.95;
+    }
+
+    /* =============================================
+       BENEFITS
+       ============================================= */
+    .benefits {
+      padding: var(--space-3xl) var(--space-lg);
+      background: var(--color-bg-primary);
+      border-top: 1px solid var(--glass-border);
+      position: relative;
+      z-index: 1;
+    }
+
+    .benefits-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-2xl);
+    }
+
+    .benefit-item {
+      text-align: center;
+      padding: var(--space-xl);
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      transition: var(--transition);
+    }
+
+    .benefit-item:hover {
+      background: rgba(212, 175, 55, 0.05);
+      border-color: var(--color-accent-gold);
+      transform: translateY(-5px);
+    }
+
+    .benefit-icon {
+      font-size: 3rem;
+      margin-bottom: var(--space-md);
+      filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.5));
+    }
+
+    .benefit-title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin-bottom: var(--space-xs);
+      letter-spacing: 0.05em;
+    }
+
+    .benefit-description {
+      font-size: 0.9375rem;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+
+    /* =============================================
+       NEWSLETTER
+       ============================================= */
+    .newsletter {
+      padding: var(--space-3xl) var(--space-lg);
+      background: var(--color-bg-secondary);
+      position: relative;
+      z-index: 1;
+    }
+
+    .newsletter-container {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .newsletter-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      margin-bottom: var(--space-sm);
+    }
+
+    .newsletter-description {
+      color: var(--color-text-secondary);
+      font-size: 1rem;
+      margin-bottom: var(--space-xl);
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: var(--space-sm);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      padding: var(--space-md);
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+      font-size: 0.9375rem;
+      font-family: var(--font-body);
+      color: var(--color-text-primary);
+      transition: var(--transition);
+    }
+
+    .newsletter-input::placeholder {
+      color: var(--color-text-tertiary);
+    }
+
+    .newsletter-input:focus {
+      outline: none;
+      border-color: var(--color-accent-gold);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+    }
+
+    .newsletter-button {
+      padding: var(--space-md) var(--space-xl);
+      background: var(--gradient-gold);
+      color: var(--color-bg-primary);
+      font-weight: 700;
+      font-size: 0.9375rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: var(--transition);
+      border-radius: var(--radius-sm);
+    }
+
+    .newsletter-button:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-gold);
+    }
+
+    /* =============================================
+       FOOTER
+       ============================================= */
+    .footer {
+      background: var(--color-bg-primary);
+      padding: var(--space-3xl) var(--space-lg) var(--space-xl);
+      border-top: 1px solid var(--glass-border);
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .footer-main {
+      display: grid;
+      grid-template-columns: 2fr repeat(3, 1fr);
+      gap: var(--space-2xl);
+      margin-bottom: var(--space-2xl);
+      padding-bottom: var(--space-2xl);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .footer-brand {
+      max-width: 350px;
+    }
+
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: var(--space-md);
+      background: var(--gradient-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .footer-description {
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-lg);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: var(--space-md);
+    }
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 50%;
+      font-size: 1.125rem;
+      transition: var(--transition);
+    }
+
+    .social-icon:hover {
+      background: var(--color-accent-gold);
+      border-color: var(--color-accent-gold);
+      transform: translateY(-3px);
+    }
+
+    .footer-section-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: var(--space-md);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-link {
+      display: block;
+      font-size: 0.9375rem;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-sm);
+      transition: var(--transition);
+    }
+
+    .footer-link:hover {
+      color: var(--color-accent-gold);
+      padding-left: var(--space-xs);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.875rem;
+      color: var(--color-text-tertiary);
+    }
+
+    .footer-payment {
+      display: flex;
+      gap: var(--space-md);
+      align-items: center;
+    }
+
+    /* =============================================
+       RESPONSIVE
+       ============================================= */
+    @media (max-width: 1024px) {
+      .nav-menu {
+        display: none;
+      }
+
+      .footer-main {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        height: 75vh;
+      }
+
+      .categories-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-md);
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+      }
+
+      .footer-main {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: var(--space-md);
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* =============================================
+       ACCESSIBILITY
+       ============================================= */
+    *:focus-visible {
+      outline: 2px solid var(--color-accent-gold);
+      outline-offset: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =============================================
+       NAVIGATION
+       ============================================= -->
+  <nav class="nav">
+    <div class="nav-promo">
+      Exclusive Members Get 20% Off First Purchase
+    </div>
+    <div class="nav-main">
+      <a href="#" class="nav-logo">NOIR</a>
+
+      <ul class="nav-menu">
+        <li><a href="#new" class="nav-link">New</a></li>
+        <li><a href="#categories" class="nav-link">Collections</a></li>
+        <li><a href="#products" class="nav-link">Featured</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="nav-icon" aria-label="검색">🔍</button>
+        <button class="nav-icon" aria-label="장바구니">🛒</button>
+        <button class="nav-icon" aria-label="로그인">👤</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =============================================
+       HERO SECTION
+       ============================================= -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-tag">Collection 2025</div>
+      <h1 class="hero-title">The Art of<br>Dark Elegance</h1>
+      <p class="hero-subtitle">프리미엄 다크 테마로 완성하는 모던 룩</p>
+      <button class="hero-cta">
+        Explore Collection
+        <span>→</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- =============================================
+       CATEGORIES
+       ============================================= -->
+  <section id="categories" class="categories">
+    <div class="categories-container">
+      <div class="section-header">
+        <p class="section-label">Collections</p>
+        <h2 class="section-title">Shop by Category</h2>
+        <p class="section-subtitle">큐레이티드 컬렉션</p>
+      </div>
+
+      <div class="categories-grid">
+        <div class="category-card">
+          <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&h=500&fit=crop&q=80" alt="Women" class="category-image">
+          <div class="category-content">
+            <h3 class="category-title">Women</h3>
+            <a href="#" class="category-link">View Collection →</a>
+          </div>
+        </div>
+
+        <div class="category-card">
+          <img src="https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?w=400&h=500&fit=crop&q=80" alt="Men" class="category-image">
+          <div class="category-content">
+            <h3 class="category-title">Men</h3>
+            <a href="#" class="category-link">View Collection →</a>
+          </div>
+        </div>
+
+        <div class="category-card">
+          <img src="https://images.unsplash.com/photo-1525904097878-94fb15835963?w=400&h=500&fit=crop&q=80" alt="Accessories" class="category-image">
+          <div class="category-content">
+            <h3 class="category-title">Accessories</h3>
+            <a href="#" class="category-link">View Collection →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       FEATURED PRODUCTS
+       ============================================= -->
+  <section id="products" class="products">
+    <div class="products-container">
+      <div class="section-header">
+        <p class="section-label">Curated Selection</p>
+        <h2 class="section-title">Featured Items</h2>
+        <p class="section-subtitle">엄선된 프리미엄 아이템</p>
+      </div>
+
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=300&h=375&fit=crop&q=80" alt="Product" class="product-image">
+            <span class="product-badge">EXCLUSIVE</span>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Women's</p>
+            <h3 class="product-name">Silk Evening Dress</h3>
+            <div class="product-price">
+              <span class="price-current">₩459,000</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1594938291221-94f18cbb5660?w=300&h=375&fit=crop&q=80" alt="Product" class="product-image">
+            <span class="product-badge">NEW</span>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Men's</p>
+            <h3 class="product-name">Tailored Blazer</h3>
+            <div class="product-price">
+              <span class="price-current">₩689,000</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=300&h=375&fit=crop&q=80" alt="Product" class="product-image">
+          </div>
+          <div class="product-info">
+            <p class="product-category">Women's</p>
+            <h3 class="product-name">Cashmere Coat</h3>
+            <div class="product-price">
+              <span class="price-current">₩849,000</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1564422170194-896b89110ef8?w=300&h=375&fit=crop&q=80" alt="Product" class="product-image">
+            <span class="product-badge">LIMITED</span>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Accessories</p>
+            <h3 class="product-name">Italian Leather Bag</h3>
+            <div class="product-price">
+              <span class="price-current">₩589,000</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1533867617858-e7b97e060509?w=300&h=375&fit=crop&q=80" alt="Product" class="product-image">
+          </div>
+          <div class="product-info">
+            <p class="product-category">Men's</p>
+            <h3 class="product-name">Oxford Dress Shoes</h3>
+            <div class="product-price">
+              <span class="price-current">₩379,000</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1523359346063-d879354c0ea5?w=300&h=375&fit=crop&q=80" alt="Product" class="="product-image">
+            <span class="product-badge">NEW</span>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Women's</p>
+            <h3 class="product-name">Minimalist Watch</h3>
+            <div class="product-price">
+              <span class="price-current">₩429,000</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SEASONAL BANNER
+       ============================================= -->
+  <section class="seasonal-banner">
+    <div class="seasonal-bg-pattern"></div>
+    <div class="seasonal-content">
+      <p class="seasonal-tag">Winter Collection 2025</p>
+      <h2 class="seasonal-title">Sophisticated Comfort</h2>
+      <p class="seasonal-description">
+        세련된 디자인과 최상의 소재로 완성된 겨울 컬렉션
+      </p>
+      <button class="hero-cta">Shop Collection</button>
+    </div>
+  </section>
+
+  <!-- =============================================
+       BENEFITS
+       ============================================= -->
+  <section class="benefits">
+    <div class="benefits-container">
+      <div class="benefit-item">
+        <div class="benefit-icon">✈️</div>
+        <h3 class="benefit-title">Global Shipping</h3>
+        <p class="benefit-description">전 세계 무료 배송</p>
+      </div>
+
+      <div class="benefit-item">
+        <div class="benefit-icon">🔒</div>
+        <h3 class="benefit-title">Secure Payment</h3>
+        <p class="benefit-description">안전한 결제 시스템</p>
+      </div>
+
+      <div class="benefit-item">
+        <div class="benefit-icon">💎</div>
+        <h3 class="benefit-title">Premium Quality</h3>
+        <p class="benefit-description">엄선된 프리미엄 품질</p>
+      </div>
+
+      <div class="benefit-item">
+        <div class="benefit-icon">💬</div>
+        <h3 class="benefit-title">24/7 Support</h3>
+        <p class="benefit-description">연중무휴 고객 지원</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       NEWSLETTER
+       ============================================= -->
+  <section class="newsletter">
+    <div class="newsletter-container">
+      <h2 class="newsletter-title">Stay Connected</h2>
+      <p class="newsletter-description">
+        독점 혜택과 신상품 소식을 가장 먼저 받아보세요
+      </p>
+      <form class="newsletter-form">
+        <input type="email" class="newsletter-input" placeholder="이메일 주소" required>
+        <button type="submit" class="newsletter-button">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- =============================================
+       FOOTER
+       ============================================= -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <h3 class="footer-logo">NOIR</h3>
+          <p class="footer-description">
+            다크 모던 감성의 프리미엄 패션 브랜드.
+            타임리스한 디자인과 최상의 품질로 당신의 스타일을 완성합니다.
+          </p>
+          <div class="footer-social">
+            <a href="#" class="social-icon" aria-label="Instagram">📷</a>
+            <a href="#" class="social-icon" aria-label="Facebook">📘</a>
+            <a href="#" class="social-icon" aria-label="Pinterest">📌</a>
+            <a href="#" class="social-icon" aria-label="Twitter">🐦</a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h4 class="footer-section-title">Shop</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">Women</a></li>
+            <li><a href="#" class="footer-link">Men</a></li>
+            <li><a href="#" class="footer-link">Accessories</a></li>
+            <li><a href="#" class="footer-link">New Arrivals</a></li>
+            <li><a href="#" class="footer-link">Sale</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4 class="footer-section-title">Support</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">고객센터</a></li>
+            <li><a href="#" class="footer-link">배송 안내</a></li>
+            <li><a href="#" class="footer-link">반품/교환</a></li>
+            <li><a href="#" class="footer-link">사이즈 가이드</a></li>
+            <li><a href="#" class="footer-link">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4 class="footer-section-title">Company</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">About Us</a></li>
+            <li><a href="#" class="footer-link">Careers</a></li>
+            <li><a href="#" class="footer-link">Store Locator</a></li>
+            <li><a href="#" class="footer-link">Terms & Conditions</a></li>
+            <li><a href="#" class="footer-link">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 NOIR Collection. All rights reserved.</p>
+        <div class="footer-payment">
+          <span>Visa</span> <span>Mastercard</span> <span>Amex</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
