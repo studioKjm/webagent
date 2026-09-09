@@ -8,39 +8,69 @@ allowed-tools: Read, Glob
 
 이 스킬은 **일관되고 확장 가능한 디자인 시스템**을 구축하는 방법을 제공합니다.
 
+> **SSOT 안내**: 색상/타이포그래피/여백/그림자 등 기본 디자인 토큰 정의의 단일 진실 원천(SSOT)은 이 스킬입니다. `ui-stylist` 에이전트는 이 토큰 구조를 그대로 사용하고, 타겟 오디언스별 색상 전략·레퍼런스 URL 분석 등 자신만의 판단 로직만 추가합니다. 톤/개성/모션 등 "AI스럽지 않은" 창의적 방향은 내장 **frontend-design 스킬**(Skill 도구로 `frontend-design` 호출)을 함께 사용하세요.
+
+---
+
+## 0. AI 슬롭(AI Slop) 방지 원칙
+
+아래는 2026년 기준 AI가 생성한 UI에서 가장 흔하게 나타나 "AI가 만든 티"로 인식되는 패턴입니다. **매 프로젝트마다 이 목록을 점검**하고 의도적으로 피하세요.
+
+### 절대 금지
+- **폰트**: Inter, Roboto, Open Sans, Lato, Arial, 시스템 기본 폰트를 Display 용도로 그대로 사용 금지 (Body에서 가독성 목적의 제한적 사용은 허용)
+- **색상**: 흰 배경 위 purple→blue 그라디언트(Tailwind indigo-500 계열 남용)를 기본값으로 사용 금지
+- **레이아웃**: 아이콘+제목+2줄 설명으로 구성된 카드 3개를 손대지 않은 형태로 반복 배치 금지
+- **모션**: 이유 없는 hover bounce, 산발적으로 흩뿌려진 마이크로인터랙션 금지
+
+### 대신 이렇게
+- **지배색 + 포인트 컬러** 조합이 균등 분배된 소심한 팔레트보다 낫다 — 하나의 지배적 색상에 날카로운 액센트 컬러 1-2개
+- **폰트 페어링**은 개성 있는 Display 폰트 + 정제된 Body 폰트 조합으로. weight 대비를 극단적으로(100 vs 900), 크기 차이도 크게
+- **모션**은 산발적 효과보다 "한 번의 잘 조율된 페이지 로드 애니메이션"(staggered reveal)에 집중
+- **배경**은 단색 대신 그라디언트 메시, 노이즈/그레인 텍스처, 기하학적 패턴 등으로 분위기와 깊이 부여
+- 매 프로젝트마다 **다른 폰트·다른 톤**을 선택할 것 — 특정 조합(예: 매번 Space Grotesk)으로 수렴하지 말 것
+
 ---
 
 ## 1. 색상 시스템
 
-### Tailwind 스타일 색상 스케일 (50-950)
+### OKLCH 색상 스케일 (50-950)
 
-모든 색상은 10단계 스케일로 정의:
+**색상 정의는 HEX 대신 OKLCH를 기본으로 사용합니다.** OKLCH는 지각적으로 균일한 색공간이라 같은 명도(L) 차이가 색상(Hue)에 관계없이 동일하게 "느껴지고", 다크모드에서 색을 반전/조정할 때 HEX처럼 채도가 왜곡되지 않습니다. 또한 sRGB보다 넓은 P3 색역을 활용해 더 선명한 색 표현이 가능합니다. (Baseline: Safari 15.4+/Chrome 111+/Firefox 113+ — 2023-2024년부터 사실상 전 브라우저 지원)
 
 ```css
 :root {
-  /* Primary Colors */
-  --color-primary-50: #f0f9ff;
-  --color-primary-100: #e0f2fe;
-  --color-primary-200: #bae6fd;
-  --color-primary-300: #7dd3fc;
-  --color-primary-400: #38bdf8;
-  --color-primary-500: #0ea5e9;  /* ← 메인 색상 */
-  --color-primary-600: #0284c7;
-  --color-primary-700: #0369a1;
-  --color-primary-800: #075985;
-  --color-primary-900: #0c4a6e;
-  --color-primary-950: #082f49;
+  /* Primary Colors — oklch(L% C H) 형식. H(색상)만 바꾸면 전체 스케일이 자동으로 일관되게 생성됨 */
+  --color-primary-50:  oklch(97% 0.015 250);
+  --color-primary-100: oklch(94% 0.035 250);
+  --color-primary-200: oklch(88% 0.07  250);
+  --color-primary-300: oklch(80% 0.11  250);
+  --color-primary-400: oklch(70% 0.15  250);
+  --color-primary-500: oklch(60% 0.19  250);  /* ← 메인 색상 */
+  --color-primary-600: oklch(52% 0.19  250);
+  --color-primary-700: oklch(44% 0.17  250);
+  --color-primary-800: oklch(36% 0.14  250);
+  --color-primary-900: oklch(28% 0.10  250);
+  --color-primary-950: oklch(20% 0.06  250);
 }
 ```
 
-### 사용 규칙
+**구형 브라우저 폴백이 필요한 경우**만 아래처럼 HEX를 먼저 선언하고 OKLCH로 덮어씁니다(속성이 두 번 선언되면 지원하는 브라우저가 마지막 값을 사용):
 
-| 색상 레벨 | 용도 | 예시 |
+```css
+:root {
+  --color-primary-500: #2f6feb; /* fallback */
+  --color-primary-500: oklch(60% 0.19 250); /* 지원 브라우저에서 덮어씀 */
+}
+```
+
+### 명도(L) 스텝 사용 규칙
+
+| 스텝 (L값) | 용도 | 예시 |
 |---------|------|------|
-| **50-100** | 밝은 배경 | 카드 배경, Hover 배경 |
-| **300-400** | 보조 색상 | 아이콘, 보조 버튼 |
-| **500-600** | 메인 색상 | Primary 버튼, 링크 |
-| **700-900** | 다크 모드 | 다크 배경, 강조 텍스트 |
+| **50-100** (L 94-97%) | 밝은 배경 | 카드 배경, Hover 배경 |
+| **300-400** (L 70-80%) | 보조 색상 | 아이콘, 보조 버튼 |
+| **500-600** (L 52-60%) | 메인 색상 | Primary 버튼, 링크 |
+| **700-900** (L 28-44%) | 다크 모드 | 다크 배경, 강조 텍스트 |
 
 ---
 
@@ -220,25 +250,40 @@ allowed-tools: Read, Glob
 
 ## 9. 다크 모드 지원
 
+**전략 2단계**: (1) `color-scheme` 속성으로 브라우저 기본 UI(스크롤바, 폼 컨트롤)까지 다크모드에 맞추고, (2) `prefers-color-scheme` 미디어쿼리 + **사용자 수동 토글**(`data-theme` 속성, localStorage 저장)을 함께 지원합니다. OKLCH를 쓰면 다크모드 색상을 L값만 조정해 만들 수 있어 색조 왜곡이 없습니다.
+
 ```css
 :root {
-  --color-background: #ffffff;
-  --color-text: #171717;
+  color-scheme: light;
+  --color-background: oklch(100% 0 0);
+  --color-text: oklch(20% 0 0);
 }
 
+/* 시스템 다크모드 자동 대응 */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: #0a0a0a;
-    --color-background-alt: #171717;
-    --color-text: #fafafa;
-    --color-text-muted: #a3a3a3;
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --color-background: oklch(15% 0 0);
+    --color-background-alt: oklch(20% 0 0);
+    --color-text: oklch(97% 0 0);
+    --color-text-muted: oklch(70% 0.01 250);
 
-    /* 그림자도 조정 */
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
     --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.5);
   }
 }
+
+/* 사용자가 수동으로 다크모드 선택 시 (예: <html data-theme="dark">) */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-background: oklch(15% 0 0);
+  --color-background-alt: oklch(20% 0 0);
+  --color-text: oklch(97% 0 0);
+  --color-text-muted: oklch(70% 0.01 250);
+}
 ```
+
+토글 구현 시 `frontend-coder`는 버튼 클릭에서 `localStorage`에 사용자 선택을 저장하고 `<html>`의 `data-theme` 속성을 갱신하는 짧은 스크립트를 추가합니다.
 
 ---
 
@@ -249,33 +294,35 @@ allowed-tools: Read, Glob
    DESIGN TOKENS
    ============================================= */
 :root {
-  /* ===== Colors ===== */
-  --color-primary-50: #f0f9ff;
-  --color-primary-500: #0ea5e9;
-  --color-primary-900: #0c4a6e;
+  color-scheme: light;
 
-  --color-neutral-50: #fafafa;
-  --color-neutral-500: #737373;
-  --color-neutral-900: #171717;
+  /* ===== Colors (OKLCH) ===== */
+  --color-primary-50:  oklch(97% 0.015 250);
+  --color-primary-500: oklch(60% 0.19  250);
+  --color-primary-900: oklch(28% 0.10  250);
 
-  --color-success: #10b981;
-  --color-error: #ef4444;
-  --color-warning: #f59e0b;
+  --color-neutral-50:  oklch(98% 0 0);
+  --color-neutral-500: oklch(55% 0 0);
+  --color-neutral-900: oklch(20% 0 0);
+
+  --color-success: oklch(65% 0.15 150);
+  --color-error:   oklch(60% 0.20 25);
+  --color-warning: oklch(75% 0.15 80);
 
   /* Semantic Colors */
-  --color-background: #ffffff;
-  --color-background-alt: #f9fafb;
-  --color-text: #171717;
-  --color-text-muted: #737373;
-  --color-border: #e5e5e5;
+  --color-background: oklch(100% 0 0);
+  --color-background-alt: oklch(98% 0 0);
+  --color-text: oklch(20% 0 0);
+  --color-text-muted: oklch(55% 0 0);
+  --color-border: oklch(90% 0 0);
 
   /* CTA */
   --color-cta: var(--color-primary-500);
   --color-cta-hover: var(--color-primary-600);
 
-  /* ===== Typography ===== */
-  --font-display: 'Inter', -apple-system, sans-serif;
-  --font-body: 'Inter', -apple-system, sans-serif;
+  /* ===== Typography ===== (예시 — 프로젝트 톤에 맞는 distinctive 폰트로 교체) */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'IBM Plex Sans', -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
   --text-xs: 0.75rem;
@@ -341,15 +388,25 @@ allowed-tools: Read, Glob
   --z-modal: 1000;
 }
 
-/* ===== Dark Mode ===== */
+/* ===== Dark Mode ===== (섹션 9 참고: color-scheme + 사용자 토글 병행) */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: #0a0a0a;
-    --color-background-alt: #171717;
-    --color-text: #fafafa;
-    --color-text-muted: #a3a3a3;
-    --color-border: #404040;
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --color-background: oklch(15% 0 0);
+    --color-background-alt: oklch(20% 0 0);
+    --color-text: oklch(97% 0 0);
+    --color-text-muted: oklch(70% 0.01 250);
+    --color-border: oklch(30% 0 0);
   }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-background: oklch(15% 0 0);
+  --color-background-alt: oklch(20% 0 0);
+  --color-text: oklch(97% 0 0);
+  --color-text-muted: oklch(70% 0.01 250);
+  --color-border: oklch(30% 0 0);
 }
 ```
 
@@ -404,15 +461,95 @@ allowed-tools: Read, Glob
 
 디자인 시스템 적용 전 확인:
 
-- [ ] 색상 팔레트 정의 (Primary, Neutral, Semantic)
+- [ ] 색상 팔레트 정의 (Primary, Neutral, Semantic) — OKLCH 기반
 - [ ] 타이포그래피 스케일 정의 (최소 6레벨)
 - [ ] 여백 시스템 정의 (8px 기반)
 - [ ] 그림자 시스템 정의
 - [ ] Border Radius 정의
 - [ ] Transition 정의
 - [ ] 색상 대비 검증 (WCAG AA)
-- [ ] 다크 모드 대응 (선택)
+- [ ] 다크 모드 대응: `color-scheme` + 시스템 감지 + 사용자 토글
 - [ ] CSS 변수로 모두 정의
+- [ ] 배경 처리: 단색 대신 텍스처/그라디언트 모듈(섹션 14) 중 하나를 의도적으로 선택했는가
+
+---
+
+## 13. Variable Font 가이드
+
+가능하면 **variable font**(하나의 파일이 weight/optical-size 등 여러 축을 가변적으로 담음)를 사용하세요. 파일 요청 수가 줄고, weight를 애니메이션할 수 있습니다.
+
+```css
+/* Google Fonts의 variable font는 자동으로 가변 축을 지원 (예: Fraunces, Recursive) */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&display=swap');
+
+h1 {
+  font-family: 'Fraunces', serif;
+  font-variation-settings: 'opsz' 144, 'wght' 900;  /* optical size + weight 동시 제어 */
+}
+
+/* Hover/scroll에 반응해 weight를 자연스럽게 전환 (variable font만 가능한 효과) */
+.logo {
+  font-variation-settings: 'wght' 400;
+  transition: font-variation-settings 300ms ease;
+}
+.logo:hover {
+  font-variation-settings: 'wght' 800;
+}
+```
+
+**폰트 로딩 전략**: `font-display: swap`(기본) 또는 히어로 타이틀처럼 즉시 보여야 하는 경우 `font-display: optional`로 레이아웃 시프트를 방지하세요. `<link rel="preload" as="font" crossorigin>`으로 핵심 폰트를 우선 로드합니다.
+
+---
+
+## 14. 배경 & 텍스처 모듈
+
+단색 배경 대신 아래 모듈 중 프로젝트 톤에 맞는 것을 의도적으로 선택하세요(AI 슬롭 방지 원칙 참고). 매번 같은 모듈로 수렴하지 말 것.
+
+### Glassmorphism (유리질감)
+```css
+.card--glass {
+  background: oklch(100% 0 0 / 0.6);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid oklch(100% 0 0 / 0.3);
+}
+```
+다크 배경 위 카드/네비게이션 등 "떠 있는" 느낌을 줄 때. `backdrop-filter` 미지원 브라우저는 `@supports not (backdrop-filter: blur(1px))`로 반투명 단색 폴백 제공.
+
+### Gradient Mesh (그라디언트 메시)
+```css
+.hero--mesh {
+  background:
+    radial-gradient(at 20% 20%, oklch(75% 0.15 30 / 0.5) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, oklch(70% 0.18 250 / 0.5) 0px, transparent 50%),
+    radial-gradient(at 40% 90%, oklch(70% 0.15 150 / 0.4) 0px, transparent 50%),
+    var(--color-background);
+}
+```
+purple→blue 단순 그라디언트 대신 여러 색의 radial-gradient를 레이어링해 은은한 깊이를 만듭니다.
+
+### Noise / Grain 텍스처
+```css
+.section--grain::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+```
+SVG `feTurbulence`로 순수 CSS/인라인 SVG만으로 그레인 텍스처를 만들어 이미지 파일 없이 질감을 더합니다.
+
+### Neumorphism (뉴모피즘 — 제한적 사용 권장)
+```css
+.card--neumorphic {
+  background: var(--color-background-alt);
+  box-shadow:
+    8px 8px 16px oklch(0% 0 0 / 0.08),
+    -8px -8px 16px oklch(100% 0 0 / 0.7);
+}
+```
+대비가 약해 접근성(WCAG) 위반 위험이 크므로, 텍스트가 없는 장식 요소나 토글/버튼처럼 크기가 큰 UI에만 제한적으로 사용하세요.
 
 ---
 

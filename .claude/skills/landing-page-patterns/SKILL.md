@@ -362,12 +362,6 @@ allowed-tools: Read, Glob, Grep
 
 ---
 
-## 추가 참고 자료
+## 참고
 
-더 상세한 패턴은 다음 파일들을 참조하세요:
-
-- `conversion-patterns.md`: 전환율 최적화 상세 가이드
-- `layout-templates.md`: 레이아웃 템플릿 코드
-- `examples/saas-minimal.html`: 실제 HTML 예제
-- `examples/developer-dark.html`: 다크모드 예제
-- `examples/conversion-focused.html`: 전환 중심 예제
+이 스킬은 현재 `SKILL.md` 단일 파일로 구성되어 있습니다. 레이아웃 구조/그리드 패턴의 최신 변형(Bento grid, 비대칭 레이아웃 등)은 `layout-designer` 에이전트를, 색상·타이포그래피 등 시각 스타일은 `design-system` 스킬과 내장 `frontend-design` 스킬을 함께 참조하세요.

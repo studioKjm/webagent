@@ -232,6 +232,23 @@ allowed-tools: Read, Grep
 
 ## 3. 성능 최적화
 
+### Core Web Vitals: INP (Interaction to Next Paint)
+
+**2024년 3월부터 FID(First Input Delay)를 대체한 핵심 지표**입니다. 클릭/탭 등 상호작용 시작부터 다음 화면 페인트까지의 지연을 측정합니다.
+
+| 등급 | INP | 의미 |
+|-----|-----|------|
+| 좋음 | ≤ 200ms | 즉각 반응하는 느낌 |
+| 개선 필요 | 200-500ms | 체감 가능한 지연 |
+| 나쁨 | > 500ms | 버벅거림 |
+
+**개선 방법**:
+- 클릭 핸들러에서 무거운 동기 작업 금지 — `requestIdleCallback` 또는 `setTimeout(fn, 0)`로 분할
+- 스크롤 애니메이션은 JS 대신 CSS `animation-timeline`(scroll-driven animation) 사용 — 메인 스레드 부담 없음 ([frontend-coder.md](../../agents/frontend-coder.md) "3.5 모던 모션" 참고)
+- 대량 DOM 업데이트는 `requestAnimationFrame`으로 배치
+- 서드파티 스크립트(분석 도구 등)는 `defer`로 로드해 상호작용 차단 방지
+- Chrome DevTools Performance 패널 또는 `web-vitals` 라이브러리로 실측
+
 ### Critical CSS 인라인
 
 ```html
@@ -281,12 +298,14 @@ allowed-tools: Read, Grep
 >
 ```
 
-#### WebP + Fallback
+#### AVIF 우선 + WebP + JPEG Fallback
+
+**AVIF를 첫 번째 소스로 우선 사용**하세요. 동일 화질 기준 WebP보다 20-30% 작고, 2026년 기준 모든 주요 브라우저(Chrome/Firefox/Safari/Edge)가 지원합니다. `<picture>`는 나열 순서대로 지원 여부를 확인하므로 가장 최신/작은 포맷을 맨 위에 둡니다.
 
 ```html
 <picture>
+  <source srcset="hero.avif" type="image/avif">
   <source srcset="hero.webp" type="image/webp">
-  <source srcset="hero.jpg" type="image/jpeg">
   <img src="hero.jpg" alt="Hero 이미지" loading="lazy">
 </picture>
 ```
@@ -315,23 +334,36 @@ allowed-tools: Read, Grep
 
 ### 폰트 최적화
 
+Display 폰트는 Inter 등 기본 폰트를 피하고 distinctive한 variable font를 사용하세요(`design-system` 스킬 "0. AI 슬롭 방지 원칙", "13. Variable Font 가이드" 참고). 가변 축을 가진 variable font 하나면 여러 weight를 별도 파일 없이 커버할 수 있어 오히려 요청 수가 줄어듭니다.
+
 ```html
 <head>
   <!-- Preconnect to Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- Load font with display=swap -->
+  <!-- Variable font 1개로 여러 weight 커버, display=swap 기본 -->
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&display=swap"
     rel="stylesheet"
   >
+
+  <!-- 히어로 타이틀처럼 즉시 보여야 하는 핵심 폰트는 preload + 레이아웃 시프트 방지용 optional -->
+  <link rel="preload" href="/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 
 <style>
-  /* Fallback font stack */
+  /* Fallback font stack — 실제 폰트는 프로젝트 톤에 맞게 교체 */
   body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  /* 자체 호스팅 variable font의 경우 font-display 세밀 제어 가능 */
+  @font-face {
+    font-family: 'Fraunces';
+    src: url('/fonts/fraunces-var.woff2') format('woff2-variations');
+    font-weight: 100 900;
+    font-display: optional; /* 레이아웃 시프트를 완전히 방지하고 싶을 때 */
   }
 </style>
 ```
@@ -576,9 +608,11 @@ document.addEventListener('click', (e) => {
 
 ### 성능
 - [ ] 이미지 lazy loading
+- [ ] 이미지 포맷: AVIF 우선 → WebP → JPEG 폴백
 - [ ] Critical CSS 인라인
-- [ ] 폰트 최적화 (preconnect, display=swap)
+- [ ] 폰트 최적화 (variable font, preconnect, display=swap 또는 optional)
 - [ ] JavaScript defer/async
+- [ ] INP 200ms 이하 — 클릭 핸들러에 무거운 동기 작업 없음, 스크롤 애니메이션은 CSS 우선
 
 ### SEO
 - [ ] Title 60자 이내
@@ -589,6 +623,26 @@ document.addEventListener('click', (e) => {
 ### 보안
 - [ ] 외부 링크 rel="noopener"
 - [ ] CSP 설정 (선택)
+
+---
+
+## 11. 출시 전 QA 체크리스트 (버전별 실행)
+
+`main-orchestrator`가 3개 버전 생성을 마친 뒤, **버전마다** 아래를 점검합니다. 자동 측정 도구가 없다면 Chrome DevTools의 Lighthouse/Performance 패널로 수동 확인하세요.
+
+### 자동 측정 가능 항목
+- [ ] Lighthouse Performance 90+ / Accessibility 100 / Best Practices 100 / SEO 100
+- [ ] INP 200ms 이하 (DevTools Performance 패널 또는 실제 클릭 인터랙션 기록)
+- [ ] CLS(누적 레이아웃 이동) 0.1 이하 — 이미지/폰트에 `width`/`height` 또는 `aspect-ratio` 지정 여부 확인
+- [ ] LCP(최대 콘텐츠풀 페인트) 2.5초 이하 — 히어로 이미지 `loading="eager"` + `fetchpriority="high"` 확인
+
+### 수동 확인 항목
+- [ ] 색상 대비 4.5:1 이상 (WebAIM Contrast Checker)
+- [ ] 키보드만으로 모든 인터랙션(네비게이션, 폼, CTA) 접근 가능
+- [ ] `prefers-reduced-motion: reduce` 환경에서 애니메이션이 즉시 정지 상태로 전환되는지
+- [ ] 모바일(360px)·태블릿(768px)·데스크톱(1440px) 3개 뷰포트에서 레이아웃 붕괴 없음
+- [ ] AI 슬롭 금지 체크리스트 통과 (`main-orchestrator.md`/`frontend-coder.md` 참고)
+- [ ] 3개 버전이 레이아웃 패턴/톤에서 실제로 구분되는지 (색상만 다른 복제본이 아닌지)
 
 ---
 
