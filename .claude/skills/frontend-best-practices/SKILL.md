@@ -628,21 +628,26 @@ document.addEventListener('click', (e) => {
 
 ## 11. 출시 전 QA 체크리스트 (버전별 실행)
 
-`main-orchestrator`가 3개 버전 생성을 마친 뒤, **버전마다** 아래를 점검합니다. 자동 측정 도구가 없다면 Chrome DevTools의 Lighthouse/Performance 패널로 수동 확인하세요.
+`main-orchestrator`가 3개 버전 생성을 마친 뒤, **버전마다** 아래를 점검합니다.
 
-### 자동 측정 가능 항목
+**⚠️ 중요한 구분**: 아래 항목 중 상당수(색상 대비, 레이아웃 붕괴, AI 슬롭 여부, 버전 간 차별화)는 **코드를 읽는 것만으로는 검증되지 않습니다.** `frontend-coder.md`의 "6.5 시각 검수"(Playwright로 실제 스크린샷을 찍어 Read로 확인)를 거치지 않은 상태에서 이 체크리스트에 체크하는 것은 자체 판단을 사실처럼 기록하는 것이므로 금지합니다. 실제로 확인하지 않은 항목은 미체크 상태로 남기고 그렇게 보고하세요.
+
+### 도구로 실측 가능한 항목 (Playwright 스크린샷 + 콘솔 로그 기반)
+- [ ] `frontend-coder.md` "6.5 시각 검수" 실행 완료 — 데스크톱/모바일 스크린샷을 실제로 Read로 확인함
+- [ ] 콘솔 에러 0건
+- [ ] 모바일(390px)·데스크톱(1440px) 스크린샷에서 레이아웃 붕괴(겹침, 잘림, 가로 스크롤) 없음
+- [ ] 히어로가 이 버전의 디자인 컨셉과 실제로 일치 (컨셉-구현 불일치 없음)
+- [ ] 3개 버전이 레이아웃 패턴/톤에서 실제로 구분되는지 — 스크린샷을 나란히 놓고 비교
+- [ ] AI 슬롭 금지 체크리스트 통과 — 특히 "구도 자체가 흔한 템플릿처럼 보이지 않는가"는 코드가 아니라 스크린샷으로만 판단 가능
+
+### Lighthouse 등 별도 도구가 있을 때만 (없으면 "목표치"로만 표기, "확인됨"이라고 쓰지 말 것)
 - [ ] Lighthouse Performance 90+ / Accessibility 100 / Best Practices 100 / SEO 100
-- [ ] INP 200ms 이하 (DevTools Performance 패널 또는 실제 클릭 인터랙션 기록)
-- [ ] CLS(누적 레이아웃 이동) 0.1 이하 — 이미지/폰트에 `width`/`height` 또는 `aspect-ratio` 지정 여부 확인
-- [ ] LCP(최대 콘텐츠풀 페인트) 2.5초 이하 — 히어로 이미지 `loading="eager"` + `fetchpriority="high"` 확인
+- [ ] INP 200ms 이하, CLS 0.1 이하, LCP 2.5초 이하
 
-### 수동 확인 항목
-- [ ] 색상 대비 4.5:1 이상 (WebAIM Contrast Checker)
-- [ ] 키보드만으로 모든 인터랙션(네비게이션, 폼, CTA) 접근 가능
-- [ ] `prefers-reduced-motion: reduce` 환경에서 애니메이션이 즉시 정지 상태로 전환되는지
-- [ ] 모바일(360px)·태블릿(768px)·데스크톱(1440px) 3개 뷰포트에서 레이아웃 붕괴 없음
-- [ ] AI 슬롭 금지 체크리스트 통과 (`main-orchestrator.md`/`frontend-coder.md` 참고)
-- [ ] 3개 버전이 레이아웃 패턴/톤에서 실제로 구분되는지 (색상만 다른 복제본이 아닌지)
+### 코드 검토로 확인 가능한 항목
+- [ ] 색상 대비 4.5:1 이상 (CSS의 실제 색상값으로 WebAIM Contrast Checker 계산 — 눈대중 아님)
+- [ ] 키보드만으로 모든 인터랙션 접근 가능 (마크업의 tabindex/focus 스타일 확인)
+- [ ] `prefers-reduced-motion: reduce` 대응 코드 존재
 
 ---
 

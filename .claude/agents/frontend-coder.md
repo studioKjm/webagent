@@ -4,7 +4,7 @@ description: 시맨틱 HTML, 모던 CSS, 바닐라 JS로 고품질 랜딩페이�
 tools: Write, Read, Edit, Bash
 model: opus
 permissionMode: default
-skills: frontend-best-practices
+skills: frontend-best-practices, webapp-testing
 ---
 
 # Frontend Coder Agent
@@ -957,6 +957,44 @@ output/
 
 ---
 
+### 6.5 시각 검수 (Visual QA) — 필수, 건너뛰지 말 것
+
+**코드가 체크리스트를 통과해도 실제로 좋아 보이는지는 다른 문제입니다.** index.html/styles.css/script.js를 다 쓴 직후, README를 작성하기 **전에** 반드시 실제 렌더링을 눈으로 확인하세요. 코드를 다시 읽고 "이렇게 짰으니 맞을 것"이라고 자체 판단만 하는 것은 금지입니다 — 실제 스크린샷을 찍어서 봐야 합니다.
+
+`webapp-testing` 스킬을 사용합니다(정적 HTML이므로 서버 없이 `file://` URL로 바로 접근 가능):
+
+```python
+# 예: 저장 경로는 /tmp 등 임시 위치, 스크린샷은 Read 도구로 직접 확인
+from playwright.sync_api import sync_playwright
+
+with sync_playwright() as p:
+    browser = p.chromium.launch(headless=True)
+    console_errors = []
+
+    for viewport, name in [({"width": 1440, "height": 900}, "desktop"), ({"width": 390, "height": 844}, "mobile")]:
+        page = browser.new_page(viewport=viewport)
+        page.on("console", lambda msg: console_errors.append(msg.text) if msg.type == "error" else None)
+        page.goto("file:///절대경로/output/{project}/version-{n}/index.html")
+        page.wait_for_load_state("networkidle")
+        page.screenshot(path=f"/tmp/qa-{name}.png", full_page=True)
+        page.close()
+
+    browser.close()
+    print("console errors:", console_errors)
+```
+
+1. Bash로 스크립트를 실행한 뒤, **Read 도구로 `/tmp/qa-desktop.png`와 `/tmp/qa-mobile.png`를 직접 열어 눈으로 확인**하세요(Read는 이미지를 렌더링해서 보여줍니다).
+2. 아래 기준으로 자체 비판적으로 검토:
+   - [ ] 히어로가 이 버전의 디자인 컨셉(README에 쓰려는 내용)과 실제로 일치하는가? 컨셉엔 "왼쪽 파형+오른쪽 요약" 같은 특정 비주얼을 약속해놓고 실제로는 중앙정렬 뱃지+헤드라인+버튼만 있는 식의 **컨셉-구현 불일치**가 없는가?
+   - [ ] 화면 전체가 "뱃지 → 헤드라인 → 서브헤드 → 버튼 2개, 중앙정렬"처럼 흔한 SaaS 히어로 템플릿으로 읽히지는 않는가? 폰트·색이 달라도 **구도 자체가 평범하면 여전히 AI 슬롭**입니다.
+   - [ ] Bento/비대칭/그리드 패턴을 썼다면 실제로 블록 크기가 다양하고 시각적으로 흥미로운가?
+   - [ ] 레이아웃 붕괴, 텍스트 겹침, 컨트라스트 문제(눈으로 봤을 때 읽기 힘든 색 조합)가 없는가?
+   - [ ] `console_errors`가 비어있는가?
+3. 하나라도 미달이면 CSS/HTML을 **1회 수정**하고 스크립트를 다시 실행해 재확인하세요. (무한 반복 금지 — 최대 1회 수정 사이클로 제한해 시간/비용을 통제합니다. 여전히 미달이면 README에 한계를 솔직히 기록하고 다음 단계로 진행)
+4. **README의 "검증 결과"/"성능" 섹션은 이 단계에서 실제로 확인한 내용만 적으세요.** 실행하지 않은 Lighthouse 점수나 "Chrome 실측"을 사실인 것처럼 적지 마세요 — 실측하지 않은 값은 "목표치"라고 명시하고, 이 단계에서 실제로 확인한 것(예: "1440px/390px 렌더링 확인, 콘솔 에러 0건")만 "확인됨"으로 표기합니다.
+
+---
+
 ### 7. README.md 생성
 
 각 버전의 README.md에 포함할 내용:
@@ -1021,6 +1059,7 @@ output/
 - [ ] 파일 경로 정확성
 - [ ] AI 슬롭 금지 체크리스트(위 상단) 통과
 - [ ] 스크롤 애니메이션은 `animation-timeline`(CSS) 우선, `prefers-reduced-motion` 대응 확인
+- [ ] **"6.5 시각 검수" 실행함** — 스크린샷을 실제로 Read로 확인했고, README의 검증/성능 섹션이 그 확인 내용과 일치함 (자체 코드 판독만으로 작성한 미확인 주장 없음)
 
 ---
 
