@@ -49,9 +49,12 @@ Use AskUserQuestion to ask:
 
 ### 2. 작업 분배 및 서브 에이전트 조율
 
-다음 순서로 서브 에이전트들을 호출하여 결과를 수집:
+다음 서브 에이전트들을 호출해 결과를 수집합니다.
 
-#### Step 1: Layout Designer 호출
+#### Step 1-3: Layout Designer / UI Stylist / Copywriter — **병렬 실행**
+
+세 에이전트는 서로의 결과물에 의존하지 않습니다(Layout Designer는 톤별 패턴 배정만 필요, UI Stylist는 색상/폰트만, Copywriter는 제품 정보만 필요 — 서로 참조하지 않음). **먼저 "3. 톤 매트릭스"에서 3개 톤을 선택한 뒤**, 아래 세 블록을 **하나의 메시지 안에서 동시에** Task 호출하세요. 순차로 부르면 이 구간에서만 실측 약 7분이 소요됩니다 — 병렬화하면 셋 중 가장 느린 것 기준으로 줄어듭니다.
+
 ```markdown
 Use the layout-designer agent to create 3 DIFFERENT layout structures for:
 - Product: [제품명]
@@ -61,10 +64,8 @@ Use the layout-designer agent to create 3 DIFFERENT layout structures for:
 - 아래 "3. 톤 매트릭스"에서 선택한 3개 톤 각각에 맞는 레이아웃 패턴(A~F)을 배정할 것
 - 3개 레이아웃이 섹션 순서/구조에서 실제로 구분되어야 함 (색상만 다른 동일 구조 금지)
 ```
-
 **예상 출력**: 버전별로 서로 다른 JSON 레이아웃 구조 3개 (섹션 순서, 배치 패턴)
 
-#### Step 2: UI Stylist 호출
 ```markdown
 Use the ui-stylist agent to create a design system for:
 - Product: [제품명]
@@ -73,10 +74,8 @@ Use the ui-stylist agent to create a design system for:
 - Design Reference: [레퍼런스 URL] (있는 경우)
 - 반드시 frontend-design 스킬(Skill 도구)과 design-system 스킬의 AI 슬롭 방지 원칙을 함께 참조할 것
 ```
-
 **예상 출력**: CSS 변수 형태의 디자인 토큰 (색상, 타이포그래피, 여백)
 
-#### Step 3: Copywriter 호출
 ```markdown
 Use the copywriter agent to write marketing copy for:
 - Product: [제품명]
@@ -84,8 +83,9 @@ Use the copywriter agent to write marketing copy for:
 - Features: [주요 기능 리스트]
 - Conversion Goal: [전환 목표]
 ```
-
 **예상 출력**: JSON 형식의 모든 텍스트 콘텐츠 (헤드라인, CTA, 기능 설명 등)
+
+**예외**: 병렬 실행이 불안정하면 그때만 Layout → UI Stylist → Copywriter 순차 호출로 되돌아가세요.
 
 #### Step 4-6: Frontend Coder 호출 (버전 1~3, 각각 다른 톤) — **병렬 실행**
 
@@ -214,17 +214,12 @@ Grep pattern: "시각 검수 점수" 경로: output/{project}/version-{n}/README
 │  - 직전 프로젝트와 다른 조합으로     │
 └─────────────────────────────────────┘
               ↓
-┌────────────────────┐  ┌─────────────┐
-│ Layout Designer    │  │ UI Stylist  │
-│ (톤별 고유 구조 3개)│  │ (톤별 고유  │
-│                    │  │  토큰 3세트)│
-└────────────────────┘  └─────────────┘
-              ↓
-┌─────────────────────────────────────┐
-│  Copywriter                         │
-│  - 헤드라인, CTA, 기능 설명 작성     │
-│  (3버전 공통 카피)                   │
-└─────────────────────────────────────┘
+┌────────────────────┬─────────────┬─────────────────┐
+│ Layout Designer    │ UI Stylist  │  Copywriter     │
+│ (톤별 고유 구조 3개)│ (톤별 고유  │  헤드라인/CTA/  │
+│                    │  토큰 3세트)│  기능 설명 등    │
+│ **병렬 실행**       │             │ (3버전 공통 카피)│
+└────────────────────┴─────────────┴─────────────────┘
               ↓
 ┌────────────────┬────────────────┬────────────────┐
 │ Frontend Coder │ Frontend Coder │ Frontend Coder │
@@ -267,17 +262,13 @@ Use the main-orchestrator to create a landing page for:
    - "선호하는 브랜드 색상이 있나요?"
    - "주요 전환 목표는? (무료 체험 가입 / 데모 요청 / 영업 문의)"
 
-2. Layout Designer 호출 → 레이아웃 JSON 받음
+2. 톤 매트릭스에서 엔터프라이즈/전문성에 맞는 3개 선택 (예: 브루탈 미니멀, 다크 테크니컬, 에디토리얼)
 
-3. UI Stylist 호출 → 프로페셔널한 파란색 계열 디자인 토큰 받음
+3. Layout Designer·UI Stylist·Copywriter **병렬 호출** → 톤별 레이아웃 JSON 3개, 프로페셔널한 파란색 계열 디자인 토큰 3세트, "Ship Secure Code 10x Faster" 같은 공통 카피를 동시에 받음
 
-4. Copywriter 호출 → "Ship Secure Code 10x Faster" 같은 헤드라인 받음
+4. Frontend Coder 3번 병렬 호출 — 톤마다 다른 레이아웃 패턴 + 다른 토큰 적용
 
-5. 톤 매트릭스에서 엔터프라이즈/전문성에 맞는 3개 선택 (예: 브루탈 미니멀, 다크 테크니컬, 에디토리얼) → Layout Designer·UI Stylist에 톤별로 요청
-
-6. Frontend Coder 3번 병렬 호출 — 톤마다 다른 레이아웃 패턴 + 다른 토큰 적용
-
-7. 결과 요약 및 사용자에게 보고
+5. 결과 요약 및 사용자에게 보고
 
 ---
 
