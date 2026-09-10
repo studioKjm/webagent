@@ -1012,12 +1012,12 @@ with sync_playwright() as p:
 각 버전의 README.md에 포함할 내용:
 
 ```markdown
-# Landing Page - Version 1: Minimal & Clean
+# Landing Page - Version 1: [톤 매트릭스에서 선택한 톤 이름, 예: 브루탈 미니멀]
 
 ## 디자인 컨셉
-- **스타일**: 미니멀, 화이트 배경, 전문적
-- **색상**: Blue (#3b82f6) + White
-- **타이포그래피**: Inter, 60px Hero
+- **스타일**: [예: 미니멀, 화이트 배경, 전문적] (아래 값은 예시 구조일 뿐 — 실제로는 ui-stylist 토큰 그대로)
+- **색상**: [예: oklch(60% 0.19 250) 계열] + White
+- **타이포그래피**: [distinctive 폰트, 예: Space Grotesk], 60px Hero (Inter 등 기본 폰트 금지)
 - **적합한 경우**: B2B SaaS, 전문 서비스
 
 ## 사용 방법

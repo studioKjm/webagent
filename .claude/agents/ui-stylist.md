@@ -210,9 +210,9 @@ body {
 Design Reference: https://linear.app
 ```
 
-**분석 결과**:
+**분석 결과** (색상/수치는 레퍼런스 참고용 원본 기록 — 폰트는 그대로 복제하지 않고 distinctive 폰트로 치환):
 ```css
-/* Linear.app 스타일 추출 */
+/* Linear.app 스타일 추출 (참고용 원본) */
 :root {
   /* Colors */
   --color-primary: #5E6AD2;        /* Purple */
@@ -221,8 +221,8 @@ Design Reference: https://linear.app
   --color-text: #1f2128;
   --color-text-muted: #6e7c87;
 
-  /* Typography */
-  --font-display: 'Inter', sans-serif;
+  /* Typography — 레퍼런스는 Inter를 쓰지만 AI 슬롭 금지 규칙에 따라 그대로 쓰지 않음 */
+  --font-display: 'Space Grotesk', sans-serif;  /* 예: 톤이 비슷한 distinctive 폰트로 대체 */
   --text-hero: 64px;
   --text-body: 18px;
 
