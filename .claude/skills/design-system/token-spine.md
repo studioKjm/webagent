@@ -69,6 +69,25 @@
 
 ---
 
+## 톤: 럭셔리 ("Midnight Claret")
+
+- **레이아웃 패턴**: E. 비대칭/오버랩 (좁은 컨테이너 1140px + 넓은 여백, desktop 전용 overlap)
+- **Primitive — 색상**: 배경 에스프레소 블랙(`--c-nero-950: oklch(12.5% 0.006 28)`), 지배 포인트 클라렛 1색(`--c-claret-600: oklch(50% 0.170 355)`), 장식용 샴페인 헤어라인(텍스트 금지, 선 전용)
+- **Primitive — 폰트**: Display `Instrument Serif`(이탤릭) + 한글 폴백 `Nanum Myeongjo`, Body `Epilogue`(300) + 한글 폴백 `Pretendard Variable`(300), Mono `Geist Mono`
+- **Semantic**: 다크 온리, 뉴트럴+포인트 1색, 저밀도(섹션 패딩 10rem), 절제된 radius(2-12px)
+- **Component**: 미묘 Glassmorphism 카드(`backdrop-filter blur(22px)`) + 스포트라이트 비네트 + 초저강도 필름 그레인(soft-light). Negative margin으로 섹션 간 오버랩, 히어로 플로팅 데모 카드
+- **⚠️ 주의**: mask-reveal `clip-path` 애니메이션과 오버랩용 negative-margin 요소는 상충 — 겹치는 요소에는 `clip-path` 없는 별도 fade 키프레임을 쓸 것(2026-09-10 실측 결함)
+- **적합한 타겟**: 프리미엄/구매력 높은 타겟, 절제된 톤이 필요한 B2B SaaS
+
+## 톤: 레트로퓨처리즘 ("Phosphor Drive")
+
+- **레이아웃 패턴**: F. 스크롤 스토리텔링 (챕터형 내러티브, sticky 데모 콘솔)
+- **Primitive — 색상**: 배경 딥 인디고 블랙(`--c-void-950: oklch(11.5% 0.035 278)`), 지배 네온 라임(`--c-lime-400: oklch(89% 0.215 132)`), 포인트 코럴(`--c-coral-400: oklch(76% 0.175 34)`)
+- **Primitive — 폰트**: Display `Chakra Petch`(700) + 한글 폴백 `Do Hyeon`, Body `Sora` + 한글 폴백 `Pretendard Variable`, Mono `Space Mono`
+- **Semantic**: 다크 온리, 네온 1색 지배 + 포인트 1색(라임은 본문 대량 텍스트 금지 — 헤드라인 강조어/숫자/보더/CTA 전용)
+- **Component**: Gradient Mesh(3점 radial) + 그레인(overlay) + 스캔라인 3중 텍스처, 네온 글로우 섀도우, `animation-timeline: view()` 기반 스크롤 연동(모바일/reduced-motion은 단순 fade-in 대체)
+- **적합한 타겟**: 테크/AI 제품, 크리에이티브, 스크롤 중심 내러티브가 필요한 제품
+
 ## 갱신 규칙
 
 - 새 프로젝트에서 **표에 없는 새로운 톤 조합**을 만들었고 시각 검수 80점 이상을 받았다면, 완료 후 이 파일에 같은 형식으로 항목을 추가하세요.
