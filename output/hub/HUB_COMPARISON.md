@@ -330,18 +330,18 @@ if (isMobile) {
 ### Mac에서 빠른 미리보기
 ```bash
 # Version 1
-open /Users/jimin/pageagent/webagent/output/hub-version-1/index.html
+open ./output/hub-version-1/index.html
 
 # Version 2
-open /Users/jimin/pageagent/webagent/output/hub-version-2/index.html
+open ./output/hub-version-2/index.html
 
 # Version 3
-open /Users/jimin/pageagent/webagent/output/hub-version-3/index.html
+open ./output/hub-version-3/index.html
 ```
 
 ### 로컬 서버 (권장)
 ```bash
-cd /Users/jimin/pageagent/webagent/output
+cd ./output
 
 # Python 3
 python3 -m http.server 8000
@@ -383,7 +383,7 @@ python3 -m http.server 8000
 ## 폴더 구조
 
 ```
-/Users/jimin/pageagent/webagent/output/
+webagent/output/
 ├── ai-trends-2026/              # AI 트렌드 프로젝트
 │   ├── version-1/               # Dark & Modern
 │   ├── version-2/               # Bold & Vibrant

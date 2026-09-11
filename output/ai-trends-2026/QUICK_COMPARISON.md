@@ -267,18 +267,18 @@ Version 3 (Minimal): 40% (enterprise audience)
 ### Quick Preview (Mac)
 ```bash
 # Version 1
-open /Users/jimin/pageagent/webagent/output/version-1/index.html
+open ./output/version-1/index.html
 
 # Version 2
-open /Users/jimin/pageagent/webagent/output/version-2/index.html
+open ./output/version-2/index.html
 
 # Version 3
-open /Users/jimin/pageagent/webagent/output/version-3/index.html
+open ./output/version-3/index.html
 ```
 
 ### Local Server (Recommended)
 ```bash
-cd /Users/jimin/pageagent/webagent/output
+cd ./output
 
 # Python 3
 python3 -m http.server 8000

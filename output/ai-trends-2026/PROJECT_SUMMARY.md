@@ -22,7 +22,7 @@ Successfully created **three distinctive landing page versions** for "2026 AI íŠ
 ## Three Landing Page Versions
 
 ### Version 1: Dark & Modern (Tech-Forward)
-**Location**: `/Users/jimin/pageagent/webagent/output/version-1/index.html`
+**Location**: `./output/version-1/index.html`
 
 **Design Concept**: Cyberpunk-meets-professional with cutting-edge typography
 
@@ -43,7 +43,7 @@ Successfully created **three distinctive landing page versions** for "2026 AI íŠ
 ---
 
 ### Version 2: Bold & Vibrant (Maximalist Energy)
-**Location**: `/Users/jimin/pageagent/webagent/output/version-2/index.html`
+**Location**: `./output/version-2/index.html`
 
 **Design Concept**: Brutalist aesthetics meets vaporwave with explosive energy
 
@@ -65,7 +65,7 @@ Successfully created **three distinctive landing page versions** for "2026 AI íŠ
 ---
 
 ### Version 3: Minimal & Clean (Professional Elegance)
-**Location**: `/Users/jimin/pageagent/webagent/output/version-3/index.html`
+**Location**: `./output/version-3/index.html`
 
 **Design Concept**: Swiss design precision meets modern SaaS sophistication
 

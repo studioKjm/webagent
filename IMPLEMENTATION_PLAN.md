@@ -24,7 +24,7 @@
 ### 1.1 최종 디렉토리 구조
 
 ```
-/Users/jimin/pageagent/webagent/
+webagent/
 ├── .claude/
 │   ├── agents/                              # 서브에이전트 디렉토리
 │   │   ├── main-orchestrator.md             # 메인 오케스트레이터

@@ -33,7 +33,7 @@
 ## 🗂️ 프로젝트 구조
 
 ```
-/Users/jimin/pageagent/webagent/
+webagent/
 ├── .claude/
 │   ├── agents/                              # 서브 에이전트 (5개)
 │   │   ├── main-orchestrator.md
