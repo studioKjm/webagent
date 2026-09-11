@@ -25,7 +25,7 @@
 ## 📂 현재 프로젝트 구조
 
 ```
-/Users/jimin/pageagent/webagent/output/
+webagent/output/
 ├── ai-trends-2026/              # 프로젝트 1: 2026 AI 트렌드 예측
 │   ├── version-1/               # Dark & Modern
 │   │   └── index.html
@@ -424,16 +424,16 @@ https://images.unsplash.com/photo-{id}?w={width}&h={height}&fit=crop&q=80
 ## 📚 관련 문서
 
 ### 주요 문서
-- [CLAUDE.md](/Users/jimin/pageagent/webagent/CLAUDE.md) - 프로젝트 전체 가이드
-- [IMPLEMENTATION_PLAN.md](/Users/jimin/pageagent/webagent/IMPLEMENTATION_PLAN.md) - 구현 계획
-- [PRD.md](/Users/jimin/pageagent/webagent/PRD.md) - 제품 요구사항 정의서
+- [CLAUDE.md](./CLAUDE.md) - 프로젝트 전체 가이드
+- [IMPLEMENTATION_PLAN.md](./IMPLEMENTATION_PLAN.md) - 구현 계획
+- [PRD.md](./PRD.md) - 제품 요구사항 정의서
 
 ### Hub 관련 문서
-- [HUB_COMPARISON.md](/Users/jimin/pageagent/webagent/output/HUB_COMPARISON.md) - Hub 3가지 버전 비교
-- [HUB_USER_GUIDE.md](/Users/jimin/pageagent/webagent/output/HUB_USER_GUIDE.md) - Hub 사용자 가이드
+- [HUB_COMPARISON.md](./output/HUB_COMPARISON.md) - Hub 3가지 버전 비교
+- [HUB_USER_GUIDE.md](./output/HUB_USER_GUIDE.md) - Hub 사용자 가이드
 
 ### 프로젝트별 문서
-- [AI Trends QUICK_COMPARISON.md](/Users/jimin/pageagent/webagent/output/ai-trends-2026/QUICK_COMPARISON.md)
+- [AI Trends QUICK_COMPARISON.md](./output/ai-trends-2026/QUICK_COMPARISON.md)
 - Fashion Shop: 별도 문서 없음 (각 버전 HTML 파일 참조)
 
 ---
@@ -441,19 +441,19 @@ https://images.unsplash.com/photo-{id}?w={width}&h={height}&fit=crop&q=80
 ## 🔗 실행 가능한 파일
 
 ### Hub Pages
-- [Hub Version 1 - Minimal & Clean](/Users/jimin/pageagent/webagent/output/hub/version-1/index.html)
-- [Hub Version 2 - Brutalist](/Users/jimin/pageagent/webagent/output/hub/version-2/index.html)
-- [Hub Version 3 - Glassmorphism](/Users/jimin/pageagent/webagent/output/hub/version-3/index.html)
+- [Hub Version 1 - Minimal & Clean](./output/hub/version-1/index.html)
+- [Hub Version 2 - Brutalist](./output/hub/version-2/index.html)
+- [Hub Version 3 - Glassmorphism](./output/hub/version-3/index.html)
 
 ### AI Trends 2026
-- [AI Trends V1 - Dark & Modern](/Users/jimin/pageagent/webagent/output/ai-trends-2026/version-1/index.html)
-- [AI Trends V2 - Bold & Vibrant](/Users/jimin/pageagent/webagent/output/ai-trends-2026/version-2/index.html)
-- [AI Trends V3 - Minimal & Clean](/Users/jimin/pageagent/webagent/output/ai-trends-2026/version-3/index.html)
+- [AI Trends V1 - Dark & Modern](./output/ai-trends-2026/version-1/index.html)
+- [AI Trends V2 - Bold & Vibrant](./output/ai-trends-2026/version-2/index.html)
+- [AI Trends V3 - Minimal & Clean](./output/ai-trends-2026/version-3/index.html)
 
 ### Fashion Shop
-- [LUXE - Minimal & Clean](/Users/jimin/pageagent/webagent/output/fashion-shop/version-1/index.html)
-- [VOGUE VIBES - Bold & Vibrant](/Users/jimin/pageagent/webagent/output/fashion-shop/version-2/index.html)
-- [NOIR Collection - Dark & Modern](/Users/jimin/pageagent/webagent/output/fashion-shop/version-3/index.html)
+- [LUXE - Minimal & Clean](./output/fashion-shop/version-1/index.html)
+- [VOGUE VIBES - Bold & Vibrant](./output/fashion-shop/version-2/index.html)
+- [NOIR Collection - Dark & Modern](./output/fashion-shop/version-3/index.html)
 
 ---
 
