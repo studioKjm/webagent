@@ -1,0 +1,8 @@
+# Claude Code local settings (personal, machine-specific — never commit)
+.claude/settings.local.json
+
+# Dependencies
+node_modules/
+
+# OS
+.DS_Store
